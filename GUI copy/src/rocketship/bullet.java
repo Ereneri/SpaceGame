@@ -1,8 +1,9 @@
 package rocketship;
 
 import Main.GamePanel;
+import object.metal;
 
-public class bullet extends rocketship{
+public class bullet extends metal{
     
     public bullet(GamePanel gp) {
         super(gp);
