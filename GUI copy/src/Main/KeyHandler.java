@@ -9,11 +9,11 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
@@ -32,7 +32,8 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        System.out.println("keyReleased="+KeyEvent.getKeyText(e.getKeyCode()));
+        
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
