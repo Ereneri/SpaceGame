@@ -21,6 +21,10 @@ public class rocketship {
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
+    public rocketship(GamePanel gp) {
+        this.gp = gp;
+    }
+
     public rocketship(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;

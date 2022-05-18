@@ -1,6 +1,6 @@
-package collectables;
+package object;
 
-public class Iron extends Gold{
+public class Iron extends metal{
 	public int getValue() {
 		return super.getValue()/4;
 	}
