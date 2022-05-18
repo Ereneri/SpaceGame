@@ -6,12 +6,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
+import rocketship.rocketship;
+
 public class GamePanel extends JPanel implements Runnable {
     // Basic Screen Vars
     final int originalTitleSize = 16; // 16x16
     final int scale = 3;
 
-    final int tileSize = originalTitleSize * scale; // == 48x48
+    public final int tileSize = originalTitleSize * scale; // == 48x48
     final int mapWidth = 16;
     final int mapHeight = 16;
     // Size of Screen
@@ -23,6 +25,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
+    rocketship ship = new rocketship(this, keyH);
 
     // Default Location
     int playerX = 100;
@@ -77,27 +80,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Updates frame with key input
     public void update() {
-        
-        if (keyH.upPressed == true) {
-            playerY -= playerSpeed;
-        } 
-        else if (keyH.downPressed == true) {
-            playerY += playerSpeed;
-        } 
-        else if (keyH.leftPressed == true) {
-            playerX -= playerSpeed;
-        } 
-        else if (keyH.rightPressed == true) {
-            playerX += playerSpeed;
-        }
+        ship.update();
     }
 
     // Draw things on JPanel
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.white);
-        g2.fillRect(playerX, playerY, tileSize, tileSize);
+
+        ship.draw(g2);
         g2.dispose();
     }
 
