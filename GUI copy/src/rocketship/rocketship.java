@@ -54,15 +54,30 @@ public class rocketship {
         if (keyH.upPressed == true) {
             y -= speed;
             direction = "up";
-        } else if (keyH.downPressed == true) {
+        }
+        if (keyH.downPressed == true) {
             y += speed;
             direction = "down";
-        } else if (keyH.leftPressed == true) {
+        }
+        if (keyH.leftPressed == true) {
             x -= speed;
             direction = "left";
-        } else if (keyH.rightPressed == true) {
+        }
+        if (keyH.rightPressed == true) {
             x += speed;
             direction = "right";
+        }
+        if (keyH.upPressed && keyH.rightPressed) {
+            direction = "upRight";
+        }
+        if (keyH.upPressed && keyH.leftPressed) {
+            direction = "upLeft";
+        }
+        if (keyH.downPressed && keyH.rightPressed) {
+            direction = "downRight";
+        }
+        if (keyH.downPressed && keyH.leftPressed) {
+            direction = "downLeft";
         }
     }
 
@@ -80,6 +95,18 @@ public class rocketship {
                 break;
             case "right":
                 image = right1;
+                break;
+            case "upRight":
+                image = up2;
+                break;
+            case "downRight":
+                image = right2;
+                break;
+            case "upLeft":
+                image = left2;
+                break;
+            case "downLeft":
+                image = down2;
                 break;
             } 
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
