@@ -1,10 +1,10 @@
 package Main;
 
-import javax.swing.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
     // Basic Screen Vars
@@ -37,8 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-        this.requestFocus();
-        // this.setLayout(null);
+        this.setLayout(null);
     }
 
     // Start Game Thread
@@ -53,37 +52,27 @@ public class GamePanel extends JPanel implements Runnable {
 
         // Sleep method vars
         double drawInterval = 1000000000 / FPS; // .01666 seconds 
-        double nextDrawTime = System.nanoTime() + drawInterval;
+        double delta = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
 
         // Loop for thread
         while(gameThread != null) {
 
-            // Debugging
-            System.out.println("you released key code: " + keyH.upPressed + keyH.downPressed + keyH.leftPressed + keyH.rightPressed);
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
 
-            // updates frame with info
-            update();
-            // repaints frame based on new updated info
-            repaint();
+            lastTime = currentTime;
 
-            // Sleeps thread
-            try {
-                double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime = remainingTime/1000000;
-
-                if (remainingTime < 0) {
-                    remainingTime = 0;
-                }
-
-                Thread.sleep((long) remainingTime);
-
-                nextDrawTime += drawInterval;
-
-            } catch (InterruptedException e) {
-                // Prins error
-                e.printStackTrace();
+            if (delta >= 1) {
+                // Update
+                update();
+                // Draw
+                repaint();
+                delta--;
             }
         }
+        this.requestFocusInWindow();
     }
 
     // Updates frame with key input
@@ -91,11 +80,14 @@ public class GamePanel extends JPanel implements Runnable {
         
         if (keyH.upPressed == true) {
             playerY -= playerSpeed;
-        } else if (keyH.downPressed == true) {
+        } 
+        else if (keyH.downPressed == true) {
             playerY += playerSpeed;
-        } else if (keyH.leftPressed == true) {
+        } 
+        else if (keyH.leftPressed == true) {
             playerX -= playerSpeed;
-        } else if (keyH.rightPressed == true) {
+        } 
+        else if (keyH.rightPressed == true) {
             playerX += playerSpeed;
         }
     }
