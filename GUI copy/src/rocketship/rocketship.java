@@ -20,7 +20,7 @@ public class rocketship {
     public int x, y;
     public int speed;
     public bullet bullet;
-    public Collision c;
+    public Collision shipC;
 
     // initlize the game panel and keyhabndler
     GamePanel gp;
@@ -52,7 +52,7 @@ public class rocketship {
         this.keyH = keyH;
         setDefaultValues();
         getRocketImage();
-        c = new Collision(x, y, gp.tileSize, gp.tileSize);
+        shipC = new Collision(x, y, gp.tileSize, gp.tileSize);
     }
 
     public void addBullet(bullet block) {
@@ -171,11 +171,11 @@ public class rocketship {
 
         // CROP IMAGE TO MAKE SIZING CORRECT
         
-        //moves collision with rocket
+        //moves collision with rocket and displays it
         g2.setColor(Color.gray);
-        c.setX(x);
-        c.setY(y);
-        c.render(g2);
+        shipC.setX(x);
+        shipC.setY(y);
+        shipC.render(g2);
     }
 }
 
