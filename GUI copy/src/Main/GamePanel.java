@@ -35,7 +35,6 @@ public class GamePanel extends JPanel implements Runnable {
     
     // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
-    public ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
     
     // Metal Object
     public metal obj[] = new metal[10];
@@ -99,11 +98,6 @@ public class GamePanel extends JPanel implements Runnable {
     // Updates frame with key input
     public void update() {
         ship.update();
-        
-        // needed for bullet rendering
-        for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).update();
-        }
     }
 
     // Draw things on JPanel

@@ -3,13 +3,15 @@ package rocketship;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.Graphics2D;
 import java.awt.*;
 import javax.imageio.ImageIO;
 
 import Main.GamePanel;
 import Main.KeyHandler;
-import object.OBJ_Bullet;
+// import object.OBJ_Bullet;
+import rocketship.bullet;
 
 public class rocketship {
 
@@ -26,6 +28,18 @@ public class rocketship {
     // Vars for sprite image
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
+    // Bullet Stuff
+    public ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
+    public void tick() {
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).tick();
+            if (bullets.get(i).getX() < 0) {
+                bullets.remove(i);
+            }
+        }
+    }
+
+
     // constructor
     public rocketship(GamePanel gp) {
         this.gp = gp;
@@ -37,6 +51,15 @@ public class rocketship {
         this.keyH = keyH;
         setDefaultValues();
         getRocketImage();
+        addBullet(new bullet(100.0, 100.0));
+    }
+
+    public void addBullet(bullet block) {
+        bullets.add(block);
+    }
+
+    public void removeBullet(bullet block) {
+        bullets.remove(block);
     }
     
     // Resets the rocketship to default values
@@ -45,7 +68,6 @@ public class rocketship {
         y = 100;
         speed = 4;
         direction = "up";
-        bullet = new OBJ_Bullet(gp);
     }
 
     // Get the image into memory
@@ -97,13 +119,18 @@ public class rocketship {
             direction = "downLeft";
         }
         if (keyH.shotKeyPressed == true) {
-            bullet.set(x, y, direction);
-            gp.bullets.add(bullet);
+            bullets.add(new bullet(x, y));
         }
     }
 
     // takes the direction and draws the correct sprite image
     public void draw(Graphics2D g2) {
+        // render bullets
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).draw(g2);
+            bullets.get(i).tick();
+        }
+
         BufferedImage image = null;
         switch(direction) {
             case "up":
@@ -138,6 +165,8 @@ public class rocketship {
 
         // draw the image with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+
+        // CROP IMAGE TO MAKE SIZING CORRECT
     }
 }
 
