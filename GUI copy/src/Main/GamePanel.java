@@ -12,18 +12,20 @@ import rocketship.bullet;
 import rocketship.rocketship;
 
 public class GamePanel extends JPanel implements Runnable {
-    // Basic Screen Vars
+    // Basic Screen Vars and scale factor
     final int originalTitleSize = 16; // 16x16
     final int scale = 3;
 
+    // Map sizing vars
     public final int tileSize = originalTitleSize * scale; // == 48x48
     final int mapWidth = 16;
     final int mapHeight = 16;
+
     // Size of Screen
     final int screenWidth = mapWidth * tileSize;
     final int screenHeight = mapHeight * tileSize;
 
-    // FPS 
+    // FPS for Thread
     int FPS = 60;
 
     // SYSTEM VARS
@@ -32,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
-    public ArrayList<bullet> bullets = new ArrayList<bullet>();
+    public ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
 
     // Default Location
     int playerX = 100;
@@ -60,20 +62,24 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
 
-        // Sleep method vars
+        // Delta method vars
         double drawInterval = 1000000000 / FPS; // .01666 seconds 
         double delta = 0;
+        
         long lastTime = System.nanoTime();
         long currentTime;
 
         // Loop for thread
         while(gameThread != null) {
 
+            // get current time and set delta to the difference between current time and last time divided by the frame rate
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
 
+            // then set of time to current
             lastTime = currentTime;
 
+            // if delta is greater than 1, then update
             if (delta >= 1) {
                 // Update
                 update();
@@ -82,12 +88,15 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
             }
         }
+        // needed for input to work \/
         this.requestFocusInWindow();
     }
 
     // Updates frame with key input
     public void update() {
         ship.update();
+        
+        // needed for bullet rendering
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).update();
         }

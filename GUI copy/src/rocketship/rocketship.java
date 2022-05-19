@@ -13,27 +13,33 @@ import object.OBJ_Bullet;
 
 public class rocketship {
 
+    // basic rocketship vars
     public String direction;
     public int x, y;
     public int speed;
     public bullet bullet;
 
+    // initlize the game panel and keyhabndler
     GamePanel gp;
     KeyHandler keyH;
 
+    // Vars for sprite image
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
+    // constructor
     public rocketship(GamePanel gp) {
         this.gp = gp;
     }
 
+    // contructor (DEFAULT)
     public rocketship(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
         setDefaultValues();
         getRocketImage();
     }
-
+    
+    // Resets the rocketship to default values
     public void setDefaultValues() {
         x = 100;
         y = 100;
@@ -42,6 +48,7 @@ public class rocketship {
         bullet = new OBJ_Bullet(gp);
     }
 
+    // Get the image into memory
     public void getRocketImage() {
         try {
             up1 = ImageIO.read(getClass().getResourceAsStream("/ship/up.png"));
@@ -57,7 +64,9 @@ public class rocketship {
         }
     }
 
+    // updates the frame depending on key input
     public void update() {
+        // below is for 4 directional movement
         if (keyH.upPressed == true) {
             y -= speed;
             direction = "up";
@@ -74,6 +83,7 @@ public class rocketship {
             x += speed;
             direction = "right";
         }
+        // Everything below is for 8 direction movement
         if (keyH.upPressed && keyH.rightPressed) {
             direction = "upRight";
         }
@@ -92,6 +102,7 @@ public class rocketship {
         }
     }
 
+    // takes the direction and draws the correct sprite image
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         switch(direction) {
@@ -107,6 +118,7 @@ public class rocketship {
             case "right":
                 image = right1;
                 break;
+        // 8 direction movement
             case "upRight":
                 image = up2;
                 break;
@@ -120,8 +132,11 @@ public class rocketship {
                 image = down2;
                 break;
             } 
+        // vizualize the hit box for the rocketship for collision detection
         g2.setColor(Color.red);
         g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+
+        // draw the image with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
     }
 }
