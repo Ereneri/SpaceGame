@@ -185,6 +185,7 @@ public class rocketship {
         shipC.setY(y);
         shipC.render(g2);
         
+        // renders walls
         wallCUp.render(g2);
         wallCDown.render(g2);
         wallCLeft.render(g2);
