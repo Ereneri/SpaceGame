@@ -62,6 +62,22 @@ public class rocketship {
         wallCLeft = new Collision(0, 0, 5, 768);
         wallCRight = new Collision(763, 0, 5, 768);
     }
+    
+    public int getXShip() {
+    	return x;
+    }
+
+    public void setXShip(int x) {
+    	this.x = x;
+    }
+
+    public int getYShip() {
+    	return y;
+    }
+
+    public void setYShip(int y) {
+    	this.y = y;
+    }
 
     public void addBullet(bullet block) {
         bullets.add(block);
@@ -181,8 +197,8 @@ public class rocketship {
         
         //moves collision with rocket and displays it
         g2.setColor(Color.gray);
-        shipC.setX(x);
-        shipC.setY(y);
+        shipC.setXCol(x);
+        shipC.setYCol(y);
         shipC.render(g2);
         
         // renders walls
@@ -191,8 +207,24 @@ public class rocketship {
         wallCLeft.render(g2);
         wallCRight.render(g2);
         
-        if(shipC.touches(wallCUp) || shipC.touches(wallCDown) || shipC.touches(wallCLeft) || shipC.touches(wallCRight)) {
-        	System.out.println("touches");
+        
+        // teleportation if you touch a wall
+        if(shipC.touchesUp(wallCUp)) {
+        	y = 762-gp.tileSize;
+        	shipC.setYCol(y);
+        	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        }else if(shipC.touchesDown(wallCDown)) {
+        	y = 12;
+        	shipC.setYCol(y);
+        	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        }else if(shipC.touchesLeft(wallCLeft)) {
+        	x = 762-gp.tileSize;
+        	shipC.setXCol(x);
+        	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        }else if(shipC.touchesRight(wallCRight)) {
+        	x = 12;
+        	shipC.setXCol(x);
+        	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }
     }
 }
