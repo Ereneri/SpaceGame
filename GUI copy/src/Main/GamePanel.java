@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import object.metal;
 import rocketship.bullet;
 import rocketship.rocketship;
 
@@ -35,6 +36,9 @@ public class GamePanel extends JPanel implements Runnable {
     // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
     public ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
+    
+    // Metal Object
+    public metal obj[] = new metal[10];
 
     // Default Location
     int playerX = 100;
