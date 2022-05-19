@@ -18,15 +18,25 @@ public class AssetSetter {
 		gp.obj[0].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
 	}
 	
+	
 	public void setSilver() {
 		gp.obj[1] = new Silver();
 		gp.obj[1].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
 		gp.obj[1].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		gp.obj[2] = new Silver();
+		gp.obj[2].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		gp.obj[2].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
 	}
 		
 	public void setIron() {
-		gp.obj[2] = new Iron();
-		gp.obj[2].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
-		gp.obj[2].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		gp.obj[3] = new Iron();
+		gp.obj[3].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		gp.obj[3].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		gp.obj[4] = new Iron();
+		gp.obj[4].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		gp.obj[4].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		gp.obj[5] = new Iron();
+		gp.obj[5].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		gp.obj[5].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
 	}
 }
