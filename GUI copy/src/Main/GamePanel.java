@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     // Metal Object
     public metal obj[] = new metal[10];
+    public AssetSetter aSetter = new AssetSetter(this);
 
     // Default Location
     int playerX = 100;
@@ -54,6 +55,13 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
         this.setLayout(null);
+    }
+    
+    public void spawnMetal() {
+    	aSetter.setGold();
+    	aSetter.setSilver();
+    	aSetter.setIron();
+
     }
 
     // Start Game Thread

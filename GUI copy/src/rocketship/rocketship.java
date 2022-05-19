@@ -20,6 +20,7 @@ public class rocketship {
     public int x, y;
     public int speed;
     public bullet bullet;
+    public Collision c;
 
     // initlize the game panel and keyhabndler
     GamePanel gp;
@@ -51,6 +52,7 @@ public class rocketship {
         this.keyH = keyH;
         setDefaultValues();
         getRocketImage();
+        c = new Collision(x, y, gp.tileSize, gp.tileSize);
     }
 
     public void addBullet(bullet block) {
@@ -161,13 +163,19 @@ public class rocketship {
                 break;
             } 
         // vizualize the hit box for the rocketship for collision detection
-        g2.setColor(Color.red);
-        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+//        g2.setColor(Color.red);
+//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
         // draw the image with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
 
         // CROP IMAGE TO MAKE SIZING CORRECT
+        
+        //moves collision with rocket
+        g2.setColor(Color.gray);
+        c.setX(x);
+        c.setY(y);
+        c.render(g2);
     }
 }
 
