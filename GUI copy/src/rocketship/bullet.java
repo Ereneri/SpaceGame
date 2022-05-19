@@ -37,7 +37,7 @@ public class bullet {
     }
 
     public void draw(Graphics g) {
-        g.drawImage(bulletImage, (int) x + 20, (int) y + 20, null);
+        g.drawImage(bulletImage, (int) x, (int) y, 16, 16, null);
     }
 
     public double getX() {
