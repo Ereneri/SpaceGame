@@ -28,6 +28,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // FPS for Thread
     int FPS = 60;
+    double delta = 0;
 
     // SYSTEM VARS
     KeyHandler keyH = new KeyHandler();
@@ -75,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         // Delta method vars
         double drawInterval = 1000000000 / FPS; // .01666 seconds 
-        double delta = 0;
+        delta = 0;
         
         long lastTime = System.nanoTime();
         long currentTime;

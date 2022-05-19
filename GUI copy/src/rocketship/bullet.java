@@ -13,12 +13,17 @@ public class bullet {
 
     private double x;
     private double y;
+    private long lastTime;
+    private String direction;
 
     BufferedImage bulletImage;
 
-    public bullet(double x, double y) {
+    public bullet(double x, double y, String direction) {
         this.x = x;
         this.y = y;
+        this.direction = direction;
+
+        this.lastTime = System.currentTimeMillis();
 
         try {
             bulletImage = ImageIO.read(getClass().getResourceAsStream("/object/bullet_up.png"));
@@ -28,11 +33,11 @@ public class bullet {
     }
 
     public void tick() {
-        y -= 10;
+        y -= 15;
     }
 
     public void draw(Graphics g) {
-        g.drawImage(bulletImage, (int) x, (int) y, null);
+        g.drawImage(bulletImage, (int) x + 20, (int) y + 20, null);
     }
 
     public double getX() {
@@ -41,5 +46,9 @@ public class bullet {
 
     public double getY() {
         return y;
+    }
+
+    public long getTime() {
+        return lastTime;
     }
 }
