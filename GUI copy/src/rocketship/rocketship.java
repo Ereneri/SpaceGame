@@ -171,7 +171,7 @@ public class rocketship {
 
         // CROP IMAGE TO MAKE SIZING CORRECT
         
-        //moves collision with rocket
+        //moves collision with rocket and displays it
         g2.setColor(Color.gray);
         c.setX(x);
         c.setY(y);
