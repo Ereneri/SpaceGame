@@ -21,6 +21,10 @@ public class rocketship {
     public int speed;
     public bullet bullet;
     public Collision shipC;
+    public Collision wallCUp;
+    public Collision wallCDown;
+    public Collision wallCLeft;
+    public Collision wallCRight;
 
     // initlize the game panel and keyhabndler
     GamePanel gp;
@@ -53,6 +57,10 @@ public class rocketship {
         setDefaultValues();
         getRocketImage();
         shipC = new Collision(x, y, gp.tileSize, gp.tileSize);
+        wallCUp = new Collision(0, 0, 768, 5);
+        wallCDown = new Collision(0, 763, 768, 5);
+        wallCLeft = new Collision(0, 0, 5, 768);
+        wallCRight = new Collision(763, 0, 5, 768);
     }
 
     public void addBullet(bullet block) {
@@ -176,6 +184,11 @@ public class rocketship {
         shipC.setX(x);
         shipC.setY(y);
         shipC.render(g2);
+        
+        wallCUp.render(g2);
+        wallCDown.render(g2);
+        wallCLeft.render(g2);
+        wallCRight.render(g2);
     }
 }
 
