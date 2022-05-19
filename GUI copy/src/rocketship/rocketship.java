@@ -51,7 +51,6 @@ public class rocketship {
         this.keyH = keyH;
         setDefaultValues();
         getRocketImage();
-        addBullet(new bullet(100.0, 100.0));
     }
 
     public void addBullet(bullet block) {
@@ -119,7 +118,9 @@ public class rocketship {
             direction = "downLeft";
         }
         if (keyH.shotKeyPressed == true) {
-            bullets.add(new bullet(x, y));
+            if (bullets.size() == 0 || bullets.get(bullets.size() - 1).getTime() + 200 < System.currentTimeMillis()) {
+                bullets.add(new bullet(x, y, direction));
+            }
         }
     }
 
