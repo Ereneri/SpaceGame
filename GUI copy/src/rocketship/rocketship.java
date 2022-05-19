@@ -190,6 +190,10 @@ public class rocketship {
         wallCDown.render(g2);
         wallCLeft.render(g2);
         wallCRight.render(g2);
+        
+        if(shipC.touches(wallCUp) || shipC.touches(wallCDown) || shipC.touches(wallCLeft) || shipC.touches(wallCRight)) {
+        	System.out.println("touches");
+        }
     }
 }
 

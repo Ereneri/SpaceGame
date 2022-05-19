@@ -67,20 +67,20 @@ public boolean touches(Collision c) {
 	int cBottom=c.getY()+c.getHeight()+c.getHeight()+5;
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		//System.out.println("top");
+		System.out.println("bottom");
 		return true;
 		
 	}
 	if(right>=cLeft&&right<=cRight&&top>=cTop&&top<=cBottom) {
-		//System.out.println("left");
+		System.out.println("top");
 		return true;
 	}
 	if(left>=cLeft&&left<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		//System.out.println("bottom");
+		System.out.println("left");
 		return true;
 	}
 	if(left>=cLeft&&left<=cRight&&top>=cTop&&top<=cBottom) {
-		//System.out.println("right");
+		System.out.println("right");
 		return true;
 	}
 	return false;
