@@ -1,7 +1,18 @@
 package object;
 
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 public class Iron extends metal{
-	public int getValue() {
-		return super.getValue()/4;
+	
+	public Iron() {
+		int value = 25;
+		
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/object/Iron.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
