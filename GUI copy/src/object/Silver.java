@@ -7,7 +7,8 @@ import javax.imageio.ImageIO;
 public class Silver extends metal{
 	
 	public Silver() {
-		int value = 50;
+		name = "Silver";
+		value = 50;
 		
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream("/object/Silver.png"));
