@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.awt.Graphics2D;
-
+import java.awt.*;
 import javax.imageio.ImageIO;
 
 import Main.GamePanel;
@@ -113,6 +113,8 @@ public class rocketship {
                 image = down2;
                 break;
             } 
+        g2.setColor(Color.red);
+        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
     }
 }
