@@ -3,37 +3,43 @@ package rocketship;
 import Main.GamePanel;
 import object.metal;
 
-public class bullet extends rocketship{
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-    rocketship ship;
-    
-    // constructor
-    public bullet(GamePanel gp) {
-        super(gp);
-    }
+import javax.imageio.ImageIO;
 
-    // sets the default values
-    public void set(int worldX, int worldY, String direction) {
-        this.x = worldX;
-        this.y = worldY;
-        this.direction = direction;
-    }
+public class bullet {
 
-    // updates the bullet based on direction
-    public void update() {
-        switch(direction) {
-            case "up":
-                y -= speed;
-                break;
-            case "down":
-                y += speed;
-                break;
-            case "left":
-                x -= speed;
-                break;
-            case "right":
-                x += speed;
-                break;
+    private double x;
+    private double y;
+
+    BufferedImage bulletImage;
+
+    public bullet(double x, double y) {
+        this.x = x;
+        this.y = y;
+
+        try {
+            bulletImage = ImageIO.read(getClass().getResourceAsStream("/object/bullet_up.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    public void tick() {
+        y -= 10;
+    }
+
+    public void draw(Graphics g) {
+        g.drawImage(bulletImage, (int) x, (int) y, null);
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 }
