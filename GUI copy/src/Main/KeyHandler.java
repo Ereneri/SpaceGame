@@ -16,7 +16,7 @@ public class KeyHandler implements KeyListener {
     // takes the boolean values from the key pressed and sets them to true
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
+        //System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
@@ -39,7 +39,7 @@ public class KeyHandler implements KeyListener {
     // takes the boolean values from the key released and sets them to false
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("keyReleased="+KeyEvent.getKeyText(e.getKeyCode()));
+        //System.out.println("keyReleased="+KeyEvent.getKeyText(e.getKeyCode()));
         
         int code = e.getKeyCode();
 
