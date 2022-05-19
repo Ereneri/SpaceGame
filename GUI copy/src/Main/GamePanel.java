@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
+import rocketship.bullet;
 import rocketship.rocketship;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -23,9 +26,13 @@ public class GamePanel extends JPanel implements Runnable {
     // FPS 
     int FPS = 60;
 
+    // SYSTEM VARS
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
+    
+    // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
+    public ArrayList<bullet> bullets = new ArrayList<bullet>();
 
     // Default Location
     int playerX = 100;
@@ -81,6 +88,9 @@ public class GamePanel extends JPanel implements Runnable {
     // Updates frame with key input
     public void update() {
         ship.update();
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).update();
+        }
     }
 
     // Draw things on JPanel

@@ -9,12 +9,14 @@ import javax.imageio.ImageIO;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import object.OBJ_Bullet;
 
 public class rocketship {
 
     public String direction;
     public int x, y;
     public int speed;
+    public bullet bullet;
 
     GamePanel gp;
     KeyHandler keyH;
@@ -37,6 +39,7 @@ public class rocketship {
         y = 100;
         speed = 4;
         direction = "up";
+        bullet = new OBJ_Bullet(gp);
     }
 
     public void getRocketImage() {
@@ -82,6 +85,10 @@ public class rocketship {
         }
         if (keyH.downPressed && keyH.leftPressed) {
             direction = "downLeft";
+        }
+        if (keyH.shotKeyPressed == true) {
+            bullet.set(x, y, direction);
+            gp.bullets.add(bullet);
         }
     }
 
