@@ -51,7 +51,7 @@ public void setHeight(int height) {
 
 
 public void render(Graphics g) {
-	g.fillRect(x, y, width, height);
+	g.drawRect(x, y, width, height);
 }
 
 
