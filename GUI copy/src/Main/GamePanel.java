@@ -138,7 +138,7 @@ public class GamePanel extends JPanel implements Runnable {
         
         for(int i = 0; i<ast.asts.length; i++) {
         	ast.asts[i].astTick();
-        	ast.asts[i].draw(g2);
+        	ast.asts[i].draw(g2, this);
         }
 
         ship.draw(g2);

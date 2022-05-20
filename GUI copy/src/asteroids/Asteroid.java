@@ -21,7 +21,7 @@ public class Asteroid {
 	
 	public int x;
 	public int y;
-	public static Image asteroid;
+	public Image asteroid;
 	public int xVelAst;
 	public int yVelAst;
 	private Collision c;
@@ -36,9 +36,9 @@ public class Asteroid {
 		c=new Collision(x,y,41,45);
 	}
 	
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, GamePanel gp) {
 		
-		g.drawImage(asteroid, x, y, null);
+		g.drawImage(asteroid, x, y, gp.tileSize, gp.tileSize, null);
 		g.drawRect(x, y, 41, 45);
 	}
 	
