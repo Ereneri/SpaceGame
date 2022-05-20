@@ -64,9 +64,9 @@ public boolean touches(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol()+10;
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;

@@ -242,7 +242,7 @@ public class rocketship {
         	if(objRocket.obj[i]!= null) {
         		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX()+8);
         		objRocket.obj[i].getCObj().setYCol(objRocket.obj[i].getWorldY()+5);
-        		if(shipC.touchesUp(objRocket.obj[i].getCObj())) {
+        		if(shipC.touches(objRocket.obj[i].getCObj())) {
                 	System.out.println("touch obj");
                 	g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
                 }
