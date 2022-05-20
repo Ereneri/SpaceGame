@@ -13,5 +13,6 @@ public class metal {
 	
 	public void draw(Graphics2D g2, GamePanel gp) {
 		g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
+		g2.drawRect(worldX + 8, worldY + 5, gp.tileSize/2, gp.tileSize/2);
 	}
 }
