@@ -41,7 +41,9 @@ public class GamePanel extends JPanel implements Runnable {
     rocketship ship = new rocketship(this, keyH);
     
     // Metal Object
-    public metal obj[] = new metal[10];
+    public class objRocket{
+    	public static metal obj[] = new metal[10];
+    }
     public AssetSetter aSetter = new AssetSetter(this);
     
     // asteroid stuff
@@ -131,9 +133,9 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         
-        for (int i = 0; i < obj.length; i++) {
-        	if(obj[i]!= null) {
-        		obj[i].draw(g2, this);
+        for (int i = 0; i < objRocket.obj.length; i++) {
+        	if(objRocket.obj[i]!= null) {
+        		objRocket.obj[i].draw(g2, this);
         	}
         }
         
