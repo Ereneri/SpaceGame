@@ -35,6 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
     // SYSTEM VARS
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
+    boolean running = true;
     
     // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
@@ -82,6 +83,14 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
+    }
+
+    public void pause(boolean paused) {
+        running = paused;
+    }
+
+    public boolean isPaused() {
+        return running;
     }
 
     // Game Loop

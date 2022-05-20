@@ -47,13 +47,9 @@ public void setHeightCol(int height) {
 	this.height = height;
 }
 
-
-
-
 public void render(Graphics g) {
 	g.drawRect(x, y, width, height);
 }
-
 
 public boolean touchesUp(Collision c) {
 	int left=x;

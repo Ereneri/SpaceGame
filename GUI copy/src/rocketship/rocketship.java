@@ -20,6 +20,8 @@ public class rocketship {
     public int x, y;
     public int speed;
     public bullet bullet;
+
+    // collision vars
     public Collision shipC;
     public Collision wallCUp;
     public Collision wallCDown;
@@ -44,7 +46,6 @@ public class rocketship {
         }
     }
 
-
     // constructor
     public rocketship(GamePanel gp) {
         this.gp = gp;
@@ -63,6 +64,7 @@ public class rocketship {
         wallCRight = new Collision(763, 0, 5, 768);
     }
     
+    // collision methods
     public int getXShip() {
     	return x;
     }
@@ -79,6 +81,7 @@ public class rocketship {
     	this.y = y;
     }
 
+    // ArrayList methods
     public void addBullet(bullet block) {
         bullets.add(block);
     }
@@ -146,6 +149,13 @@ public class rocketship {
         if (keyH.shotKeyPressed == true) {
             if (bullets.size() == 0 || bullets.get(bullets.size() - 1).getTime() + 200 < System.currentTimeMillis()) {
                 bullets.add(new bullet(x, y, direction));
+            }
+        }
+        if (keyH.escPressed == true) {
+            if (gp.isPaused()) {
+                gp.pause(false);
+            } else {
+                gp.pause(true);
             }
         }
     }
