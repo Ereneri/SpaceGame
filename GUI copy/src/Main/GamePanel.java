@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.ArrayList;
-
+import collision.*;
+import asteroids.*;
 import javax.swing.JPanel;
-
+import asteroids.*;
 import object.metal;
 import rocketship.bullet;
 import rocketship.rocketship;
@@ -23,8 +25,8 @@ public class GamePanel extends JPanel implements Runnable {
     final int mapHeight = 16;
 
     // Size of Screen
-    final int screenWidth = mapWidth * tileSize;
-    final int screenHeight = mapHeight * tileSize;
+    public final int screenWidth = mapWidth * tileSize;
+    public final int screenHeight = mapHeight * tileSize;
 
     // FPS for Thread
     int FPS = 60;
@@ -40,6 +42,11 @@ public class GamePanel extends JPanel implements Runnable {
     // Metal Object
     public metal obj[] = new metal[10];
     public AssetSetter aSetter = new AssetSetter(this);
+    
+    // asteroid stuff
+    public int numAsteroids = 15;
+    public Asteroid asts[] = new Asteroid[numAsteroids];
+    public asteroidSetter asteroidSetter = new asteroidSetter(this);
 
     // Default Location
     int playerX = 100;
@@ -62,6 +69,12 @@ public class GamePanel extends JPanel implements Runnable {
     	aSetter.setGold();
     	aSetter.setSilver();
     	aSetter.setIron();
+
+    }
+    
+    // adds the asteroids
+    public void spawnAsteroids() {
+    	asteroidSetter.addAsteroids();
 
     }
 
@@ -119,6 +132,10 @@ public class GamePanel extends JPanel implements Runnable {
         	if(obj[i]!= null) {
         		obj[i].draw(g2, this);
         	}
+        }
+        
+        for(int i = 0; i<asts.length; i++) {
+        	asts[i].draw(g2);
         }
 
         ship.draw(g2);

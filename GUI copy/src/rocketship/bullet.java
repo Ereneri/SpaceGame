@@ -81,6 +81,7 @@ public class bullet {
         }
     }
 
+    // draws the bullet
     public void draw(Graphics g) {
         BufferedImage bulletImage = null;
         switch(direction) {
