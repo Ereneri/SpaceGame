@@ -15,6 +15,8 @@ import rocketship.bullet;
 
 public class rocketship {
 
+    // eren is a brick
+
     // basic rocketship vars
     public String direction;
     public int x, y;
