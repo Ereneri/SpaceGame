@@ -8,10 +8,11 @@ import java.awt.Graphics2D;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import collision.*;
-import Main.GamePanel;
+import Main.*;
+import Main.GamePanel.ast;
 import Main.KeyHandler;
 // import object.OBJ_Bullet;
-import rocketship.bullet;
+import rocketship.*;
 
 public class rocketship {
 
@@ -23,10 +24,13 @@ public class rocketship {
 
     // collision vars
     public Collision shipC;
-    public Collision wallCUp;
-    public Collision wallCDown;
-    public Collision wallCLeft;
-    public Collision wallCRight;
+    
+    public class walls{
+    	public static Collision wallCUp;
+        public static Collision wallCDown;
+        public static Collision wallCLeft;
+        public static Collision wallCRight;
+    }
 
     // initlize the game panel and keyhabndler
     GamePanel gp;
@@ -58,10 +62,10 @@ public class rocketship {
         setDefaultValues();
         getRocketImage();
         shipC = new Collision(x, y, gp.tileSize, gp.tileSize);
-        wallCUp = new Collision(0, 0, 768, 5);
-        wallCDown = new Collision(0, 763, 768, 5);
-        wallCLeft = new Collision(0, 0, 5, 768);
-        wallCRight = new Collision(763, 0, 5, 768);
+        walls.wallCUp = new Collision(0, 0, 768, 5);
+        walls.wallCDown = new Collision(0, 763, 768, 5);
+        walls.wallCLeft = new Collision(0, 0, 5, 768);
+        walls.wallCRight = new Collision(763, 0, 5, 768);
     }
     
     // collision methods
@@ -212,31 +216,37 @@ public class rocketship {
         shipC.render(g2);
         
         // renders walls
-        wallCUp.render(g2);
-        wallCDown.render(g2);
-        wallCLeft.render(g2);
-        wallCRight.render(g2);
+        walls.wallCUp.render(g2);
+        walls.wallCDown.render(g2);
+        walls.wallCLeft.render(g2);
+        walls.wallCRight.render(g2);
         
         
         // teleportation if you touch a wall
-        if(shipC.touchesUp(wallCUp)) {
+        if(shipC.touchesUp(walls.wallCUp)) {
         	y = 762-gp.tileSize;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesDown(wallCDown)) {
+        }else if(shipC.touchesDown(walls.wallCDown)) {
         	y = 12;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesLeft(wallCLeft)) {
+        }else if(shipC.touchesLeft(walls.wallCLeft)) {
         	x = 762-gp.tileSize;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesRight(wallCRight)) {
+        }else if(shipC.touchesRight(walls.wallCRight)) {
         	x = 12;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }
+        
+        // touches atseroids
+//        for(int i = 0; i<ast.asts.length; i++) {
+//        	if(shipC.touches(ast.asts[i].getCAst())) {
+//        		gp.gameThread.stop();
+//        	}
+//        }
+        
     }
 }
-
-
