@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel() {
         // this.setBounds(0, 0, 768, 768);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.white);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
@@ -135,6 +135,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         
         for(int i = 0; i<asts.length; i++) {
+        	asts[i].astTick();
         	asts[i].draw(g2);
         }
 

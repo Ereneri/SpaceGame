@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 import Main.GamePanel;
 
-public class Asteroid extends JPanel implements ActionListener{
+public class Asteroid extends Image implements ActionListener{
 	
 	public int x;
 	public int y;
@@ -63,7 +63,7 @@ public class Asteroid extends JPanel implements ActionListener{
 			}
 			this.setYAst(this.getXVelAst());
 		
-		repaint();
+//		draw(null);
 		
 	}
 	
@@ -98,6 +98,36 @@ public class Asteroid extends JPanel implements ActionListener{
 	}
 	public Image getImageAst() {
 		return asteroid;
+	}
+
+	@Override
+	public int getWidth(ImageObserver observer) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getHeight(ImageObserver observer) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ImageProducer getSource() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Graphics getGraphics() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getProperty(String name, ImageObserver observer) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
