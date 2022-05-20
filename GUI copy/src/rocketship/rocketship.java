@@ -225,7 +225,7 @@ public class rocketship {
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }else if(shipC.touchesDown(walls.wallCDown)) {
-        	y = 12;
+        	y = 6;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }else if(shipC.touchesLeft(walls.wallCLeft)) {
@@ -233,7 +233,7 @@ public class rocketship {
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }else if(shipC.touchesRight(walls.wallCRight)) {
-        	x = 12;
+        	x = 6;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }

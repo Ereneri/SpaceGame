@@ -66,7 +66,7 @@ public boolean touches(Collision c) {
 	int cLeft=c.getXCol();
 	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+10;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
@@ -91,9 +91,9 @@ public boolean touchesUp(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
@@ -117,9 +117,9 @@ public boolean touchesDown(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
@@ -143,9 +143,9 @@ public boolean touchesLeft(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
@@ -169,9 +169,9 @@ public boolean touchesRight(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
