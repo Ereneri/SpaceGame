@@ -34,13 +34,18 @@ public class Asteroid extends JPanel implements ActionListener{
 		c=new Collision(x,y,41,45);
 	}
 	
-	public void paint(Graphics2D g, GamePanel gp) {
-		
-		super.paint(g);
+	public void draw(Graphics2D g) {
 		
 			g.drawImage(asteroid, x, y, null);
 			g.drawRect(x, y, 41, 45);
 	}
+	
+	public void astTick() {
+		
+		this.setXAst(this.getXVelAst());
+		this.setYAst(this.getYVelAst());
+ 
+    }
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
