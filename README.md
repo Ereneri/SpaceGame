@@ -15,6 +15,8 @@
 
 # Hey Guys when the bullet hits the astroid it puts this nasty error log into the console.
 # I have a feeling this may be the reason for the lag
+
+# Update its line 167 "bulletsClass.bullets.remove(ibull)", if u remove it the errors go away. The issue is somewhere in the remove function.
 touch
 Exception in thread "AWT-EventQueue-0" java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
         at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)

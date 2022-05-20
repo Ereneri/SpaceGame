@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler(this);
     public Thread gameThread;
 
-    Boolean DEBUG = false;
+    Boolean DEBUG = true;
     
     // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
@@ -143,6 +143,10 @@ public class GamePanel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+
+        if (DEBUG == true) {
+            gameState = playState;
+        }
         
         // title screen
         if (gameState == titleState && !DEBUG) {
