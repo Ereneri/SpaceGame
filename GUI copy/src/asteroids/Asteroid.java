@@ -11,6 +11,9 @@ import java.awt.image.ImageProducer;
 import java.util.ArrayList;
 import collision.*;
 import java.awt.*;
+import rocketship.*;
+import rocketship.rocketship.walls;
+
 import javax.swing.ImageIcon;
 import javax.swing.*;
 import Main.GamePanel;
@@ -36,28 +39,40 @@ public class Asteroid extends Image implements ActionListener{
 	
 	public void draw(Graphics2D g) {
 		
-			g.drawImage(asteroid, x, y, null);
-			g.drawRect(x, y, 41, 45);
+		g.drawImage(asteroid, x, y, null);
+		g.drawRect(x, y, 41, 45);
 	}
 	
 	public void astTick() {
 		
-		this.setXAst(this.getXVelAst());
-		this.setYAst(this.getYVelAst());
+		if(c.touchesRight(walls.wallCRight) || c.touchesLeft(walls.wallCLeft)) {
+			this.setYVelAst();
+			
+		}
+		this.setXAst(this.getYVelAst());
+
+	
+		if(c.touchesUp(walls.wallCUp) || c.touchesDown(walls.wallCDown)) {
+			this.setXVelAst();
+			
+		}
+		this.setYAst(this.getXVelAst());
+		c.setXCol(x);
+		c.setYCol(y);
  
     }
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-			if(c.touchesRight(c) || c.touchesLeft(c)) {
+			if(c.touchesRight(walls.wallCRight) || c.touchesLeft(walls.wallCLeft)) {
 				this.setYVelAst();
 				
 			}
 			this.setXAst(this.getYVelAst());
 
 		
-			if(c.touchesUp(c) || c.touchesDown(c)) {
+			if(c.touchesUp(walls.wallCUp) || c.touchesDown(walls.wallCDown)) {
 				this.setXVelAst();
 				
 			}
