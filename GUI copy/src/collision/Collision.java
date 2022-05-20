@@ -175,7 +175,6 @@ public boolean touchesRight(Collision c) {
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
-		
 	}
 	if(right>=cLeft&&right<=cRight&&top>=cTop&&top<=cBottom) {
 		return true;

@@ -1,8 +1,5 @@
 package rocketship;
 
-import Main.GamePanel;
-import object.metal;
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

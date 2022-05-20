@@ -1,21 +1,10 @@
 package asteroids;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.util.ArrayList;
 import collision.*;
-import java.awt.*;
-import rocketship.*;
 import rocketship.rocketship.walls;
 import javax.swing.ImageIcon;
-import javax.swing.*;
-import Main.GamePanel;
 
 public class Asteroid {
 	

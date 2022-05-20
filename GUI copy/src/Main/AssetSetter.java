@@ -3,7 +3,6 @@ package Main;
 import object.Gold;
 import object.Iron;
 import object.Silver;
-import object.metal;
 
 public class AssetSetter {
 	GamePanel gp;

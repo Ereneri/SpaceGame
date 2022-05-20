@@ -4,14 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.util.ArrayList;
-import collision.*;
 import asteroids.*;
 import javax.swing.JPanel;
-import asteroids.*;
 import object.metal;
-import rocketship.bullet;
 import rocketship.rocketship;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -33,8 +28,11 @@ public class GamePanel extends JPanel implements Runnable {
     double delta = 0;
 
     // SYSTEM VARS
-    KeyHandler keyH = new KeyHandler();
+    public UI ui = new UI(this);
+    KeyHandler keyH = new KeyHandler(this);
     public Thread gameThread;
+
+    Boolean DEBUG = false;
     
     // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
@@ -54,6 +52,12 @@ public class GamePanel extends JPanel implements Runnable {
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 8;
+
+    // Game State
+    public int gameState;
+    public final int titleState = 0;
+    public final int playState = 1;
+    public final int pauseState = 2;
 
     // Panel constructor
     public GamePanel() {
@@ -122,27 +126,40 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Updates frame with key input
     public void update() {
-        ship.update();
+
+        if (gameState == playState) {
+            ship.update();
+        }
     }
 
     // Draw things on JPanel
     public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        
-        for (int i = 0; i < obj.length; i++) {
-        	if(obj[i]!= null) {
-        		obj[i].draw(g2, this);
-        	}
-        }
-        
-        for(int i = 0; i<ast.asts.length; i++) {
-        	ast.asts[i].astTick();
-        	ast.asts[i].draw(g2);
-        }
 
-        ship.draw(g2);
+        // title screen
+        if (gameState == titleState && !DEBUG) {
+            ui.draw(g2);
+        } else {
+            // draws objects
+            for (int i = 0; i < obj.length; i++) {
+                if(obj[i]!= null) {
+                    obj[i].draw(g2, this);
+                }
+            }
+            
+            // draws asteroids
+            for(int i = 0; i<ast.asts.length; i++) {
+                ast.asts[i].astTick();
+                ast.asts[i].draw(g2);
+            }
+    
+            // draws rocketship
+            ship.draw(g2);
+        }
         g2.dispose();
+        
     }
 
 }

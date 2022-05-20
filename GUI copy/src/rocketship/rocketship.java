@@ -1,7 +1,6 @@
 package rocketship;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
@@ -9,10 +8,8 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import collision.*;
 import Main.*;
-import Main.GamePanel.ast;
 import Main.KeyHandler;
 // import object.OBJ_Bullet;
-import rocketship.*;
 
 public class rocketship {
 
@@ -221,15 +218,15 @@ public class rocketship {
         	y = 762-gp.tileSize;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesDown(walls.wallCDown)) {
+        } else if(shipC.touchesDown(walls.wallCDown)) {
         	y = 12;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesLeft(walls.wallCLeft)) {
+        } else if(shipC.touchesLeft(walls.wallCLeft)) {
         	x = 762-gp.tileSize;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesRight(walls.wallCRight)) {
+        } else if(shipC.touchesRight(walls.wallCRight)) {
         	x = 12;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
