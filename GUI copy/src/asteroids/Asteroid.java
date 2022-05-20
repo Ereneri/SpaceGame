@@ -17,11 +17,11 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 import Main.GamePanel;
 
-public class Asteroid extends Image{
+public class Asteroid {
 	
 	public int x;
 	public int y;
-	Image asteroid;
+	public Image asteroid;
 	public int xVelAst;
 	public int yVelAst;
 	private Collision c;
@@ -93,35 +93,6 @@ public class Asteroid extends Image{
 		return asteroid;
 	}
 
-	@Override
-	public int getWidth(ImageObserver observer) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getHeight(ImageObserver observer) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ImageProducer getSource() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Graphics getGraphics() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object getProperty(String name, ImageObserver observer) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }
