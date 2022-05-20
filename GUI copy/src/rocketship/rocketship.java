@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import collision.*;
-import object.metal.objCBox;
 import Main.*;
 import Main.GamePanel.ast;
 import Main.GamePanel.objRocket;
@@ -241,13 +240,13 @@ public class rocketship {
         
         for (int i = 0; i < objRocket.obj.length; i++) {
         	if(objRocket.obj[i]!= null) {
-        		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX());
-        		objRocket.obj[i].getCObj().setYCol(objRocket.obj[i].getWorldY());
+        		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX()+8);
+        		objRocket.obj[i].getCObj().setYCol(objRocket.obj[i].getWorldY()+5);
+        		if(shipC.touchesUp(objRocket.obj[i].getCObj())) {
+                	System.out.println("touch");
+                	g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
+                }
         	}
-        }
-        
-        if(shipC.touches(objCBox.objectC)) {
-        	System.out.println("touch");
         }
         
         // touches atseroids

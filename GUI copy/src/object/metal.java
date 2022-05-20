@@ -11,22 +11,21 @@ public class metal {
 	public boolean collision = false; 
 	public int worldX, worldY;
 	public int value;
-	public class objCBox{
-		public static Collision objectC;
-	}
+	public static Collision objectC;
+
 	
 	public void draw(Graphics2D g2, GamePanel gp) {
 		g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
-		g2.drawRect(worldX + 8, worldY + 5, 28, 28);
+//		g2.drawRect(worldX + 8, worldY + 5, 28, 28);
 	}
 	
 	public Collision getCObj() {
-		return objCBox.objectC;
+		return this.objectC;
 	}
 	public int getWorldX() {
-		return worldX;
+		return this.worldX;
 	}
 public int getWorldY() {
-		return worldY;
+		return this.worldY;
 	}
 }

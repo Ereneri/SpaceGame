@@ -17,6 +17,5 @@ public class Gold extends metal{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		objCBox.objectC = new Collision(worldX + 8, worldY + 5, 28, 28);
 	}
 }

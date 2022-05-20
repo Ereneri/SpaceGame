@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import collision.*;
 import asteroids.*;
 import javax.swing.JPanel;
+
+import Main.GamePanel.objRocket;
 import asteroids.*;
 import object.metal;
 import rocketship.bullet;

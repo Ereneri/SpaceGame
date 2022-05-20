@@ -1,6 +1,6 @@
 package collision;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Collision {
 private int x;
@@ -53,7 +53,7 @@ public void setHeightCol(int height) {
 
 
 
-public void render(Graphics g) {
+public void render(Graphics2D g) {
 	g.drawRect(x, y, width, height);
 }
 
