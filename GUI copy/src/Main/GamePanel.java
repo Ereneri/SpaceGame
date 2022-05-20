@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     // asteroid stuff
     public class ast{
-    	public static int numAsteroids = 15;
+    	public static int numAsteroids = 10;
         public static Asteroid asts[] = new Asteroid[numAsteroids];
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
