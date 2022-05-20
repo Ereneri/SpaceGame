@@ -34,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // SYSTEM VARS
     KeyHandler keyH = new KeyHandler();
-    public Thread gameThread;
+    Thread gameThread;
     
     // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
@@ -44,10 +44,8 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     
     // asteroid stuff
-    public class ast{
-    	public static int numAsteroids = 10;
-        public static Asteroid asts[] = new Asteroid[numAsteroids];
-    }
+    public int numAsteroids = 15;
+    public Asteroid asts[] = new Asteroid[numAsteroids];
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
 
     // Default Location
@@ -59,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel() {
         // this.setBounds(0, 0, 768, 768);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.white);
+        this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
@@ -136,9 +134,8 @@ public class GamePanel extends JPanel implements Runnable {
         	}
         }
         
-        for(int i = 0; i<ast.asts.length; i++) {
-        	ast.asts[i].astTick();
-        	ast.asts[i].draw(g2);
+        for(int i = 0; i<asts.length; i++) {
+        	asts[i].draw(g2);
         }
 
         ship.draw(g2);
