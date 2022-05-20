@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 import Main.GamePanel;
 
-public class Asteroid extends Image implements ActionListener{
+public class Asteroid extends Image{
 	
 	public int x;
 	public int y;
@@ -61,27 +61,6 @@ public class Asteroid extends Image implements ActionListener{
 		c.setYCol(y);
  
     }
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-			if(c.touchesRight(walls.wallCRight) || c.touchesLeft(walls.wallCLeft)) {
-				this.setYVelAst();
-				
-			}
-			this.setXAst(this.getYVelAst());
-
-		
-			if(c.touchesUp(walls.wallCUp) || c.touchesDown(walls.wallCDown)) {
-				this.setXVelAst();
-				
-			}
-			this.setYAst(this.getXVelAst());
-		
-//		draw(null);
-		
-	}
-	
 	
 	
 	public Collision getCAst() {
