@@ -4,7 +4,6 @@ import Main.GamePanel;
 import object.metal;
 
 import java.awt.Graphics;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -112,16 +111,10 @@ public class bullet {
                 bulletImage = down2;
                 break;
         }
-        // visualize the bullet hit box
-        g.setColor(Color.red);
-        g.fillRect((int)x+16, (int)y+16, 16, 16);
-
-        // draw rocket image
         g.drawImage(bulletImage, (int) x+16, (int) y+16, 16, 16, null);
         
     }
 
-    // Getters
     public double getX() {
         return x;
     }
