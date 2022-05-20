@@ -3,31 +3,91 @@ package rocketship;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.Graphics2D;
-
+import java.awt.*;
 import javax.imageio.ImageIO;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+// import object.OBJ_Bullet;
+import rocketship.bullet;
 
 public class rocketship {
 
+    // basic rocketship vars
     public String direction;
     public int x, y;
     public int speed;
+    public bullet bullet;
+    public Collision shipC;
+    public Collision wallCUp;
+    public Collision wallCDown;
+    public Collision wallCLeft;
+    public Collision wallCRight;
 
+    // initlize the game panel and keyhabndler
     GamePanel gp;
     KeyHandler keyH;
 
+    // Vars for sprite image
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
+    // Bullet Stuff
+    public ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
+    public void tick() {
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).tick();
+            if (bullets.get(i).getX() < 0) {
+                bullets.remove(i);
+            }
+        }
+    }
+
+
+    // constructor
+    public rocketship(GamePanel gp) {
+        this.gp = gp;
+    }
+
+    // contructor (DEFAULT)
     public rocketship(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
         setDefaultValues();
         getRocketImage();
+        shipC = new Collision(x, y, gp.tileSize, gp.tileSize);
+        wallCUp = new Collision(0, 0, 768, 5);
+        wallCDown = new Collision(0, 763, 768, 5);
+        wallCLeft = new Collision(0, 0, 5, 768);
+        wallCRight = new Collision(763, 0, 5, 768);
+    }
+    
+    public int getXShip() {
+    	return x;
     }
 
+    public void setXShip(int x) {
+    	this.x = x;
+    }
+
+    public int getYShip() {
+    	return y;
+    }
+
+    public void setYShip(int y) {
+    	this.y = y;
+    }
+
+    public void addBullet(bullet block) {
+        bullets.add(block);
+    }
+
+    public void removeBullet(bullet block) {
+        bullets.remove(block);
+    }
+    
+    // Resets the rocketship to default values
     public void setDefaultValues() {
         x = 100;
         y = 100;
@@ -35,6 +95,7 @@ public class rocketship {
         direction = "up";
     }
 
+    // Get the image into memory
     public void getRocketImage() {
         try {
             up1 = ImageIO.read(getClass().getResourceAsStream("/ship/up.png"));
@@ -50,7 +111,9 @@ public class rocketship {
         }
     }
 
+    // updates the frame depending on key input
     public void update() {
+        // below is for 4 directional movement
         if (keyH.upPressed == true) {
             y -= speed;
             direction = "up";
@@ -67,6 +130,7 @@ public class rocketship {
             x += speed;
             direction = "right";
         }
+        // Everything below is for 8 direction movement
         if (keyH.upPressed && keyH.rightPressed) {
             direction = "upRight";
         }
@@ -79,9 +143,21 @@ public class rocketship {
         if (keyH.downPressed && keyH.leftPressed) {
             direction = "downLeft";
         }
+        if (keyH.shotKeyPressed == true) {
+            if (bullets.size() == 0 || bullets.get(bullets.size() - 1).getTime() + 200 < System.currentTimeMillis()) {
+                bullets.add(new bullet(x, y, direction));
+            }
+        }
     }
 
+    // takes the direction and draws the correct sprite image
     public void draw(Graphics2D g2) {
+        // render bullets
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).draw(g2);
+            bullets.get(i).tick();
+        }
+
         BufferedImage image = null;
         switch(direction) {
             case "up":
@@ -96,6 +172,7 @@ public class rocketship {
             case "right":
                 image = right1;
                 break;
+        // 8 direction movement
             case "upRight":
                 image = up2;
                 break;
@@ -109,7 +186,46 @@ public class rocketship {
                 image = down2;
                 break;
             } 
+        // vizualize the hit box for the rocketship for collision detection
+//        g2.setColor(Color.red);
+//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+
+        // draw the image with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+
+        // CROP IMAGE TO MAKE SIZING CORRECT
+        
+        //moves collision with rocket and displays it
+        g2.setColor(Color.gray);
+        shipC.setXCol(x);
+        shipC.setYCol(y);
+        shipC.render(g2);
+        
+        // renders walls
+        wallCUp.render(g2);
+        wallCDown.render(g2);
+        wallCLeft.render(g2);
+        wallCRight.render(g2);
+        
+        
+        // teleportation if you touch a wall
+        if(shipC.touchesUp(wallCUp)) {
+        	y = 762-gp.tileSize;
+        	shipC.setYCol(y);
+        	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        }else if(shipC.touchesDown(wallCDown)) {
+        	y = 12;
+        	shipC.setYCol(y);
+        	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        }else if(shipC.touchesLeft(wallCLeft)) {
+        	x = 762-gp.tileSize;
+        	shipC.setXCol(x);
+        	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        }else if(shipC.touchesRight(wallCRight)) {
+        	x = 12;
+        	shipC.setXCol(x);
+        	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        }
     }
 }
 
