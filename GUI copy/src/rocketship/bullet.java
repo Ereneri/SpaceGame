@@ -1,6 +1,7 @@
 package rocketship;
 
 import Main.GamePanel;
+import collision.Collision;
 import object.metal;
 
 import java.awt.Graphics;
@@ -15,22 +16,30 @@ public class bullet {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
     // basic bullet vars
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private long lastTime;
     private int speed;
     private String direction;
+    public class cBox {
+    	public static Collision bulletC;
+    }
 
     // constructor
-    public bullet(double x, double y, String direction) {
+    public bullet(int x, int y, String direction) {
         this.x = x;
         this.y = y;
         this.direction = direction;
         speed = 15;
         this.lastTime = System.currentTimeMillis();
         getBulletImage();
+        cBox.bulletC = new Collision(x+16,  y+16, 16, 16);
     }
 
+    // gets bullets collision box
+    public Collision getBulletC () {
+    	return cBox.bulletC;
+    }
     // loads bullet image into memory
     public void getBulletImage() {
         try {
@@ -52,31 +61,43 @@ public class bullet {
         switch(this.direction) {
             case "up":
                 y -= speed;
+                cBox.bulletC.setYCol(y);
                 break;
             case "down":
                 y += speed;
+                cBox.bulletC.setYCol(y);
                 break;
             case "left":
                 x -= speed;
+                cBox.bulletC.setXCol(x);
                 break;
             case "right":
                 x += speed;
+                cBox.bulletC.setXCol(x);
                 break;
             case "upRight":
                 x += speed;
+                cBox.bulletC.setXCol(x);
                 y -= speed;
+                cBox.bulletC.setYCol(y);
                 break;
             case "upLeft":
                 x -= speed;
+                cBox.bulletC.setXCol(x);
                 y -= speed;
+                cBox.bulletC.setYCol(y);
                 break;
             case "downRight":
                 x += speed;
+                cBox.bulletC.setXCol(x);
                 y += speed;
+                cBox.bulletC.setYCol(y);
                 break;
             case "downLeft":
                 x -= speed;
+                cBox.bulletC.setXCol(x);
                 y += speed;
+                cBox.bulletC.setYCol(y);
                 break;
         }
     }
@@ -111,7 +132,8 @@ public class bullet {
                 bulletImage = down2;
                 break;
         }
-        g.drawImage(bulletImage, (int) x+16, (int) y+16, 16, 16, null);
+        g.drawImage(bulletImage,  x+16,  y+16, 16, 16, null);
+        g.drawRect( x+16,  y+16, 16, 16);
         
     }
 
@@ -126,4 +148,5 @@ public class bullet {
     public long getTime() {
         return lastTime;
     }
+
 }
