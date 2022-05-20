@@ -1,6 +1,6 @@
 package collision;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Collision {
 private int x;
@@ -53,7 +53,7 @@ public void setHeightCol(int height) {
 
 
 
-public void render(Graphics g) {
+public void render(Graphics2D g) {
 	g.drawRect(x, y, width, height);
 }
 
@@ -64,9 +64,9 @@ public boolean touches(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
@@ -91,9 +91,9 @@ public boolean touchesUp(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
@@ -117,9 +117,9 @@ public boolean touchesDown(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
@@ -143,9 +143,9 @@ public boolean touchesLeft(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;
@@ -169,9 +169,9 @@ public boolean touchesRight(Collision c) {
 	int bottom=y+height;
 	
 	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol()+c.getWidthCol()+5;
+	int cRight= c.getXCol()+c.getWidthCol();
 	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol()+c.getHeightCol()+5;
+	int cBottom=c.getYCol()+c.getHeightCol();
 	
 	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
 		return true;

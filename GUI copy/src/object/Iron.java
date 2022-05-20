@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import collision.Collision;
+
 public class Iron extends metal{
 	
 	public Iron() {

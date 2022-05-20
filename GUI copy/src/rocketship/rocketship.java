@@ -8,6 +8,8 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import collision.*;
 import Main.*;
+import Main.GamePanel.ast;
+import Main.GamePanel.objRocket;
 import Main.KeyHandler;
 // import object.OBJ_Bullet;
 
@@ -38,12 +40,14 @@ public class rocketship {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
     // Bullet Stuff
-    public ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
+    public class bulletsClass{
+    	public static ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
+    }
     public void tick() {
-        for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).tick();
-            if (bullets.get(i).getX() < 0) {
-                bullets.remove(i);
+        for (int i = 0; i < bulletsClass.bullets.size(); i++) {
+        	bulletsClass.bullets.get(i).tick();
+            if (bulletsClass.bullets.get(i).getX() < 0) {
+            	bulletsClass.bullets.remove(i);
             }
         }
     }
@@ -85,11 +89,11 @@ public class rocketship {
     }
 
     public void addBullet(bullet block) {
-        bullets.add(block);
+    	bulletsClass.bullets.add(block);
     }
 
     public void removeBullet(bullet block) {
-        bullets.remove(block);
+    	bulletsClass.bullets.remove(block);
     }
     
     // Resets the rocketship to default values
@@ -149,8 +153,8 @@ public class rocketship {
             direction = "downLeft";
         }
         if (keyH.shotKeyPressed == true) {
-            if (bullets.size() == 0 || bullets.get(bullets.size() - 1).getTime() + 200 < System.currentTimeMillis()) {
-                bullets.add(new bullet(x, y, direction));
+            if (bulletsClass.bullets.size() == 0 || bulletsClass.bullets.get(bulletsClass.bullets.size() - 1).getTime() + 200 < System.currentTimeMillis()) {
+            	bulletsClass.bullets.add(new bullet(x, y, direction));
             }
         }
     }
@@ -158,9 +162,9 @@ public class rocketship {
     // takes the direction and draws the correct sprite image
     public void draw(Graphics2D g2) {
         // render bullets
-        for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).draw(g2);
-            bullets.get(i).tick();
+        for (int i = 0; i < bulletsClass.bullets.size(); i++) {
+        	bulletsClass.bullets.get(i).draw(g2);
+        	bulletsClass.bullets.get(i).tick();
         }
 
         BufferedImage image = null;
@@ -218,18 +222,29 @@ public class rocketship {
         	y = 762-gp.tileSize;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        } else if(shipC.touchesDown(walls.wallCDown)) {
-        	y = 12;
+        }else if(shipC.touchesDown(walls.wallCDown)) {
+        	y = 6;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         } else if(shipC.touchesLeft(walls.wallCLeft)) {
         	x = 762-gp.tileSize;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        } else if(shipC.touchesRight(walls.wallCRight)) {
-        	x = 12;
+        }else if(shipC.touchesRight(walls.wallCRight)) {
+        	x = 6;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        }
+        
+        for (int i = 0; i < objRocket.obj.length; i++) {
+        	if(objRocket.obj[i]!= null) {
+        		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX()+8);
+        		objRocket.obj[i].getCObj().setYCol(objRocket.obj[i].getWorldY()+5);
+        		if(shipC.touches(objRocket.obj[i].getCObj())) {
+                	System.out.println("touch obj");
+                	g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
+                }
+        	}
         }
         
         // touches atseroids

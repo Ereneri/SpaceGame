@@ -6,8 +6,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import asteroids.*;
 import javax.swing.JPanel;
+
+import Main.GamePanel.objRocket;
+import asteroids.*;
 import object.metal;
 import rocketship.rocketship;
+import rocketship.rocketship.bulletsClass;
 
 public class GamePanel extends JPanel implements Runnable {
     // Basic Screen Vars and scale factor
@@ -38,7 +42,9 @@ public class GamePanel extends JPanel implements Runnable {
     rocketship ship = new rocketship(this, keyH);
     
     // Metal Object
-    public metal obj[] = new metal[10];
+    public class objRocket{
+    	public static metal obj[] = new metal[10];
+    }
     public AssetSetter aSetter = new AssetSetter(this);
     
     // asteroid stuff
@@ -137,25 +143,32 @@ public class GamePanel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
+        
         // title screen
         if (gameState == titleState && !DEBUG) {
             ui.draw(g2);
         } else {
-            // draws objects
-            for (int i = 0; i < obj.length; i++) {
-                if(obj[i]!= null) {
-                    obj[i].draw(g2, this);
+            for (int i = 0; i < objRocket.obj.length; i++) {
+                if(objRocket.obj[i]!= null) {
+                    objRocket.obj[i].draw(g2, this);
                 }
             }
             
-            // draws asteroids
             for(int i = 0; i<ast.asts.length; i++) {
-                ast.asts[i].astTick();
-                ast.asts[i].draw(g2);
+                if(ast.asts[i]!= null) {
+                    ast.asts[i].astTick();
+                    ast.asts[i].draw(g2);
+                }
             }
-    
-            // draws rocketship
+            
+            for (int ibull = 0; ibull < bulletsClass.bullets.size(); ibull++) {
+                for(int i = 0; i<ast.asts.length; i++) {
+                    if(ast.asts[i].getCAst().touches(bulletsClass.bullets.get(ibull).getBulletC())) {
+                        bulletsClass.bullets.remove(ibull);
+                        System.out.println("touch");
+                    }
+                }
+            }
             ship.draw(g2);
         }
         g2.dispose();
