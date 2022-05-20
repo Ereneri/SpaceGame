@@ -1,6 +1,7 @@
 package asteroids;
 
 import Main.GamePanel;
+import Main.GamePanel.ast;
 
 public class asteroidSetter {
 
@@ -11,8 +12,8 @@ public class asteroidSetter {
 	}
 	
 	public void addAsteroids() {
-		for(int i = 0; i<gp.numAsteroids; i++) {
-			gp.asts[i] = new Asteroid((int)(Math.random()*705+6), (int)(Math.random()*705+6), (int)(Math.random()*4+1), (int)(Math.random()*4+1));
+		for(int i = 0; i<ast.numAsteroids; i++) {
+			ast.asts[i] = new Asteroid((int)(Math.random()*705+6), (int)(Math.random()*705+6), (int)(Math.random()*4+1), (int)(Math.random()*4+1));
 		}
 	}
 }

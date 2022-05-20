@@ -21,7 +21,7 @@ public class Asteroid {
 	
 	public int x;
 	public int y;
-	public Image asteroid;
+	public static Image asteroid;
 	public int xVelAst;
 	public int yVelAst;
 	private Collision c;

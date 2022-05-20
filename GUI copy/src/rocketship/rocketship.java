@@ -8,10 +8,11 @@ import java.awt.Graphics2D;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import collision.*;
-import Main.GamePanel;
+import Main.*;
+import Main.GamePanel.ast;
 import Main.KeyHandler;
 // import object.OBJ_Bullet;
-import rocketship.bullet;
+import rocketship.*;
 
 public class rocketship {
 
@@ -229,6 +230,13 @@ public class rocketship {
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }
+        
+        // touches atseroids
+//        for(int i = 0; i<ast.asts.length; i++) {
+//        	if(shipC.touches(ast.asts[i].getCAst())) {
+//        		gp.gameThread.stop();
+//        	}
+//        }
         
     }
 }
