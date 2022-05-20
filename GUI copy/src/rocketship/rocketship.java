@@ -22,6 +22,7 @@ public class rocketship {
     public String direction;
     public int x, y;
     public int speed;
+    public int score;
     public bullet bullet;
     public Collision shipC;
     
@@ -62,6 +63,7 @@ public class rocketship {
     public rocketship(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
+        this.score = 0;
         setDefaultValues();
         getRocketImage();
         shipC = new Collision(x, y, gp.tileSize, gp.tileSize);
