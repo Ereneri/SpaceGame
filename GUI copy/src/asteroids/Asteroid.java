@@ -13,7 +13,6 @@ import collision.*;
 import java.awt.*;
 import rocketship.*;
 import rocketship.rocketship.walls;
-
 import javax.swing.ImageIcon;
 import javax.swing.*;
 import Main.GamePanel;
