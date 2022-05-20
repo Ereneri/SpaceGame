@@ -24,6 +24,9 @@ public class Main {
         
         // Spawns metals
         gamePanel.spawnMetal();
+        
+        // spawns asteroids
+        gamePanel.spawnAsteroids();
 
         // Start the game thread for timing the frame rate
         gamePanel.startGameThread();
