@@ -40,6 +40,10 @@ public class bullet {
     public Collision getBulletC () {
     	return cBox.bulletC;
     }
+    public void removeBulletC () {
+    	cBox.bulletC.setXCol(-50);
+    	cBox.bulletC.setYCol(-50);
+    }
     // loads bullet image into memory
     public void getBulletImage() {
         try {
@@ -60,44 +64,60 @@ public class bullet {
     public void tick() {
         switch(this.direction) {
             case "up":
-                y -= speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	y -= speed;
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
             case "down":
-                y += speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	y += speed;
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
             case "left":
-                x -= speed;
-                cBox.bulletC.setXCol(x);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x -= speed;
+                	cBox.bulletC.setXCol(x);
+                }
                 break;
             case "right":
-                x += speed;
-                cBox.bulletC.setXCol(x);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x += speed;
+                	cBox.bulletC.setXCol(x);
+                }
                 break;
             case "upRight":
-                x += speed;
-                cBox.bulletC.setXCol(x);
-                y -= speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x += speed;
+                	cBox.bulletC.setXCol(x);
+                	y -= speed;
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
             case "upLeft":
-                x -= speed;
-                cBox.bulletC.setXCol(x);
-                y -= speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x -= speed;
+                	cBox.bulletC.setXCol(x);
+                	y -= speed;
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
             case "downRight":
-                x += speed;
-                cBox.bulletC.setXCol(x);
-                y += speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x += speed;
+                	cBox.bulletC.setXCol(x);
+                	y += speed;
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
             case "downLeft":
-                x -= speed;
-                cBox.bulletC.setXCol(x);
-                y += speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                    x -= speed;                	
+                	cBox.bulletC.setXCol(x);
+                	y += speed;                	
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
         }
     }
@@ -133,7 +153,7 @@ public class bullet {
                 break;
         }
         g.drawImage(bulletImage,  x+16,  y+16, 16, 16, null);
-        g.drawRect( x+16,  y+16, 16, 16);
+        g.drawRect( cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16);
         
     }
 
