@@ -5,6 +5,7 @@ import collision.Collision;
 import object.metal;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class bullet {
     public class cBox {
     	public static Collision bulletC;
     }
+    public BufferedImage bulletImage = null;
 
     // constructor
     public bullet(int x, int y, String direction) {
@@ -61,12 +63,14 @@ public class bullet {
     }
 
     // updates the frame depending on direction and speed
-    public void tick() {
+    public void tick(Graphics2D g2) {
         switch(this.direction) {
             case "up":
                 if(cBox.bulletC.getXCol() != -50) {
                 	y -= speed;
                 	cBox.bulletC.setYCol(y);
+                }else {
+                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
                 }
                 break;
             case "down":
@@ -124,7 +128,6 @@ public class bullet {
 
     // draws the bullet
     public void draw(Graphics g) {
-        BufferedImage bulletImage = null;
         switch(direction) {
             case "up":
                 bulletImage = up1;

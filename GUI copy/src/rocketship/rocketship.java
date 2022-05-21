@@ -43,9 +43,9 @@ public class rocketship {
     public class bulletsClass{
     	public static ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
     }
-    public void tick() {
+    public void tick(Graphics2D g2) {
         for (int i = 0; i < bulletsClass.bullets.size(); i++) {
-        	bulletsClass.bullets.get(i).tick();
+        	bulletsClass.bullets.get(i).tick(g2);
             if (bulletsClass.bullets.get(i).getX() < 0) {
             	bulletsClass.bullets.remove(i);
             }
@@ -164,7 +164,7 @@ public class rocketship {
         // render bullets
         for (int i = 0; i < bulletsClass.bullets.size(); i++) {
         	bulletsClass.bullets.get(i).draw(g2);
-        	bulletsClass.bullets.get(i).tick();
+        	bulletsClass.bullets.get(i).tick(g2);
         }
 
         BufferedImage image = null;
