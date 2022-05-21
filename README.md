@@ -13,8 +13,7 @@
 ☐ Setup metal and astroid collision\
 ☐ Create astroid class
 
-# Luke A. - Im perty sure I have fixed that by adding a removeBulletC method in the bullet class. It sets the position of the bullet to (-50, -50)
-# which should trigger the if if statement on line 156 in the rocketship class.
+# Luke A. - Im perty sure I have fixed that by adding a removeBulletC method in the bullet class. It sets the position of the bullet to (-50, -50), which should trigger the if if statement on line 156 in the rocketship class.
 
 # Hey Guys when the bullet hits the astroid it puts this nasty error log into the console.
 # I have a feeling this may be the reason for the lag
