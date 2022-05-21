@@ -170,7 +170,7 @@ public class GamePanel extends JPanel implements Runnable {
             for (int ibull = 0; ibull < bulletsClass.bullets.size(); ibull++) {
                 for(int i = 0; i<ast.asts.length; i++) {
                     if(ast.asts[i].getCAst().touches(bulletsClass.bullets.get(ibull).getBulletC())) {
-                        bulletsClass.bullets.remove(ibull);
+                        bulletsClass.bullets.get(ibull).removeBulletC();
                         System.out.println("touch");
                     }
                 }

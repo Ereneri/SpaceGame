@@ -5,6 +5,7 @@ import collision.Collision;
 import object.metal;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class bullet {
     public class cBox {
     	public static Collision bulletC;
     }
+    public BufferedImage bulletImage = null;
 
     // constructor
     public bullet(int x, int y, String direction) {
@@ -39,6 +41,10 @@ public class bullet {
     // gets bullets collision box
     public Collision getBulletC () {
     	return cBox.bulletC;
+    }
+    public void removeBulletC () {
+    	cBox.bulletC.setXCol(-50);
+    	cBox.bulletC.setYCol(-50);
     }
     // loads bullet image into memory
     public void getBulletImage() {
@@ -57,54 +63,71 @@ public class bullet {
     }
 
     // updates the frame depending on direction and speed
-    public void tick() {
+    public void tick(Graphics2D g2) {
         switch(this.direction) {
             case "up":
-                y -= speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	y -= speed;
+                	cBox.bulletC.setYCol(y);
+                }else {
+                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
+                }
                 break;
             case "down":
-                y += speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	y += speed;
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
             case "left":
-                x -= speed;
-                cBox.bulletC.setXCol(x);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x -= speed;
+                	cBox.bulletC.setXCol(x);
+                }
                 break;
             case "right":
-                x += speed;
-                cBox.bulletC.setXCol(x);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x += speed;
+                	cBox.bulletC.setXCol(x);
+                }
                 break;
             case "upRight":
-                x += speed;
-                cBox.bulletC.setXCol(x);
-                y -= speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x += speed;
+                	cBox.bulletC.setXCol(x);
+                	y -= speed;
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
             case "upLeft":
-                x -= speed;
-                cBox.bulletC.setXCol(x);
-                y -= speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x -= speed;
+                	cBox.bulletC.setXCol(x);
+                	y -= speed;
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
             case "downRight":
-                x += speed;
-                cBox.bulletC.setXCol(x);
-                y += speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                	x += speed;
+                	cBox.bulletC.setXCol(x);
+                	y += speed;
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
             case "downLeft":
-                x -= speed;
-                cBox.bulletC.setXCol(x);
-                y += speed;
-                cBox.bulletC.setYCol(y);
+                if(cBox.bulletC.getXCol() != -50) {
+                    x -= speed;                	
+                	cBox.bulletC.setXCol(x);
+                	y += speed;                	
+                	cBox.bulletC.setYCol(y);
+                }
                 break;
         }
     }
 
     // draws the bullet
     public void draw(Graphics g) {
-        BufferedImage bulletImage = null;
         switch(direction) {
             case "up":
                 bulletImage = up1;
@@ -133,7 +156,7 @@ public class bullet {
                 break;
         }
         g.drawImage(bulletImage,  x+16,  y+16, 16, 16, null);
-        g.drawRect( x+16,  y+16, 16, 16);
+        g.drawRect( cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16);
         
     }
 
