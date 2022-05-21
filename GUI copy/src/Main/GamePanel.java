@@ -43,8 +43,9 @@ public class GamePanel extends JPanel implements Runnable {
     
     // Metal Object
     public class objRocket{
-    	public static metal obj[] = new metal[10];
+    	public static metal obj[] = new metal[6];
     }
+    
     public AssetSetter aSetter = new AssetSetter(this);
     
     // asteroid stuff
@@ -83,6 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
     	aSetter.setIron();
 
     }
+    
     
     // adds the asteroids
     public void spawnAsteroids() {
@@ -173,6 +175,7 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             }
+             
             ship.draw(g2);
         }
         g2.dispose();
