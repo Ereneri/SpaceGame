@@ -65,7 +65,7 @@ public class rocketship {
         this.score = 0;
         setDefaultValues();
         getRocketImage();
-        shipC = new Collision(x, y, gp.tileSize, gp.tileSize);
+        shipC = new Collision(x, y, gp.tileSize-11, gp.tileSize-13);
         walls.wallCUp = new Collision(0, 0, 768, 5);
         walls.wallCDown = new Collision(0, 763, 768, 5);
         walls.wallCLeft = new Collision(0, 0, 5, 768);
@@ -206,8 +206,8 @@ public class rocketship {
         
         //moves collision with rocket and displays it
         g2.setColor(Color.gray);
-        shipC.setXCol(x);
-        shipC.setYCol(y);
+        shipC.setXCol(x+5);
+        shipC.setYCol(y+9);
         shipC.render(g2);
         
         // renders walls

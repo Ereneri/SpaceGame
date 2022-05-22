@@ -2,7 +2,7 @@ package collision;
 
 import java.awt.*;
 
-public class Collision {
+public class Collision extends Rectangle{
 private int x;
 private int y;
 private int width;
@@ -13,6 +13,7 @@ public Collision(int x, int y, int width, int height) {
 	this.y=y;
 	this.width=width;
 	this.height=height;
+	Rectangle rect = new Rectangle(this.x, this.y, this.width, this.height);
 }
 
 public Collision getCol() {
@@ -58,30 +59,26 @@ public void render(Graphics2D g) {
 }
 
 public boolean touches(Collision c) {
-	int left=x;
-	int right= x+width;
-	int top=y;
-	int bottom=y+height;
-	
-	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol();
-	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol();
-	
-	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-		
-	}
-	if(right>=cLeft&&right<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	return false;
+	int tw = this.width;
+    int th = this.height;
+    int rw = c.width;
+    int rh = c.height;
+    if (rw <= 0 || rh <= 0 || tw <= 0 || th <= 0) {
+        return false;
+    }
+    int tx = this.x;
+    int ty = this.y;
+    int rx = c.x;
+    int ry = c.y;
+    rw += rx;
+    rh += ry;
+    tw += tx;
+    th += ty;
+    //      overflow || intersect
+    return ((rw < rx || rw > tx) &&
+            (rh < ry || rh > ty) &&
+            (tw < tx || tw > rx) &&
+            (th < ty || th > ry));
 }
 
 public boolean touchesUp(Collision c) {
