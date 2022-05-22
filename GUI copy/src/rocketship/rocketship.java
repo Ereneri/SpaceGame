@@ -22,7 +22,17 @@ public class rocketship {
     public int x, y;
     public int speed;
     public int score;
-    public bullet bullet;
+    public class bullets{
+    	public bullet bullet;
+    	
+    	public void addBullet(bullet block) {
+        	bulletsClass.bullets.add(block);
+        }
+
+        public static void removeBullet(bullet block) {
+        	bulletsClass.bullets.remove(block);
+        }
+    }
     public Collision shipC;
     
     public class walls{
@@ -88,13 +98,6 @@ public class rocketship {
     	this.y = y;
     }
 
-    public void addBullet(bullet block) {
-    	bulletsClass.bullets.add(block);
-    }
-
-    public void removeBullet(bullet block) {
-    	bulletsClass.bullets.remove(block);
-    }
     
     // Resets the rocketship to default values
     public void setDefaultValues() {
@@ -153,7 +156,7 @@ public class rocketship {
             direction = "downLeft";
         }
         if (keyH.shotKeyPressed == true) {
-            if (bulletsClass.bullets.size() == 0 || bulletsClass.bullets.get(bulletsClass.bullets.size() - 1).getTime() + 200 < System.currentTimeMillis()) {
+            if (bulletsClass.bullets.size() == 0 || bulletsClass.bullets.get(bulletsClass.bullets.size()-1).getTime() + 200 < System.currentTimeMillis()) {
             	bulletsClass.bullets.add(new bullet(x, y, direction));
             }
         }
