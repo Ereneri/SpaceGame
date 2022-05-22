@@ -1,12 +1,8 @@
 package Main;
 
 import object.Gold;
-
 import object.Iron;
 import object.Silver;
-import object.metal;
-import rocketship.bullet.cBox;
-import rocketship.rocketship;
 import Main.GamePanel.objRocket;
 import collision.Collision;
 
