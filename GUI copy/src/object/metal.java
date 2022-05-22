@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.image.BufferedImage;
+
 import java.awt.Graphics2D;
 import Main.GamePanel;
 import collision.*;
@@ -8,10 +9,12 @@ import collision.*;
 public class metal {
 	public BufferedImage image;
 	public String name;
-	public boolean collision = false; 
 	public int worldX, worldY;
 	public int value;
 	public static Collision objectC;
+	public class cBoxM {
+    	public static Collision metal;
+    }
 
 	
 	public void draw(Graphics2D g2, GamePanel gp) {

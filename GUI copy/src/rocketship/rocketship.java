@@ -242,6 +242,8 @@ public class rocketship {
         		objRocket.obj[i].getCObj().setYCol(objRocket.obj[i].getWorldY()+5);
         		if(shipC.touches(objRocket.obj[i].getCObj())) {
                 	System.out.println("touch obj");
+                	objRocket.obj[i] = null;
+                    }
                 	g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
                 }
         	}
@@ -254,5 +256,5 @@ public class rocketship {
 //        	}
 //        }
         
-    }
-}
+	}
+
