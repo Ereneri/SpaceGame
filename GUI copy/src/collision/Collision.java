@@ -2,7 +2,7 @@ package collision;
 
 import java.awt.*;
 
-public class Collision extends Rectangle{
+public class Collision{
 private int x;
 private int y;
 private int width;
@@ -13,7 +13,6 @@ public Collision(int x, int y, int width, int height) {
 	this.y=y;
 	this.width=width;
 	this.height=height;
-	Rectangle rect = new Rectangle(this.x, this.y, this.width, this.height);
 }
 
 public Collision getCol() {
