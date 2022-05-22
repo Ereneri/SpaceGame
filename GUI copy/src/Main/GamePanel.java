@@ -11,6 +11,7 @@ import Main.GamePanel.objRocket;
 import asteroids.*;
 import object.metal;
 import rocketship.rocketship;
+import rocketship.rocketship.bullets;
 import rocketship.rocketship.bulletsClass;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -167,10 +168,11 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             
-            for (int ibull = 0; ibull < bulletsClass.bullets.size(); ibull++) {
+            for (int indexbull = 0; indexbull < bulletsClass.bullets.size(); indexbull++) {
                 for(int i = 0; i<ast.asts.length; i++) {
-                    if(ast.asts[i].getCAst().touches(bulletsClass.bullets.get(ibull).getBulletC())) {
-                        bulletsClass.bullets.get(ibull).removeBulletC();
+                    if(ast.asts[i].getCAst().touches(bulletsClass.bullets.get(indexbull).getBulletC())) {
+                    	//bullets.removeBullet(bulletsClass.bullets.get(indexbull));
+                    	//bulletsClass.bullets.get(indexbull).removeBulletC();
                         System.out.println("touch");
                     }
                 }
