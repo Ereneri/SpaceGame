@@ -196,9 +196,6 @@ public class rocketship {
                 image = down2;
                 break;
             } 
-        // vizualize the hit box for the rocketship for collision detection
-//        g2.setColor(Color.red);
-//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
         // draw the ship with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
@@ -209,7 +206,8 @@ public class rocketship {
         g2.setColor(Color.gray);
         shipC.setXCol(x+5);
         shipC.setYCol(y+9);
-        shipC.render(g2);
+        //displays the ships collision box
+//        shipC.render(g2);
         
         // renders walls
         walls.wallCUp.render(g2);
