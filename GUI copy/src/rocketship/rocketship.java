@@ -24,11 +24,11 @@ public class rocketship {
     	public bullet bullet;
     	
     	public void addBullet(bullet block) {
-        	bulletsClass.bullets.add(block);
+    		bulletArray.bullets.add(block);
         }
 
         public static void removeBullet(bullet block) {
-        	bulletsClass.bullets.remove(block);
+        	bulletArray.bullets.remove(block);
         }
     }
     public Collision shipC;
@@ -48,14 +48,14 @@ public class rocketship {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
     // Bullet Stuff
-    public class bulletsClass{
+    public class bulletArray{
     	public static ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
     }
     public void tick(Graphics2D g2) {
-        for (int i = 0; i < bulletsClass.bullets.size(); i++) {
-        	bulletsClass.bullets.get(i).tick(g2);
-            if (bulletsClass.bullets.get(i).getX() < 0) {
-            	bulletsClass.bullets.remove(i);
+        for (int i = 0; i < bulletArray.bullets.size(); i++) {
+        	bulletArray.bullets.get(i).tick(g2);
+            if (bulletArray.bullets.get(i).getX() < 0) {
+            	bulletArray.bullets.remove(i);
             }
         }
     }
@@ -154,8 +154,8 @@ public class rocketship {
             direction = "downLeft";
         }
         if (keyH.shotKeyPressed == true) {
-            if (bulletsClass.bullets.size() == 0 || bulletsClass.bullets.get(bulletsClass.bullets.size()-1).getTime() + 200 < System.currentTimeMillis()) {
-            	bulletsClass.bullets.add(new bullet(this.x, this.y, direction));
+            if (bulletArray.bullets.size() == 0 || bulletArray.bullets.get(bulletArray.bullets.size()-1).getTime() + 200 < System.currentTimeMillis()) {
+            	bulletArray.bullets.add(new bullet(this.x, this.y, direction));
             }
         }
     }
@@ -163,9 +163,9 @@ public class rocketship {
     // takes the direction and draws the correct sprite image
     public void draw(Graphics2D g2) {
         // render bullets
-        for (int i = 0; i < bulletsClass.bullets.size(); i++) {
-        	bulletsClass.bullets.get(i).draw(g2);
-        	bulletsClass.bullets.get(i).tick(g2);
+        for (int i = 0; i < bulletArray.bullets.size(); i++) {
+        	bulletArray.bullets.get(i).draw(g2);
+        	bulletArray.bullets.get(i).tick(g2);
         }
 
         BufferedImage image = null;

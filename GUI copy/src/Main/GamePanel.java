@@ -11,8 +11,8 @@ import Main.GamePanel.objRocket;
 import asteroids.*;
 import object.metal;
 import rocketship.rocketship;
+import rocketship.rocketship.bulletArray;
 import rocketship.rocketship.bullets;
-import rocketship.rocketship.bulletsClass;
 
 public class GamePanel extends JPanel implements Runnable {
     // Basic Screen Vars and scale factor
@@ -170,9 +170,9 @@ public class GamePanel extends JPanel implements Runnable {
             }
             
             // checks if any bullets are touching any asteroids
-            for (int indexbull = 0; indexbull < bulletsClass.bullets.size(); indexbull++) {
+            for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
                 for(int i = 0; i<ast.asts.length; i++) {
-                    if(ast.asts[i].getCAst().touches(bulletsClass.bullets.get(indexbull).getBulletC())) {
+                    if(ast.asts[i].getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
                     	//bullets.removeBullet(bulletsClass.bullets.get(indexbull));
                     	//bulletsClass.bullets.get(indexbull).removeBulletC();
                         System.out.println("touch");
