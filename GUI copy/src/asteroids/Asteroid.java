@@ -6,6 +6,8 @@ import collision.*;
 import rocketship.rocketship.walls;
 import javax.swing.ImageIcon;
 
+import Main.GamePanel;
+
 public class Asteroid {
 	
 	public int x;
@@ -14,22 +16,24 @@ public class Asteroid {
 	public int xVelAst;
 	public int yVelAst;
 	private Collision c;
+	public GamePanel gp;
 
 
 	//creates an asteroid object in a certain position and with certain speeds
-	public Asteroid(int x, int y, int xVel, int yVel) {
+	public Asteroid(int x, int y, int xVel, int yVel, GamePanel gp) {
+		this.gp = gp;
 		this.x=x;
 		this.y=y;
 		this.xVelAst=xVel;
 		this.yVelAst=yVel;
 		asteroid = new ImageIcon("ast.png").getImage();
-		c=new Collision(x,y,41,45);
+		c=new Collision(x,y,gp.tileSize, gp.tileSize);
 	}
 	
 	// draws the asteroids image and collision box
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, GamePanel gp) {
 		
-		g.drawImage(this.getImageAst(), this.x, this.y, 41, 45, null);
+		g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
 		c.render(g);
 	}
 	

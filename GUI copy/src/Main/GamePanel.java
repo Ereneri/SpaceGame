@@ -165,7 +165,7 @@ public class GamePanel extends JPanel implements Runnable {
             for(int i = 0; i<ast.asts.length; i++) {
                 if(ast.asts[i]!= null) {
                     ast.asts[i].astTick();
-                    ast.asts[i].draw(g2);
+                    ast.asts[i].draw(g2, this);
                 }
             }
             
