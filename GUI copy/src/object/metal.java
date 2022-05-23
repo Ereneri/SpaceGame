@@ -12,10 +12,10 @@ public class metal {
 	public int worldX, worldY;
 	public int value;
 	public static Collision objectC;
-	public class cBoxM {
-    	public static Collision metal;
-    }
-
+	
+	public int getValue(int value) {
+		return value;
+	}
 	
 	public void draw(Graphics2D g2, GamePanel gp) {
 		g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
