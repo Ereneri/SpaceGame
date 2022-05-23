@@ -34,7 +34,7 @@ public class Asteroid {
 	public void draw(Graphics2D g, GamePanel gp) {
 		
 		g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
-		c.render(g);
+		//c.render(g);
 	}
 	
 	

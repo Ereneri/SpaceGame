@@ -155,7 +155,7 @@ public class rocketship {
         }
         if (keyH.shotKeyPressed == true) {
             if (bulletsClass.bullets.size() == 0 || bulletsClass.bullets.get(bulletsClass.bullets.size()-1).getTime() + 200 < System.currentTimeMillis()) {
-            	bulletsClass.bullets.add(new bullet(x, y, direction));
+            	bulletsClass.bullets.add(new bullet(this.x, this.y, direction));
             }
         }
     }
@@ -200,7 +200,7 @@ public class rocketship {
 //        g2.setColor(Color.red);
 //        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
-        // draw the image with using the global x and y coordinates along with scaling from the gamepanel
+        // draw the ship with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
 
         // CROP IMAGE TO MAKE SIZING CORRECT
