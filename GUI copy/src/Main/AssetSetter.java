@@ -13,6 +13,7 @@ public class AssetSetter {
 		this.gp = gp;
 	}
 	
+	// adds gold to the list of collectibles
 	public void setGold() {
 		objRocket.obj[0] = new Gold();
 		objRocket.obj[0].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
@@ -24,6 +25,7 @@ public class AssetSetter {
 		objRocket.obj[7].objectC = new Collision(objRocket.obj[7].worldX + 8, objRocket.obj[7].worldY + 5, 28, 28);
 	}
 	
+	// adds silver to the list of collectibles
 	public void setSilver() {
 		objRocket.obj[1] = new Silver();
 		objRocket.obj[1].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
@@ -38,7 +40,8 @@ public class AssetSetter {
 		objRocket.obj[8].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
 		objRocket.obj[8].objectC = new Collision(objRocket.obj[8].worldX + 8, objRocket.obj[8].worldY + 5, 28, 28);
 	}
-		
+	
+	// adds iron to the list of collectibles
 	public void setIron() {
 		objRocket.obj[3] = new Iron();
 		objRocket.obj[3].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;

@@ -10,6 +10,7 @@ private int y;
 private int width;
 private int height;
 
+//creates a new collision box
 public Collision(int x, int y, int width, int height) {
 	this.x=x;
 	this.y=y;
@@ -53,12 +54,13 @@ public void setHeightCol(int height) {
 }
 
 
-
-
+//Displays where the collision box is on the screen
 public void render(Graphics2D g) {
 	g.drawRect(x, y, width, height);
 }
 
+
+//checks if two collisions are touching
 public boolean touches(Collision c) {
 	int tw = this.width;
     int th = this.height;
@@ -82,109 +84,6 @@ public boolean touches(Collision c) {
             (th < ty || th > ry));
 }
 
-public boolean touchesUp(Collision c) {
-	int left=x;
-	int right= x+width;
-	int top=y;
-	int bottom=y+height;
-	
-	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol();
-	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol();
-	
-	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-		
-	}
-	if(right>=cLeft&&right<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	return false;
-}
-public boolean touchesDown(Collision c) {
-	int left=x;
-	int right= x+width;
-	int top=y;
-	int bottom=y+height;
-	
-	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol();
-	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol();
-	
-	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-		
-	}
-	if(right>=cLeft&&right<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	return false;
-}
-public boolean touchesLeft(Collision c) {
-	int left=x;
-	int right= x+width;
-	int top=y;
-	int bottom=y+height;
-	
-	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol();
-	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol();
-	
-	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-		
-	}
-	if(right>=cLeft&&right<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	return false;
-}
-public boolean touchesRight(Collision c) {
-	int left=x;
-	int right= x+width;
-	int top=y;
-	int bottom=y+height;
-	
-	int cLeft=c.getXCol();
-	int cRight= c.getXCol()+c.getWidthCol();
-	int cTop=c.getYCol();
-	int cBottom=c.getYCol()+c.getHeightCol();
-	
-	if(right>=cLeft&&right<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-	}
-	if(right>=cLeft&&right<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&bottom>=cTop&&bottom<=cBottom) {
-		return true;
-	}
-	if(left>=cLeft&&left<=cRight&&top>=cTop&&top<=cBottom) {
-		return true;
-	}
-	return false;
-}
 
 }
 

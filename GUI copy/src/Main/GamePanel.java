@@ -161,6 +161,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             
+            // updates asteroids position per frame
             for(int i = 0; i<ast.asts.length; i++) {
                 if(ast.asts[i]!= null) {
                     ast.asts[i].astTick();
@@ -168,6 +169,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             
+            // checks if any bullets are touching any asteroids
             for (int indexbull = 0; indexbull < bulletsClass.bullets.size(); indexbull++) {
                 for(int i = 0; i<ast.asts.length; i++) {
                     if(ast.asts[i].getCAst().touches(bulletsClass.bullets.get(indexbull).getBulletC())) {
