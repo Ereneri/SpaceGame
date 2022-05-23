@@ -15,8 +15,6 @@ import Main.KeyHandler;
 
 public class rocketship {
 
-    // eren is a brick
-
     // basic rocketship vars
     public String direction;
     public int x, y;
@@ -247,7 +245,7 @@ public class rocketship {
                 	System.out.println("touch obj");
                 	objRocket.obj[i] = null;
                     }
-                	g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
+                	//g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
                 }
         	}
         }

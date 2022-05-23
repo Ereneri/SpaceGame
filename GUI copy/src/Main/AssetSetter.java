@@ -18,6 +18,10 @@ public class AssetSetter {
 		objRocket.obj[0].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
 		objRocket.obj[0].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
 		objRocket.obj[0].objectC = new Collision(objRocket.obj[0].worldX + 8, objRocket.obj[0].worldY + 5, 28, 28);
+		objRocket.obj[7] = new Gold();
+		objRocket.obj[7].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		objRocket.obj[7].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		objRocket.obj[7].objectC = new Collision(objRocket.obj[7].worldX + 8, objRocket.obj[7].worldY + 5, 28, 28);
 	}
 	
 	public void setSilver() {
@@ -29,6 +33,10 @@ public class AssetSetter {
 		objRocket.obj[2].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
 		objRocket.obj[2].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
 		objRocket.obj[2].objectC = new Collision(objRocket.obj[2].worldX + 8, objRocket.obj[2].worldY + 5, 28, 28);
+		objRocket.obj[8] = new Silver();
+		objRocket.obj[8].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		objRocket.obj[8].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		objRocket.obj[8].objectC = new Collision(objRocket.obj[8].worldX + 8, objRocket.obj[8].worldY + 5, 28, 28);
 	}
 		
 	public void setIron() {
@@ -44,5 +52,9 @@ public class AssetSetter {
 		objRocket.obj[5].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
 		objRocket.obj[5].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
 		objRocket.obj[5].objectC = new Collision(objRocket.obj[5].worldX + 8, objRocket.obj[5].worldY + 5, 28, 28);
+		objRocket.obj[6] = new Iron();
+		objRocket.obj[6].worldX = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		objRocket.obj[6].worldY = (int)(Math.random() * 16 + 1) * gp.tileSize;
+		objRocket.obj[6].objectC = new Collision(objRocket.obj[6].worldX + 8, objRocket.obj[6].worldY + 5, 28, 28);
 	}
 }

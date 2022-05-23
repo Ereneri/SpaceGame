@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     // Metal Object
     public class objRocket{
-    	public static metal obj[] = new metal[6];
+    	public static metal obj[] = new metal[10];
     }
     
     public AssetSetter aSetter = new AssetSetter(this);
