@@ -155,7 +155,7 @@ public class rocketship {
         }
         if (keyH.shotKeyPressed == true) {
             if (bulletArray.bullets.size() == 0 || bulletArray.bullets.get(bulletArray.bullets.size()-1).getTime() + 200 < System.currentTimeMillis()) {
-            	bulletArray.bullets.add(new bullet(this.x, this.y, direction));
+            	bulletArray.bullets.add(new bullet(this.x+16, this.y+16, direction));
             }
         }
     }
@@ -164,8 +164,10 @@ public class rocketship {
     public void draw(Graphics2D g2) {
         // render bullets
         for (int i = 0; i < bulletArray.bullets.size(); i++) {
-        	bulletArray.bullets.get(i).draw(g2);
         	bulletArray.bullets.get(i).tick(g2);
+        	bulletArray.bullets.get(i).getBulletC().setXCol((int)bulletArray.bullets.get(i).getX());
+        	bulletArray.bullets.get(i).getBulletC().setYCol((int)bulletArray.bullets.get(i).getY());
+        	bulletArray.bullets.get(i).draw(g2);
         }
 
         BufferedImage image = null;

@@ -64,51 +64,51 @@ public class bullet {
         switch(this.direction) {
             case "up":
                 	y -= speed;
-                	bulletC.bulletC.setYCol(y);
-                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
+                //	bulletC.bulletC.setYCol(y);
+                //	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "down":
                 	y += speed;
-                	bulletC.bulletC.setYCol(y);
-                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
+                //	bulletC.bulletC.setYCol(y);
+                //	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "left":
                 	x -= speed;
-                	bulletC.bulletC.setXCol(x);
-                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
+                //	bulletC.bulletC.setXCol(x);
+                //	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "right":
                 	x += speed;
-                	bulletC.bulletC.setXCol(x);
-                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
+                //	bulletC.bulletC.setXCol(x);
+                //	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "upRight":
                 	x += speed;
-                	bulletC.bulletC.setXCol(x);
+                //	bulletC.bulletC.setXCol(x);
                 	y -= speed;
-                	bulletC.bulletC.setYCol(y);
-                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
+                //	bulletC.bulletC.setYCol(y);
+                //	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "upLeft":
                 	x -= speed;
-                	bulletC.bulletC.setXCol(x);
+                //	bulletC.bulletC.setXCol(x);
                 	y -= speed;
-                	bulletC.bulletC.setYCol(y);
-                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
+                //	bulletC.bulletC.setYCol(y);
+                //	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "downRight":
                 	x += speed;
-                	bulletC.bulletC.setXCol(x);
+                //	bulletC.bulletC.setXCol(x);
                 	y += speed;
-                	bulletC.bulletC.setYCol(y);
-                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
+                //	bulletC.bulletC.setYCol(y);
+                //	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "downLeft":
                     x -= speed;                	
-                    bulletC.bulletC.setXCol(x);
+                //    bulletC.bulletC.setXCol(x);
                 	y += speed;                	
-                	bulletC.bulletC.setYCol(y);
-                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
+                //	bulletC.bulletC.setYCol(y);
+                //	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
         }
     }
@@ -142,7 +142,7 @@ public class bullet {
                 bulletImage = down2;
                 break;
         }
-        g.drawImage(bulletImage,  x+16,  y+16, 16, 16, null);
+        g.drawImage(bulletImage,  x,  y, 16, 16, null);
         bulletC.bulletC.render(g);
         
     }
