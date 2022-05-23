@@ -238,7 +238,7 @@ public class rocketship {
         }
         
         
-        // picks up the collectibles
+        // picking up the collectibles
         for (int i = 0; i < objRocket.obj.length; i++) {
         	if(objRocket.obj[i]!= null) {
         		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX()+8);
@@ -253,12 +253,14 @@ public class rocketship {
                 }
         	}
         
-        // touches atseroids
-        for(int i = 0; i<ast.asts.length; i++) {
-        	if(shipC.touches(ast.asts[i].getCAst())) {
-        		gp.gameThread.stop();
-        	}
-        }
+        // touches asteroids
+//        for(int i = 0; i<ast.asts.length; i++) {
+//        	if(ast.asts[i]!= null) {
+//        		if(shipC.touches(ast.asts[i].getCAst())) {
+//        			gp.gameThread.stop();
+//        		}
+//        	}
+//        }
     }  
 }
 
