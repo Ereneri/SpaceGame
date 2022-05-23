@@ -254,11 +254,11 @@ public class rocketship {
         	}
         
         // touches atseroids
-//        for(int i = 0; i<ast.asts.length; i++) {
-//        	if(shipC.touches(ast.asts[i].getCAst())) {
-//        		gp.gameThread.stop();
-//        	}
-//        }
+        for(int i = 0; i<ast.asts.length; i++) {
+        	if(shipC.touches(ast.asts[i].getCAst())) {
+        		gp.gameThread.stop();
+        	}
+        }
     }  
 }
 
