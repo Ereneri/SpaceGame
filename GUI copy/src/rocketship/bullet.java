@@ -22,7 +22,7 @@ public class bullet {
     private long lastTime;
     private int speed;
     private String direction;
-    public class cBox {
+    public class bulletC {
     	public static Collision bulletC;
     }
     public BufferedImage bulletImage = null;
@@ -32,15 +32,15 @@ public class bullet {
         this.x = x;
         this.y = y;
         this.direction = direction;
-        speed = 15;
+        speed = 5;
         this.lastTime = System.currentTimeMillis();
         getBulletImage();
-        cBox.bulletC = new Collision(x+16,  y+16, 16, 16);
+        bulletC.bulletC = new Collision(x+16,  y+16, 16, 16);
     }
 
     // gets bullets collision box
     public Collision getBulletC () {
-    	return cBox.bulletC;
+    	return bulletC.bulletC;
     }
 
     // loads bullet image into memory
@@ -63,76 +63,52 @@ public class bullet {
     public void tick(Graphics2D g2) {
         switch(this.direction) {
             case "up":
-                if(cBox.bulletC.getXCol() != -50) {
                 	y -= speed;
-                	cBox.bulletC.setYCol(y);
-                }else {
-                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
-                }
+                	bulletC.bulletC.setYCol(y);
+                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "down":
-                if(cBox.bulletC.getXCol() != -50) {
                 	y += speed;
-                	cBox.bulletC.setYCol(y);
-                }else {
-                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
-                }
+                	bulletC.bulletC.setYCol(y);
+                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "left":
-                if(cBox.bulletC.getXCol() != -50) {
                 	x -= speed;
-                	cBox.bulletC.setXCol(x);
-                }else {
-                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
-                }
+                	bulletC.bulletC.setXCol(x);
+                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "right":
-                if(cBox.bulletC.getXCol() != -50) {
                 	x += speed;
-                	cBox.bulletC.setXCol(x);
-                }else {
-                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
-                }
+                	bulletC.bulletC.setXCol(x);
+                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "upRight":
-                if(cBox.bulletC.getXCol() != -50) {
                 	x += speed;
-                	cBox.bulletC.setXCol(x);
+                	bulletC.bulletC.setXCol(x);
                 	y -= speed;
-                	cBox.bulletC.setYCol(y);
-                }else {
-                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
-                }
+                	bulletC.bulletC.setYCol(y);
+                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "upLeft":
-                if(cBox.bulletC.getXCol() != -50) {
                 	x -= speed;
-                	cBox.bulletC.setXCol(x);
+                	bulletC.bulletC.setXCol(x);
                 	y -= speed;
-                	cBox.bulletC.setYCol(y);
-                }else {
-                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
-                }
+                	bulletC.bulletC.setYCol(y);
+                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "downRight":
-                if(cBox.bulletC.getXCol() != -50) {
                 	x += speed;
-                	cBox.bulletC.setXCol(x);
+                	bulletC.bulletC.setXCol(x);
                 	y += speed;
-                	cBox.bulletC.setYCol(y);
-                }else {
-                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
-                }
+                	bulletC.bulletC.setYCol(y);
+                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
             case "downLeft":
-                if(cBox.bulletC.getXCol() != -50) {
                     x -= speed;                	
-                	cBox.bulletC.setXCol(x);
+                    bulletC.bulletC.setXCol(x);
                 	y += speed;                	
-                	cBox.bulletC.setYCol(y);
-                }else {
-                	g2.drawImage(bulletImage,  cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16, null);
-                }
+                	bulletC.bulletC.setYCol(y);
+                	g2.drawImage(bulletImage,  bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16, null);
                 break;
         }
     }
@@ -167,7 +143,7 @@ public class bullet {
                 break;
         }
         g.drawImage(bulletImage,  x+16,  y+16, 16, 16, null);
-        g.drawRect( cBox.bulletC.getXCol(),  cBox.bulletC.getYCol(), 16, 16);
+        g.drawRect( bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16);
         
     }
 
