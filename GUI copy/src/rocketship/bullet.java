@@ -114,7 +114,7 @@ public class bullet {
     }
 
     // draws the bullet
-    public void draw(Graphics g) {
+    public void draw(Graphics2D g) {
         switch(direction) {
             case "up":
                 bulletImage = up1;
@@ -143,7 +143,7 @@ public class bullet {
                 break;
         }
         g.drawImage(bulletImage,  x+16,  y+16, 16, 16, null);
-        g.drawRect( bulletC.bulletC.getXCol(),  bulletC.bulletC.getYCol(), 16, 16);
+        bulletC.bulletC.render(g);
         
     }
 
