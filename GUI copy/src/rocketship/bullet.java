@@ -42,10 +42,7 @@ public class bullet {
     public Collision getBulletC () {
     	return cBox.bulletC;
     }
-    public void removeBulletC () {
-    	cBox.bulletC.setXCol(-50);
-    	cBox.bulletC.setYCol(-50);
-    }
+
     // loads bullet image into memory
     public void getBulletImage() {
         try {

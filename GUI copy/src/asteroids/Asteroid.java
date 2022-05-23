@@ -16,6 +16,7 @@ public class Asteroid {
 	private Collision c;
 
 
+	//creates an asteroid object in a certain position and with certain speeds
 	public Asteroid(int x, int y, int xVel, int yVel) {
 		this.x=x;
 		this.y=y;
@@ -25,22 +26,25 @@ public class Asteroid {
 		c=new Collision(x,y,41,45);
 	}
 	
+	// draws the asteroids image and collision box
 	public void draw(Graphics2D g) {
 		
-		g.drawImage(asteroid, x, y, 41, 45, null);
-		g.drawRect(x, y, 41, 45);
+		g.drawImage(this.getImageAst(), this.x, this.y, 41, 45, null);
+		c.render(g);
 	}
 	
+	
+	// checks if the asteroid is touching a wall and if so makes it bounce
 	public void astTick() {
 		
-		if(c.touchesRight(walls.wallCRight) || c.touchesLeft(walls.wallCLeft)) {
+		if(c.touches(walls.wallCRight) || c.touches(walls.wallCLeft)) {
 			this.setYVelAst();
 			
 		}
 		this.setXAst(this.getYVelAst());
 
 	
-		if(c.touchesUp(walls.wallCUp) || c.touchesDown(walls.wallCDown)) {
+		if(c.touches(walls.wallCUp) || c.touches(walls.wallCDown)) {
 			this.setXVelAst();
 			
 		}

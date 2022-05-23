@@ -219,24 +219,26 @@ public class rocketship {
         
         
         // teleportation if you touch a wall
-        if(shipC.touchesUp(walls.wallCUp)) {
+        if(shipC.touches(walls.wallCUp)) {
         	y = 762-gp.tileSize;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesDown(walls.wallCDown)) {
+        }else if(shipC.touches(walls.wallCDown)) {
         	y = 6;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        } else if(shipC.touchesLeft(walls.wallCLeft)) {
+        } else if(shipC.touches(walls.wallCLeft)) {
         	x = 762-gp.tileSize;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesRight(walls.wallCRight)) {
+        }else if(shipC.touches(walls.wallCRight)) {
         	x = 6;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }
         
+        
+        // picks up the collectibles
         for (int i = 0; i < objRocket.obj.length; i++) {
         	if(objRocket.obj[i]!= null) {
         		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX()+8);
