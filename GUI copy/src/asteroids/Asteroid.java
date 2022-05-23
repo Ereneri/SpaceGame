@@ -27,7 +27,7 @@ public class Asteroid {
 		this.xVelAst=xVel;
 		this.yVelAst=yVel;
 		asteroid = new ImageIcon("ast.png").getImage();
-		c=new Collision(x,y,gp.tileSize, gp.tileSize);
+		c=new Collision(x+5,y+5,gp.tileSize-10, gp.tileSize-10);
 	}
 	
 	// draws the asteroids image and collision box
@@ -53,8 +53,8 @@ public class Asteroid {
 			
 		}
 		this.setYAst(this.getXVelAst());
-		c.setXCol(x);
-		c.setYCol(y);
+		c.setXCol(x+5);
+		c.setYCol(y+5);
  
     }
 	
