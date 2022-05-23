@@ -248,7 +248,6 @@ public class rocketship {
                 	//g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
                 }
         	}
-        }
         
         // touches atseroids
 //        for(int i = 0; i<ast.asts.length; i++) {
@@ -256,6 +255,6 @@ public class rocketship {
 //        		gp.gameThread.stop();
 //        	}
 //        }
-        
-	}
+    }  
+}
 
