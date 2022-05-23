@@ -13,7 +13,7 @@ public class metal {
 	public int value;
 	public static Collision objectC;
 	
-	public int getValue(int value) {
+	public int getValue() {
 		return value;
 	}
 	

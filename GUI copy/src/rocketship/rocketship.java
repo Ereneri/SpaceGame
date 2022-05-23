@@ -245,7 +245,7 @@ public class rocketship {
         		objRocket.obj[i].getCObj().setYCol(objRocket.obj[i].getWorldY()+5);
         		if(shipC.touches(objRocket.obj[i].getCObj())) {
                 	System.out.println("touch obj");
-                	score = objRocket.obj[i].getValue(i) + score;
+                	score = objRocket.obj[i].getValue() + score;
                 	objRocket.obj[i] = null;
                 	System.out.println(score);
                     }
