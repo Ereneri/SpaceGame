@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+
 import asteroids.*;
 import javax.swing.JPanel;
 
+import Main.GamePanel.ast;
 import Main.GamePanel.objRocket;
 import asteroids.*;
 import object.metal;
@@ -52,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
     // asteroid stuff
     public class ast{
     	public static int numAsteroids = 10;
-        public static Asteroid asts[] = new Asteroid[numAsteroids];
+        public static ArrayList<Asteroid> asts = new ArrayList<Asteroid>();
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
 
@@ -140,14 +143,20 @@ public class GamePanel extends JPanel implements Runnable {
             ship.update();
             
             //checks if there are any collectibles left. If all are gone it spawns in more
-            int count = 0;
+            int objCount = 0;
             for (int i = 0; i < objRocket.obj.length; i++) {
                 if(objRocket.obj[i]!= null) {
-                    count ++;
+                	objCount ++;
                 }
             }
-            if(count == 0) {
+            if(objCount == 0) {
             	this.spawnMetal();
+            }
+            int astCount = 0;
+            for (int i = 0; i < ast.asts.size(); i++) {
+                if(ast.asts.get(i)!= null) {
+                	astCount ++;
+                }
             }
         }
     }
@@ -173,20 +182,20 @@ public class GamePanel extends JPanel implements Runnable {
             }
             
             // updates asteroids position per frame
-            for(int i = 0; i<ast.asts.length; i++) {
-                if(ast.asts[i]!= null) {
-                	ast.asts[i].draw(g2, this);
-                    ast.asts[i].astTick();
+            for(int i = 0; i<ast.asts.size(); i++) {
+                if(ast.asts.get(i)!= null) {
+                	ast.asts.get(i).draw(g2, this);
+                    ast.asts.get(i).astTick();
                 }
             }
             
             // checks if any bullets are touching any asteroids
             for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
-                for(int i = 0; i<ast.asts.length; i++) {
-                	if(ast.asts[i]!= null) {
-                		if(ast.asts[i].getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
+                for(int i = 0; i<ast.asts.size(); i++) {
+                	if(ast.asts.get(i)!= null) {
+                		if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
                 			bullets.removeBullet(bulletArray.bullets.get(indexbull));
-                			ast.asts[i] = null;
+                			ast.asts.set(i, null);
                 			System.out.println("bullet touch asteroid");
                 		}
                 	}
