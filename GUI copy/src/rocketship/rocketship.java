@@ -259,13 +259,13 @@ public class rocketship {
         	}
         
         // touches asteroids
-       for(int i = 0; i<ast.asts.size(); i++) {
-       	if(ast.asts.get(i)!= null) {
-       		if(shipC.touches(ast.asts.get(i).getCAst())) {
-       			gp.gameThread.stop();
-       		}
-       	}
-       }
+//       for(int i = 0; i<ast.asts.size(); i++) {
+//       	if(ast.asts.get(i)!= null) {
+//       		if(shipC.touches(ast.asts.get(i).getCAst())) {
+//       			gp.gameThread.stop();
+//       		}
+//       	}
+//       }
     }  
 }
 

@@ -123,7 +123,7 @@ public class bullet {
                 break;
         }
         g.drawImage(bulletImage,  x,  y, 16, 16, null);
-        bulletC.bulletC.render(g);
+        //bulletC.bulletC.render(g);
         
     }
 
