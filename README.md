@@ -8,8 +8,9 @@
 ☒ Create Metal Sprites\
 ☒ Create Metal Collision\
 ☐ Create Pause Screen\
-☐ Set Score system\
 ☐ Create Game Over Screen\
+☒ Set Up The Score system\
+☒ Set Up The HP system\
 ☒ Setup metal and astroid collision\
 ☒ Create astroid class
 
