@@ -138,6 +138,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == playState) {
             ship.update();
+            
+            //checks if there are any collectibles left. If all are gone it spawns in more
             int count = 0;
             for (int i = 0; i < objRocket.obj.length; i++) {
                 if(objRocket.obj[i]!= null) {

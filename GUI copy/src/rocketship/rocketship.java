@@ -99,8 +99,8 @@ public class rocketship {
     
     // Resets the rocketship to default values
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
+        x = 25;
+        y = 25;
         speed = 4;
         direction = "up";
     }
