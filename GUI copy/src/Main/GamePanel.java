@@ -4,10 +4,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.File;
+import java.io.IOError;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import asteroids.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import java.awt.Image;
 
 import Main.GamePanel.ast;
 import Main.GamePanel.objRocket;
@@ -16,6 +22,8 @@ import object.metal;
 import rocketship.rocketship;
 import rocketship.rocketship.bulletArray;
 import rocketship.rocketship.bullets;
+import java.awt.Font;
+
 
 public class GamePanel extends JPanel implements Runnable {
     // Basic Screen Vars and scale factor
@@ -30,6 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Size of Screen
     public final int screenWidth = mapWidth * tileSize;
     public final int screenHeight = mapHeight * tileSize;
+    Image background;
 
     // FPS for Thread
     int FPS = 60;
@@ -74,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel() {
         // this.setBounds(0, 0, 768, 768);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.white);
+        this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
@@ -201,8 +210,10 @@ public class GamePanel extends JPanel implements Runnable {
                 	}
                 }
             }
-             
             ship.draw(g2);
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
+            g2.drawString(ship.getScore(), tileSize/3, tileSize);
+    
         }
         g2.dispose();
         

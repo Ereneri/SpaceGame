@@ -160,6 +160,11 @@ public class rocketship {
         }
     }
 
+    // score getter
+    public String getScore() {
+        return ""+score;
+    }
+
     // takes the direction and draws the correct sprite image
     public void draw(Graphics2D g2) {
         // render bullets

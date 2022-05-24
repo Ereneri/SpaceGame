@@ -2,6 +2,7 @@ package Main;
 
 import javax.swing.JFrame;
 import java.awt.*;
+import javax.swing.ImageIcon;
 
 public class Main {
     

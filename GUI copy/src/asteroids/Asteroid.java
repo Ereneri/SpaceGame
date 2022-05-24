@@ -26,7 +26,7 @@ public class Asteroid {
 		this.y=y;
 		this.xVelAst=xVel;
 		this.yVelAst=yVel;
-		asteroid = new ImageIcon("ast.png").getImage();
+		asteroid = new ImageIcon("GUI copy/ast.png").getImage();
 		c=new Collision(x+5,y+5,gp.tileSize-10, gp.tileSize-10);
 	}
 	
@@ -34,7 +34,7 @@ public class Asteroid {
 	public void draw(Graphics2D g, GamePanel gp) {
 		
 		g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
-		//c.render(g);
+		c.render(g);
 	}
 	
 	
