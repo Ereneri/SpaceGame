@@ -221,8 +221,13 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             ship.draw(g2);
+            
+            //draws the 
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
-            g2.drawString(ship.getScore(), tileSize/3, tileSize);
+            g2.drawString("$" + ship.getScore(), tileSize/3, tileSize);
+            
+            //draws the health
+            g2.drawString("hp:" + ship.getHp(), tileSize/3*41, tileSize);
     
         }
         g2.dispose();

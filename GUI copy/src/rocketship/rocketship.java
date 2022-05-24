@@ -20,6 +20,7 @@ public class rocketship {
     public int x, y;
     public int speed;
     public int score;
+    public int hp = 100;
     public class bullets{
     	public bullet bullet;
     	
@@ -164,6 +165,11 @@ public class rocketship {
     public String getScore() {
         return ""+score;
     }
+    
+    //hp getter
+    public String getHp() {
+        return ""+hp;
+    }
 
     // takes the direction and draws the correct sprite image
     public void draw(Graphics2D g2) {
@@ -259,13 +265,18 @@ public class rocketship {
         	}
         
         // touches asteroids
-//       for(int i = 0; i<ast.asts.size(); i++) {
-//       	if(ast.asts.get(i)!= null) {
-//       		if(shipC.touches(ast.asts.get(i).getCAst())) {
-//       			gp.gameThread.stop();
-//       		}
-//       	}
-//       }
+       for(int i = 0; i<ast.asts.size(); i++) {
+       	if(ast.asts.get(i)!= null) {
+       		if(shipC.touches(ast.asts.get(i).getCAst()) && hp>25) {
+       			hp -= 25;
+       			ast.astTime.add(System.currentTimeMillis());
+        		ast.asts.remove(i);
+       		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
+       			hp = 0;
+       			gp.gameThread.stop();
+       		}
+       	}
+       }
     }  
 }
 
