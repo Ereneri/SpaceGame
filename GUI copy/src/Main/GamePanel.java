@@ -138,6 +138,15 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == playState) {
             ship.update();
+            int count = 0;
+            for (int i = 0; i < objRocket.obj.length; i++) {
+                if(objRocket.obj[i]!= null) {
+                    count ++;
+                }
+            }
+            if(count == 0) {
+            	this.spawnMetal();
+            }
         }
     }
 

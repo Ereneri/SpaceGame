@@ -32,7 +32,7 @@ public class bullet {
         this.x = x;
         this.y = y;
         this.direction = direction;
-        speed = 7;
+        speed = 8;
         this.lastTime = System.currentTimeMillis();
         getBulletImage();
         bulletC.bulletC = new Collision(x+16,  y+16, 16, 16);
