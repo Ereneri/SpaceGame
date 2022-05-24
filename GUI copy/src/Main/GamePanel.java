@@ -56,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
     public class ast{
     	public static int numAsteroids = 10;
         public static ArrayList<Asteroid> asts = new ArrayList<Asteroid>();
-        public static long prevAstDelet;
+        public static ArrayList<Long> astTime = new ArrayList<Long>();
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
 
@@ -161,8 +161,12 @@ public class GamePanel extends JPanel implements Runnable {
                 	astCount ++;
                 }
             }
-            if(astCount < ast.numAsteroids && ast.prevAstDelet + 4000 < System.currentTimeMillis()) {
-            	ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()*650+56), (int)(Math.random()*4+1), (int)(Math.random()*4+1), this));
+            for(int i = 0; i<ast.astTime.size(); i++) {
+            	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 3000 < System.currentTimeMillis()) {
+                	ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()*650+56), (int)(Math.random()*4+1), (int)(Math.random()*4+1), this));
+                	ast.astTime.remove(i);
+                	i--;
+                }
             }
         }
     }
@@ -198,13 +202,12 @@ public class GamePanel extends JPanel implements Runnable {
             // checks if any bullets are touching any asteroids
             for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
                 for(int i = 0; i<ast.asts.size(); i++) {
-                	if(ast.asts.get(i)!= null) {
-                		if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
-                			bullets.removeBullet(bulletArray.bullets.get(indexbull));
-                			ast.asts.set(i, null);
-                			System.out.println("bullet touch asteroid");
-                			ast.prevAstDelet = System.currentTimeMillis();
-                		}
+                	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
+                		bullets.removeBullet(bulletArray.bullets.get(indexbull));
+                		ast.astTime.add(System.currentTimeMillis());
+                		ast.asts.remove(i);
+                		i--;
+                		System.out.println("bullet touch asteroid");
                 	}
                 }
             }
