@@ -56,6 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
     public class ast{
     	public static int numAsteroids = 10;
         public static ArrayList<Asteroid> asts = new ArrayList<Asteroid>();
+        public static long prevAstDelet;
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
 
@@ -152,11 +153,16 @@ public class GamePanel extends JPanel implements Runnable {
             if(objCount == 0) {
             	this.spawnMetal();
             }
+            
+            // adds in new asteroid(s) if there are too little of them
             int astCount = 0;
             for (int i = 0; i < ast.asts.size(); i++) {
                 if(ast.asts.get(i)!= null) {
                 	astCount ++;
                 }
+            }
+            if(astCount < ast.numAsteroids && ast.prevAstDelet + 4000 < System.currentTimeMillis()) {
+            	ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()*650+56), (int)(Math.random()*4+1), (int)(Math.random()*4+1), this));
             }
         }
     }
@@ -197,6 +203,7 @@ public class GamePanel extends JPanel implements Runnable {
                 			bullets.removeBullet(bulletArray.bullets.get(indexbull));
                 			ast.asts.set(i, null);
                 			System.out.println("bullet touch asteroid");
+                			ast.prevAstDelet = System.currentTimeMillis();
                 		}
                 	}
                 }

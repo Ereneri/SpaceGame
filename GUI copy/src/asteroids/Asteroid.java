@@ -17,6 +17,7 @@ public class Asteroid {
 	public int yVelAst;
 	private Collision c;
 	public GamePanel gp;
+	private long lastTime;
 
 
 	//creates an asteroid object in a certain position and with certain speeds
@@ -28,6 +29,7 @@ public class Asteroid {
 		this.yVelAst=yVel;
 		asteroid = new ImageIcon("ast.png").getImage();
 		c=new Collision(x+5,y+5,gp.tileSize-10, gp.tileSize-10);
+		this.lastTime = System.currentTimeMillis();
 	}
 	
 	// draws the asteroids image and collision box
@@ -89,6 +91,9 @@ public class Asteroid {
 	public Image getImageAst() {
 		return asteroid;
 	}
+	public long getTime() {
+        return lastTime;
+    }
 
 
 
