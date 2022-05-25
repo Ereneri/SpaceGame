@@ -5,7 +5,6 @@ import java.awt.Image;
 import collision.*;
 import rocketship.rocketship.walls;
 import javax.swing.ImageIcon;
-
 import Main.GamePanel;
 
 public class Asteroid {
@@ -26,7 +25,7 @@ public class Asteroid {
 		this.y=y;
 		this.xVelAst=xVel;
 		this.yVelAst=yVel;
-		asteroid = new ImageIcon("GUI copy/src/asteroids/ast.png").getImage();
+		asteroid = new ImageIcon("ast.png").getImage();
 		c=new Collision(x+5,y+5,gp.tileSize-10, gp.tileSize-10);
 	}
 	
