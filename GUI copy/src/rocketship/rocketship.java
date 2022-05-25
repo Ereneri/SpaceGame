@@ -104,6 +104,8 @@ public class rocketship {
         y = 25;
         speed = 4;
         direction = "up";
+        score = 0;
+        hp = 100;
     }
 
     // Get the image into memory
@@ -273,7 +275,7 @@ public class rocketship {
         		ast.asts.remove(i);
        		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
        			hp = 0;
-       			gp.gameThread.stop();
+                gp.gameState = gp.gameOverState;
        		}
        	}
        }

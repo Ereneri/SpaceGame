@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler(this);
     public Thread gameThread;
 
-    Boolean DEBUG = true;
+    Boolean DEBUG = false;
     
     // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
@@ -74,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int gameOverState = 3;
 
     // Panel constructor
     public GamePanel() {
@@ -168,7 +169,7 @@ public class GamePanel extends JPanel implements Runnable {
                 	astCount ++;
                 }
             }
-            for(int i = 0; i<ast.astTime.size(); i++) {
+            for (int i = 0; i<ast.astTime.size(); i++) {
             	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 3000 < System.currentTimeMillis()) {
                 	ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()), (int)(Math.random()*4+1), (int)(Math.random()*4+1), this));
                 	ast.astTime.remove(i);
@@ -192,7 +193,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         
         // title screen
-        if (gameState == titleState && !DEBUG) {
+        if (gameState != playState) {
             ui.draw(g2);
         } else {
             for (int i = 0; i < objRocket.obj.length; i++) {
@@ -236,6 +237,16 @@ public class GamePanel extends JPanel implements Runnable {
         }
         g2.dispose();
         
+    }
+
+    // getter for score
+    public int getScore() {
+        return ship.score;
+    }
+
+    // reset for new game
+    public void reset() {
+        ship.setDefaultValues();
     }
 
 }

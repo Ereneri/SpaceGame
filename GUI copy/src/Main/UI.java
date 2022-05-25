@@ -34,6 +34,11 @@ public class UI {
         if(gp.gameState == gp.pauseState) {
             drawPauseScreen();
         }
+
+        // game over state
+        if (gp.gameState == gp.gameOverState) {
+            drawGameOverScreen();
+        }
     }
 
     public void drawPauseScreen() {
@@ -80,7 +85,7 @@ public class UI {
         // Quit 
         text = "Quit";
         x = getXforCenteringText(text);
-        y += gp.tileSize*2;
+        y += 55;
         g2.drawString(text, x, y);
         if (commandNum == 1) {
             g2.drawString(">", x - gp.tileSize, y);
@@ -93,5 +98,54 @@ public class UI {
         int x = gp.screenWidth/2 - length/2;
         return x;
     }
+
+    public void drawGameOverScreen() {
+        g2.setColor(new Color(0,0,0,150));
+        g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
+
+        text = "Game Over";
+
+        // shadow
+        g2.setColor(Color.black);
+        x = getXforCenteringText(text);
+        y = gp.tileSize*4;
+        g2.drawString(text, x, y);
+
+        //Main
+        g2.setColor(Color.WHITE);
+        g2.drawString(text, x-4, y-4);
+
+        // Score
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+        text = "Score: " + gp.getScore();
+        x = getXforCenteringText(text);
+        y += gp.tileSize*2;
+        g2.drawString(text, x, y);
+
+        //Retry
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+        text = "Retry";
+        x = getXforCenteringText(text);
+        y += gp.tileSize*3;
+        g2.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+
+        // back to title screen
+        text = "Quit";
+        x = getXforCenteringText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+    }
+
 
 }
