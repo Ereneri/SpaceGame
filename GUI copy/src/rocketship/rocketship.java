@@ -223,10 +223,10 @@ public class rocketship {
 //        shipC.render(g2);
         
         // renders walls
-        walls.wallCUp.render(g2);
-        walls.wallCDown.render(g2);
-        walls.wallCLeft.render(g2);
-        walls.wallCRight.render(g2);
+//        walls.wallCUp.render(g2);
+//        walls.wallCDown.render(g2);
+//        walls.wallCLeft.render(g2);
+//        walls.wallCRight.render(g2);
         
         
         // teleportation if you touch a wall

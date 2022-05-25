@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import asteroids.*;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Image;
 
@@ -29,6 +30,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Basic Screen Vars and scale factor
     final int originalTitleSize = 16; // 16x16
     final int scale = 3;
+    
 
     // Map sizing vars
     public final int tileSize = originalTitleSize * scale; // == 48x48
@@ -89,6 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
         this.setLayout(null);
+        background = new ImageIcon("back1.png").getImage();
     }
     
     // spawns metal
@@ -185,6 +188,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        
+        //draws the background image
+        g2.drawImage(background, 0, 0, null);
 
         if (DEBUG == true) {
             gameState = playState;
