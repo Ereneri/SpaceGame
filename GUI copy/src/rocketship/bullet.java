@@ -22,9 +22,7 @@ public class bullet {
     private long lastTime;
     private int speed;
     private String direction;
-    public class bulletC {
-    	public static Collision bulletC;
-    }
+    private Collision bulletC;
     public BufferedImage bulletImage = null;
 
     // constructor
@@ -35,12 +33,12 @@ public class bullet {
         speed = 8;
         this.lastTime = System.currentTimeMillis();
         getBulletImage();
-        bulletC.bulletC = new Collision(x+16,  y+16, 16, 16);
+        bulletC = new Collision(x+16,  y+16, 16, 16);
     }
 
     // gets bullets collision box
     public Collision getBulletC () {
-    	return bulletC.bulletC;
+    	return bulletC;
     }
 
     // loads bullet image into memory
