@@ -2,28 +2,21 @@ package Main;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOError;
-import java.io.IOException;
+import java.awt.Image;
 import java.util.ArrayList;
 
-import asteroids.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import java.awt.Image;
 
-import Main.GamePanel.ast;
-import Main.GamePanel.objRocket;
-import asteroids.*;
+import asteroids.Asteroid;
+import asteroids.asteroidSetter;
 import object.metal;
 import rocketship.rocketship;
 import rocketship.rocketship.bulletArray;
 import rocketship.rocketship.bullets;
-import java.awt.Font;
 
 
 public class GamePanel extends JPanel implements Runnable {
@@ -93,7 +86,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setLayout(null);
         
         //sets the backgound image to something...
-        background = new ImageIcon("back1.png").getImage();
+        background = new ImageIcon("GUI copy/src/Main/bg.png").getImage();
     }
     
     // spawns metal
