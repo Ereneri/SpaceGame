@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setLayout(null);
         
         //sets the backgound image to something...
-        background = new ImageIcon("GUI copy/src/Main/bg.png").getImage();
+        background = new ImageIcon("bg.png").getImage();
     }
     
     // spawns metal
@@ -113,8 +113,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
-        playMusic(0);
-        
+        this.playMusic(0);
         
     }
 
@@ -263,6 +262,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void stopMusic() {
     	
     	sound.stop();
+    }
+    
+    public void flush() {
+    	
+    	sound.flush();
     }
     
     //plays individual sounds

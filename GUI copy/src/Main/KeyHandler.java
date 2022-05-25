@@ -37,8 +37,8 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.playState;
                     gp.stopMusic();
-                    gp.playSE(2);
                     gp.playMusic(1);
+                    gp.playSE(2);
 
                 }
                 if (gp.ui.commandNum == 1) {
@@ -60,7 +60,6 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.playState;
                     gp.reset();
-
                 }
                 if (gp.ui.commandNum == 1) {
                     gp.gameState = gp.titleState;

@@ -56,8 +56,13 @@ public class Sound {
 	}
 	
 	public void stop() {
-		
-		clip.stop();
+		if(clip != null) {
+			clip.close();
+		}
+	}
+	
+	public void flush() {
+		clip.flush();
 	}
 	
 	
