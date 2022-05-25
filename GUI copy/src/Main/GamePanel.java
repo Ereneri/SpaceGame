@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler(this);
     public Thread gameThread;
 
-    Boolean DEBUG = true;
+    Boolean DEBUG = false;
     
     // Object and Rocketship Vars
     rocketship ship = new rocketship(this, keyH);
@@ -74,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int gameOverState = 3;
     
     //sound stuff
     Sound sound = new Sound();
@@ -197,7 +198,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         
         // title screen
-        if (gameState == titleState && !DEBUG) {
+        if (gameState != playState) {
             ui.draw(g2);
         } else {
             for (int i = 0; i < objRocket.obj.length; i++) {
@@ -269,6 +270,14 @@ public class GamePanel extends JPanel implements Runnable {
     	
     	//plays the sound
     	sound.play();
+    }
+
+    public int getScore() {
+        return ship.score;
+    }
+
+    public void reset() {
+        ship.setDefaultValues();
     }
 
 }

@@ -11,7 +11,7 @@ public class metal {
 	public String name;
 	public int worldX, worldY;
 	public int value;
-	public static Collision objectC;
+	public Collision objectC;
 	
 	public int getValue() {
 		return value;
