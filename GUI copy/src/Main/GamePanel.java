@@ -91,6 +91,8 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
         this.setLayout(null);
+        
+        //sets the backgound image to something...
         background = new ImageIcon("back1.png").getImage();
     }
     
