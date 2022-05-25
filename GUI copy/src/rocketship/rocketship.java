@@ -157,6 +157,7 @@ public class rocketship {
         if (keyH.shotKeyPressed == true) {
             if (bulletArray.bullets.size() == 0 || bulletArray.bullets.get(bulletArray.bullets.size()-1).getTime() + 200 < System.currentTimeMillis()) {
             	bulletArray.bullets.add(new bullet(this.x+16, this.y+16, direction));
+            	gp.playSE(4);
             }
         }
     }
@@ -259,6 +260,7 @@ public class rocketship {
                 	score = objRocket.obj[i].getValue() + score;
                 	objRocket.obj[i] = null;
                 	System.out.println(score);
+                	gp.playSE(8);
                     }
                 	//g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
                 }
@@ -271,8 +273,11 @@ public class rocketship {
        			hp -= 25;
        			ast.astTime.add(System.currentTimeMillis());
         		ast.asts.remove(i);
+        		gp.playSE(5);
        		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
        			hp = 0;
+       			gp.playSE(5);
+       			gp.playSE(6);
        			gp.gameThread.stop();
        		}
        	}
