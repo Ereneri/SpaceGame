@@ -30,6 +30,9 @@ public class Sound {
 		
 		//collecting
 		soundURL[8] = getClass().getResource("/Sounds/collect.wav");
+		
+		//repairing
+		soundURL[9] = getClass().getResource("/Sounds/repair.wav");
 
 
 	}
@@ -56,9 +59,8 @@ public class Sound {
 	}
 	
 	public void stop() {
-		if(clip != null) {
+		
 			clip.close();
-		}
 	}
 	
 	public void flush() {
