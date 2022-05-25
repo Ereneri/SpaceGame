@@ -42,7 +42,6 @@ public class KeyHandler implements KeyListener {
 
                 }
                 if (gp.ui.commandNum == 1) {
-                	gp.stopMusic();
                     gp.playSE(3);
                     System.exit(0);
                 }
