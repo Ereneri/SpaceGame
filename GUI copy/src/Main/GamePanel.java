@@ -74,6 +74,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    
+    //sound stuff
+    Sound sound = new Sound();
 
     // Panel constructor
     public GamePanel() {
@@ -108,6 +111,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
+        
     }
 
     // Game Loop
@@ -149,6 +153,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == playState) {
             ship.update();
+            
             
             //checks if there are any collectibles left. If all are gone it spawns in more
             int objCount = 0;
@@ -218,6 +223,7 @@ public class GamePanel extends JPanel implements Runnable {
                 		ast.asts.remove(i);
                 		i--;
                 		System.out.println("bullet touch asteroid");
+                		playSE(5);
                 	}
                 }
             }
@@ -236,6 +242,33 @@ public class GamePanel extends JPanel implements Runnable {
         }
         g2.dispose();
         
+    }
+    
+    //plays the music
+    public void playMusic(int i) {
+    	
+    	//sets the misic to the screne were on
+    	sound.setFile(i);
+    	
+    	//plays and loops the music
+    	sound.play();
+    	sound.loop();
+    }
+    
+    //stops the music
+    public void stopMusic() {
+    	
+    	sound.stop();
+    }
+    
+    //plays individual sounds
+    public void playSE(int i ) {
+    	
+    	//sets the misic to the screne were on
+    	sound.setFile(i);
+    	
+    	//plays the sound
+    	sound.play();
     }
 
 }
