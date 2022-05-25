@@ -260,6 +260,7 @@ public class rocketship {
         		if(shipC.touches(objRocket.obj[i].getCObj())) {
                 	System.out.println("touch obj");
                 	score = objRocket.obj[i].getValue() + score;
+                	hp = objRocket.obj[i].getHP() + hp;
                 	objRocket.obj[i] = null;
                 	System.out.println(score);
                 	gp.playSE(8);

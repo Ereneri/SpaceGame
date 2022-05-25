@@ -9,6 +9,7 @@ public class Wrench extends metal{
 	public Wrench() {
 		name = "Wrench";
 		value = 0;
+		hp = 25;
 			
 		//Places an image on object
 		try {
