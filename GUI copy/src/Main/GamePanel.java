@@ -77,7 +77,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gameOverState = 3;
     
     //sound stuff
-    Sound sound = new Sound();
+    static Sound sound = new Sound();
 
     // Panel constructor
     public GamePanel() {
@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setLayout(null);
         
         //sets the backgound image to something...
-        background = new ImageIcon("GUI copy/src/Main/bg.png").getImage();
+        background = new ImageIcon("bg.png").getImage();
     }
     
     // spawns metal
@@ -110,6 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
+        playMusic(0);
         
     }
 
@@ -251,7 +252,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     //stops the music
-    public void stopMusic() {
+    public static void stopMusic() {
     	
     	sound.stop();
     }

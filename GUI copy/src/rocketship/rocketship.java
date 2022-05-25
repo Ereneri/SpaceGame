@@ -277,10 +277,12 @@ public class rocketship {
         		ast.asts.remove(i);
         		gp.playSE(5);
        		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
+       			gp.stopMusic();
                 hp = 0;
        			gp.playSE(5);
        			gp.playSE(6);
                 gp.gameState = gp.gameOverState;
+                gp.stopMusic();
        		}
        	}
        }
