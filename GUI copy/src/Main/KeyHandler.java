@@ -21,8 +21,9 @@ public class KeyHandler implements KeyListener {
     // takes the boolean values from the key pressed and sets them to true
     @Override
     public void keyPressed(KeyEvent e) {
-        //System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
+        System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
         int code = e.getKeyCode();
+        System.out.println(code);
 
         // Title Controls
         if (gp.gameState == gp.titleState) {
@@ -79,6 +80,15 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_SPACE) {
             shotKeyPressed = true;
+        }
+
+        // paused screen
+        if (code == KeyEvent.VK_ESCAPE) {
+            if (gp.gameState == gp.playState) {
+                gp.gameState = gp.pauseState;
+            } else if (gp.gameState == gp.pauseState) {
+                gp.gameState = gp.playState;
+            }
         }
     }
 

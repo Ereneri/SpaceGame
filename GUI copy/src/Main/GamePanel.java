@@ -98,9 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
     	aSetter.setGold();
     	aSetter.setSilver();
     	aSetter.setIron();
-
     }
-    
     
     // adds the asteroids
     public void spawnAsteroids() {
@@ -193,10 +191,6 @@ public class GamePanel extends JPanel implements Runnable {
         //draws the background image
         g2.drawImage(background, 0, 0, null);
 
-        if (DEBUG == true) {
-            gameState = playState;
-        }
-        
         // title screen
         if (gameState != playState) {
             ui.draw(g2);
