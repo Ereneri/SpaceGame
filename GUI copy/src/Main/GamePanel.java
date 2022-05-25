@@ -98,6 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
     	aSetter.setGold();
     	aSetter.setSilver();
     	aSetter.setIron();
+    	aSetter.setWrench();
 
     }
     
