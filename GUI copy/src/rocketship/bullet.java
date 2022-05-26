@@ -1,10 +1,7 @@
 package rocketship;
 
-import Main.GamePanel;
 import collision.Collision;
-import object.metal;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

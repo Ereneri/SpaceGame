@@ -21,6 +21,10 @@ public class rocketship {
     public int speed;
     public int score;
     public int hp = 100;
+    // Store stuff
+    public boolean angel = false;
+    public boolean speedBoost = false;
+
     public class bullets{
     	public bullet bullet;
     	
@@ -100,8 +104,8 @@ public class rocketship {
     
     // Resets the rocketship to default values
     public void setDefaultValues() {
-        x = 25;
-        y = 25;
+        x = gp.screenWidth/2;
+        y = gp.screenHeight/2;
         speed = 4;
         direction = "up";
         score = 0;
@@ -282,10 +286,15 @@ public class rocketship {
         		ast.asts.remove(i);
         		gp.playSE(5);
        		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
-                hp = 0;
-       			gp.playSE(5);
-       			gp.playSE(6);
-                gp.gameState = gp.gameOverState;
+                if (angel) {
+                    hp += 25;
+                    angel = false;
+                } else {
+                    hp = 0;
+                    gp.playSE(5);
+                    gp.playSE(6);
+                    gp.gameState = gp.gameOverState;
+                }
        		}
        	}
        }

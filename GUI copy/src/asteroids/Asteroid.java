@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import collision.*;
 import rocketship.rocketship.walls;
-import javax.swing.ImageIcon;
 import Main.GamePanel;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -97,7 +96,4 @@ public class Asteroid {
 	public Image getImageAst() {
 		return asteroid;
 	}
-
-
-
 }

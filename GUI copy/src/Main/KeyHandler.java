@@ -68,6 +68,78 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+        if (gp.gameState == gp.pauseState) {
+            if (code == KeyEvent.VK_W) {
+                if (gp.ui.commandNum == 0) {
+                    gp.ui.commandNum = 2;
+                } else {
+                    gp.ui.commandNum--;
+                }
+            }
+            if (code == KeyEvent.VK_S) {
+                if (gp.ui.commandNum == 3) {
+                    gp.ui.commandNum = 0;
+                } else {
+                    gp.ui.commandNum++;
+                }
+            }
+            if (code == KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNum == 0) {
+                    gp.gameState = gp.storeState;
+                }
+                if (gp.ui.commandNum == 1) {
+                    gp.gameState = gp.scoreBoardState;
+;
+                }
+                if (gp.ui.commandNum == 2) {
+                    gp.gameState = gp.titleState;
+                    gp.reset();
+                }
+            }
+
+            if (gp.gameState == gp.storeState) {
+                if (code == KeyEvent.VK_W) {
+                    if (gp.ui.commandNum == 0) {
+                        gp.ui.commandNum = 3;
+                    } else {
+                        gp.ui.commandNum--;
+                    }
+                }
+                if (code == KeyEvent.VK_S) {
+                    if (gp.ui.commandNum == 3) {
+                        gp.ui.commandNum = 0;
+                    } else {
+                        gp.ui.commandNum++;
+                    }
+                }
+
+                if (code == KeyEvent.VK_ENTER) {
+                    // buys angel wings
+                    if (gp.ui.commandNum == 0) {
+                        if (gp.ship.score >= 500) {
+                            gp.setAngel(true);
+                            gp.ship.score -= 500;
+                        }
+                    }
+                    // buys speedy shooter
+                    if (gp.ui.commandNum == 1) {
+                        if (gp.ship.score >= 250) {
+                            gp.addBooster();
+                            gp.ship.score -= 250;
+                        }
+                    }
+                    // buys health shot
+                    if (gp.ui.commandNum == 2) {
+                    }
+                    // returns to pause screen
+                    if (gp.ui.commandNum == 3) {
+                        gp.gameState = gp.pauseState;
+                    }
+                }
+    
+            }
+        }
+
         // Game controls
         if (code == KeyEvent.VK_W) {
             upPressed = true;

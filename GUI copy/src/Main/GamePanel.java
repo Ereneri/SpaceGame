@@ -5,13 +5,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import asteroids.Asteroid;
@@ -78,6 +76,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int playState = 1;
     public final int pauseState = 2;
     public final int gameOverState = 3;
+    public final int storeState = 4;
+    public final int scoreBoardState = 5;
     
     // Misc
     Sound sound = new Sound();
@@ -202,6 +202,10 @@ public class GamePanel extends JPanel implements Runnable {
         //draws the background image
         g2.drawImage(background, 0, 0, null);
 
+        // render powerful buffs
+        if (ship.angel) g2.drawImage(ui.angel, tileSize/3, tileSize, tileSize, tileSize, null);
+        if (ship.speedBoost) g2.drawImage(ui.speed, tileSize/3, tileSize*2, tileSize, tileSize, null);
+
         if (DEBUG == true) {
             gameState = playState;
         }
@@ -293,6 +297,23 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void reset() {
         ship.setDefaultValues();
+    }
+
+    public void setAngel(boolean b) {
+        ship.angel = b;
+    }
+
+    public void addBooster() {
+        ship.speedBoost = true;
+        ship.speed = ship.speed+6;
+    }
+
+    public boolean getAngel() {
+        return ship.angel;
+    }
+
+    public boolean getSpeedBoost() {
+        return ship.speedBoost;
     }
 
 }
