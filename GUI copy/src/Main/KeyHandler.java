@@ -60,6 +60,7 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.playState;
                     gp.reset();
+                    gp.newGame();
                 }
                 if (gp.ui.commandNum == 1) {
                     gp.gameState = gp.titleState;
@@ -86,6 +87,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.storeState;
+                    gp.playSE(2);
                     gp.ui.commandNum = -1;
                 }
                 if (gp.ui.commandNum == 1) {
@@ -122,6 +124,7 @@ public class KeyHandler implements KeyListener {
                     if (gp.ship.score >= 500) {
                         gp.setAngel(true);
                         gp.ship.score -= 500;
+                        gp.playSE(2);
                     }
                 }
                 // buys speedy shooter
@@ -129,6 +132,7 @@ public class KeyHandler implements KeyListener {
                     if (gp.ship.score >= 250) {
                         gp.addBooster();
                         gp.ship.score -= 250;
+                        gp.playSE(2);
                     }
                 }
                 // buys health shot
@@ -136,12 +140,14 @@ public class KeyHandler implements KeyListener {
                     if (gp.ship.score >= 100) {
                         gp.ship.hp += 25;
                         gp.ship.score -= 100;
+                        gp.playSE(2);
                     }
                 }
                 // returns to pause screen
                 if (gp.ui.commandNum == 3) {
                     gp.gameState = gp.pauseState;
                     gp.ui.commandNum = 0;
+                    gp.playSE(3);
                 }
             }
 

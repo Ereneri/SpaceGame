@@ -69,4 +69,11 @@ public class AssetSetter {
 		objRocket.obj[9].worldY = (int)(Math.random() * 16) * gp.tileSize;
 		objRocket.obj[9].objectC = new Collision(objRocket.obj[3].worldX + 8, objRocket.obj[3].worldY + 5, 28, 28);
 	}
+
+	public void clear() {
+		objRocket.obj[3] = null;
+		objRocket.obj[4] = null;
+		objRocket.obj[5] = null;
+		objRocket.obj[6] = null;
+	}
 }
