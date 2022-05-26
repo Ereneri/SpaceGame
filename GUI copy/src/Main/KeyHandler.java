@@ -61,10 +61,12 @@ public class KeyHandler implements KeyListener {
                     gp.gameState = gp.playState;
                     gp.reset();
                     gp.newGame();
+                    gp.playSE(2);
                 }
                 if (gp.ui.commandNum == 1) {
                     gp.gameState = gp.titleState;
                     gp.reset();
+                    gp.playSE(3);
                 }
             }
         }
