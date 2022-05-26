@@ -36,6 +36,9 @@ public class Sound {
 		
 		// buying
 		soundURL[10] = getClass().getResource("/Sounds/buying.wav");
+		
+		// movement with w and s in the different screnes
+		soundURL[11] = getClass().getResource("/Sounds/selectionMovement2.wav");
 
 
 	}
