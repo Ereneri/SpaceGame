@@ -251,6 +251,7 @@ public class GamePanel extends JPanel implements Runnable {
             
             //draws the health
             g2.drawString("Health: " + ship.getHp() + "%", tileSize/3*36, tileSize);
+            
     
         }
         g2.dispose();
@@ -319,6 +320,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public boolean getSpeedBoost() {
         return ship.speedBoost;
+    }
+
+    public int getHealth() {
+        return ship.hp;
     }
 
 }

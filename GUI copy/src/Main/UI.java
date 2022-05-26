@@ -111,7 +111,7 @@ public class UI {
 
         // render the store
         g2.setFont(g2.getFont().deriveFont(45F));
-        text = "Score  Shop";
+        text = "Shop";
         x = getXforCenteringText(text);
         y += gp.tileSize*2;
         g2.drawString(text, x, y);
@@ -125,7 +125,7 @@ public class UI {
         y += gp.tileSize;
         g2.drawString(text, x, y);
         if (commandNum == 1) {
-            g2.drawString(">", x - gp.tileSize, y);
+            g2.drawString("x", x - gp.tileSize, y);
         }
 
         // render quit
@@ -220,7 +220,7 @@ public class UI {
         text = "Buy";
         g2.drawString(text, x + gp.tileSize*9, y+gp.tileSize);
         if (commandNum == 2) {
-            if (gp.getScore() >= 100) {
+            if (gp.getScore() >= 100 && gp.getHealth() < 500) {
                 g2.drawString(">", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
             } else {
                 g2.drawString("x", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
@@ -343,16 +343,5 @@ public class UI {
             g2.drawString(">", x - gp.tileSize, y);
         }
     }
-
-    // public void drawSubWindow(int x, int y, int width, int height) {
-
-    //     Color c = new Color(0,0,0,210);
-    //     g2.setColor(c);
-    //     g2.fillRect(x, y, width, height);
-
-    //     c = new Color(255,255,255);
-    //     g2.setColor(c);
-    //     g2.fillRect(x+5, y+5, width-10, height-10);
-    // }
 
 }
