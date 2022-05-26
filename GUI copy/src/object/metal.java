@@ -11,10 +11,15 @@ public class metal {
 	public String name;
 	public int worldX, worldY;
 	public int value;
+	public int hp;
 	public Collision objectC;
 	
 	public int getValue() {
 		return value;
+	}
+	
+	public int getHP() {
+		return hp;
 	}
 	
 	public void draw(Graphics2D g2, GamePanel gp) {

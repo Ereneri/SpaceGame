@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setLayout(null);
         
         //sets the backgound image to something...
-        background = new ImageIcon("GUI copy/src/Main/bg.png").getImage();
+        background = new ImageIcon("bg.png").getImage();
     }
     
     // spawns metal
@@ -98,7 +98,10 @@ public class GamePanel extends JPanel implements Runnable {
     	aSetter.setGold();
     	aSetter.setSilver();
     	aSetter.setIron();
+    	aSetter.setWrench();
+
     }
+    
     
     // adds the asteroids
     public void spawnAsteroids() {
@@ -110,6 +113,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
+        this.playMusic(0);
         
     }
 
@@ -191,6 +195,10 @@ public class GamePanel extends JPanel implements Runnable {
         //draws the background image
         g2.drawImage(background, 0, 0, null);
 
+        if (DEBUG == true) {
+            gameState = playState;
+        }
+        
         // title screen
         if (gameState != playState) {
             ui.draw(g2);
@@ -255,6 +263,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void stopMusic() {
     	
     	sound.stop();
+    }
+    
+    public void flush() {
+    	
+    	sound.flush();
     }
     
     //plays individual sounds

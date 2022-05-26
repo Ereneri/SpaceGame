@@ -260,13 +260,18 @@ public class rocketship {
         		if(shipC.touches(objRocket.obj[i].getCObj())) {
                 	System.out.println("touch obj");
                 	score = objRocket.obj[i].getValue() + score;
+                	hp = objRocket.obj[i].getHP() + hp;
                 	objRocket.obj[i] = null;
                 	System.out.println(score);
-                	gp.playSE(8);
-                    }
+                	if(i == 9) {
+                		gp.playSE(9);
+                	}else {
+                		gp.playSE(8);
+                	}
+                 }
                 	//g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
-                }
-        	}
+            }
+        }
         
         // touches asteroids
        for(int i = 0; i<ast.asts.size(); i++) {

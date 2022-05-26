@@ -3,6 +3,8 @@ package Main;
 import object.Gold;
 import object.Iron;
 import object.Silver;
+import object.Wrench;
+import object.metal;
 import Main.GamePanel.objRocket;
 import collision.Collision;
 
@@ -59,5 +61,12 @@ public class AssetSetter {
 		objRocket.obj[6].worldX = (int)(Math.random() * 16) * gp.tileSize;
 		objRocket.obj[6].worldY = (int)(Math.random() * 16) * gp.tileSize;
 		objRocket.obj[6].objectC = new Collision(objRocket.obj[6].worldX + 8, objRocket.obj[6].worldY + 5, 28, 28);
+	}
+	
+	public void setWrench() {
+		objRocket.obj[9] = (metal) new Wrench();
+		objRocket.obj[9].worldX = (int)(Math.random() * 16) * gp.tileSize;
+		objRocket.obj[9].worldY = (int)(Math.random() * 16) * gp.tileSize;
+		objRocket.obj[9].objectC = new Collision(objRocket.obj[3].worldX + 8, objRocket.obj[3].worldY + 5, 28, 28);
 	}
 }
