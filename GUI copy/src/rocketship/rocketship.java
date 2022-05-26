@@ -256,7 +256,7 @@ public class rocketship {
         }
         
         
-        // picking up the collectibles
+        // picking up the collectibles and adding health
         for (int i = 0; i < objRocket.obj.length; i++) {
         	if(objRocket.obj[i]!= null) {
         		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX()+8);
