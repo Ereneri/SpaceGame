@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int pauseState = 2;
     public final int gameOverState = 3;
     
-    //sound stuff
+    // Misc
     Sound sound = new Sound();
 
     // Panel constructor
@@ -225,6 +225,7 @@ public class GamePanel extends JPanel implements Runnable {
             ship.draw(g2);
             
             //sets the font a certain way 
+            g2.setFont(ui.bossBattle);
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
             g2.setColor(Color.white);
             
@@ -232,7 +233,7 @@ public class GamePanel extends JPanel implements Runnable {
             g2.drawString("$" + ship.getScore(), tileSize/3, tileSize);
             
             //draws the health
-            g2.drawString("hp:" + ship.getHp(), tileSize/3*41, tileSize);
+            g2.drawString("Health: " + ship.getHp() + "%", tileSize/3*36, tileSize);
     
         }
         g2.dispose();

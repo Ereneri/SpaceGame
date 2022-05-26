@@ -3,21 +3,37 @@ package Main;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.module.FindException;
+import java.awt.FontFormatException;
 
 public class UI {
     
     GamePanel gp;
     Graphics2D g2;
+    Font bossBattle;
     public boolean gameFinished = false;
     public int commandNum = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
+        
+        try {
+            InputStream is = getClass().getResourceAsStream("/Main/EndlessBossBattleRegular-v7Ey.ttf");
+            bossBattle = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void draw(Graphics2D g2) {
         this.g2 = g2;
 
+        g2.setFont(bossBattle);
         g2.setColor(Color.white);
 
         // title state
@@ -43,21 +59,44 @@ public class UI {
 
     public void drawPauseScreen() {
 
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 60F));
-        String text = "PAUSED";
-        int x = getXforCenteringText(text);
-        int y = gp.screenHeight/2;
+        g2.setFont(bossBattle);
 
+        Color c = new Color(0,0,0,210);
+        g2.setColor(c);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(50F));
+
+        String text = "Paused";
+        int x = getXforCenteringText(text);
+        int y = gp.tileSize*3;
         g2.drawString(text, x, y);
+
+        g2.setFont(g2.getFont().deriveFont(30F));
+
+        // render score and health
+        text = "Score: " + gp.ship.getScore();
+        x = getXforCenteringText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+
+        text = "Health: " + gp.ship.getHp() + "%";
+        x = getXforCenteringText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+
     }
 
     public void drawTitleScreen() {
+
+        g2.setFont(bossBattle);
 
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         
         //title name
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 96F));
         String text = "SpaceGame";
         int x = getXforCenteringText(text);
         int y = gp.tileSize*3;
@@ -100,14 +139,20 @@ public class UI {
     }
 
     public void drawGameOverScreen() {
+        // set font
+        g2.setFont(bossBattle);
+
+        // set darken background
         g2.setColor(new Color(0,0,0,150));
         g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
 
+        // setup vars
         int x;
         int y;
         String text;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
 
+        // text
         text = "Game Over";
 
         // shadow
@@ -146,5 +191,16 @@ public class UI {
             g2.drawString(">", x - gp.tileSize, y);
         }
     }
+
+    // public void drawSubWindow(int x, int y, int width, int height) {
+
+    //     Color c = new Color(0,0,0,210);
+    //     g2.setColor(c);
+    //     g2.fillRect(x, y, width, height);
+
+    //     c = new Color(255,255,255);
+    //     g2.setColor(c);
+    //     g2.fillRect(x+5, y+5, width-10, height-10);
+    // }
 
 }
