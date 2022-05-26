@@ -7,6 +7,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -33,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Size of Screen
     public final int screenWidth = mapWidth * tileSize;
     public final int screenHeight = mapHeight * tileSize;
-    Image background;
+    BufferedImage background;
 
     // FPS for Thread
     int FPS = 60;
@@ -90,7 +93,11 @@ public class GamePanel extends JPanel implements Runnable {
         this.setLayout(null);
         
         //sets the backgound image to something...
-        background = new ImageIcon("bg.png").getImage();
+        try {
+            background = ImageIO.read(getClass().getResource("/Main/bg.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     // spawns metal

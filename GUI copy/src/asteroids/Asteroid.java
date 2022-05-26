@@ -6,12 +6,16 @@ import collision.*;
 import rocketship.rocketship.walls;
 import javax.swing.ImageIcon;
 import Main.GamePanel;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 
 public class Asteroid {
 	
 	public int x;
 	public int y;
-	public Image asteroid;
+	BufferedImage asteroid;
 	public int xVelAst;
 	public int yVelAst;
 	private Collision c;
@@ -25,7 +29,12 @@ public class Asteroid {
 		this.y=y;
 		this.xVelAst=xVel;
 		this.yVelAst=yVel;
-		asteroid = new ImageIcon("ast.png").getImage();
+		try {
+			asteroid = ImageIO.read(getClass().getResourceAsStream("/asteroids/ast.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		c=new Collision(x+5,y+5,gp.tileSize-10, gp.tileSize-10);
 	}
 	
