@@ -305,7 +305,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void addBooster() {
         ship.speedBoost = true;
-        ship.speed = ship.speed+6;
+        ship.speed = ship.speed+2;
     }
 
     public boolean getAngel() {

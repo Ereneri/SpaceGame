@@ -86,6 +86,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.storeState;
+                    gp.ui.commandNum = -1;
                 }
                 if (gp.ui.commandNum == 1) {
                     gp.gameState = gp.scoreBoardState;
@@ -147,6 +148,7 @@ public class KeyHandler implements KeyListener {
             // out of store
             if (code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.pauseState;
+                gp.ui.commandNum = 0;
             }
         }
 
