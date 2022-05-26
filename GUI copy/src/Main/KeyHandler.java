@@ -49,7 +49,7 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.playState;
                     gp.stopMusic();
-                    gp.playMusic(1);
+                    // gp.playMusic(1);
                     gp.playSE(2);
 
                 }
@@ -182,7 +182,7 @@ public class KeyHandler implements KeyListener {
                 }
                 // buys health shot
                 if (gp.ui.commandNum == 2) {
-                    if (gp.ship.score >= 100) {
+                    if (gp.ship.score >= 100 && gp.ship.hp < 500) {
                         gp.ship.hp += 25;
                         gp.ship.score -= 100;
                         gp.playSE(2);

@@ -81,6 +81,11 @@ public class GamePanel extends JPanel implements Runnable {
     
     // Misc
     Sound sound = new Sound();
+    public boolean hit = false;
+    public long hitTime = 0;
+    public boolean boosted = false;
+    public long boosttime = 0;
+
 
     // Panel constructor
     public GamePanel() {
@@ -188,6 +193,17 @@ public class GamePanel extends JPanel implements Runnable {
                 	i--;
                 }
             }
+
+            if (hit) {
+                if (System.currentTimeMillis() - hitTime > 500) {
+                    hit = false;
+                }
+            }
+            if (boosted) {
+                if (System.currentTimeMillis()-boosttime > 500) {
+                    boosted = false;
+                }
+            }
         }
     }
 
@@ -251,6 +267,17 @@ public class GamePanel extends JPanel implements Runnable {
             
             //draws the health
             g2.drawString("Health: " + ship.getHp() + "%", tileSize/3*36, tileSize);
+
+            if (hit) {
+                g2.setColor(Color.red);
+                g2.drawString("-25%", tileSize/3*42, tileSize*2);
+            }
+
+            if (boosted) {
+                g2.setColor(Color.green);
+                g2.drawString("+25%", tileSize/3*42, tileSize*2);
+            }
+            
     
         }
         g2.dispose();
@@ -319,6 +346,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public boolean getSpeedBoost() {
         return ship.speedBoost;
+    }
+
+    public int getHealth() {
+        return ship.hp;
     }
 
 }
