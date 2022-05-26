@@ -10,6 +10,7 @@ public class Gold extends metal{
 		name = "Gold";
 		value = 100;
 		
+		//Places an image on object
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream("/object/Gold.png"));
 		} catch (IOException e) {

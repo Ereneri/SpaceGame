@@ -10,6 +10,7 @@ public class Iron extends metal{
 		name = "Iron";
 		value = 25;
 		
+		//Places an image on object
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream("/object/Iron.png"));
 		} catch (IOException e) {

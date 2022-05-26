@@ -1,17 +1,17 @@
 package rocketship;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 import java.awt.*;
 import javax.imageio.ImageIO;
-
-import Main.GamePanel;
+import collision.*;
+import Main.*;
+import Main.GamePanel.ast;
+import Main.GamePanel.objRocket;
 import Main.KeyHandler;
 // import object.OBJ_Bullet;
-import rocketship.bullet;
 
 public class rocketship {
 
@@ -19,12 +19,31 @@ public class rocketship {
     public String direction;
     public int x, y;
     public int speed;
-    public bullet bullet;
+    public int score;
+    public int hp = 100;
+    // Store stuff
+    public boolean angel = false;
+    public boolean speedBoost = false;
+
+    public class bullets{
+    	public bullet bullet;
+    	
+    	public void addBullet(bullet block) {
+    		bulletArray.bullets.add(block);
+        }
+
+        public static void removeBullet(bullet block) {
+        	bulletArray.bullets.remove(block);
+        }
+    }
     public Collision shipC;
-    public Collision wallCUp;
-    public Collision wallCDown;
-    public Collision wallCLeft;
-    public Collision wallCRight;
+    
+    public class walls{
+    	public static Collision wallCUp;
+        public static Collision wallCDown;
+        public static Collision wallCLeft;
+        public static Collision wallCRight;
+    }
 
     // initlize the game panel and keyhabndler
     GamePanel gp;
@@ -34,12 +53,14 @@ public class rocketship {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
     // Bullet Stuff
-    public ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
-    public void tick() {
-        for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).tick();
-            if (bullets.get(i).getX() < 0) {
-                bullets.remove(i);
+    public class bulletArray{
+    	public static ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
+    }
+    public void tick(Graphics2D g2) {
+        for (int i = 0; i < bulletArray.bullets.size(); i++) {
+        	bulletArray.bullets.get(i).tick(g2);
+            if (bulletArray.bullets.get(i).getX() < 0) {
+            	bulletArray.bullets.remove(i);
             }
         }
     }
@@ -54,13 +75,14 @@ public class rocketship {
     public rocketship(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
+        this.score = 0;
         setDefaultValues();
         getRocketImage();
-        shipC = new Collision(x, y, gp.tileSize, gp.tileSize);
-        wallCUp = new Collision(0, 0, 768, 5);
-        wallCDown = new Collision(0, 763, 768, 5);
-        wallCLeft = new Collision(0, 0, 5, 768);
-        wallCRight = new Collision(763, 0, 5, 768);
+        shipC = new Collision(x, y, gp.tileSize-11, gp.tileSize-13);
+        walls.wallCUp = new Collision(0, 0, 768, 5);
+        walls.wallCDown = new Collision(0, 763, 768, 5);
+        walls.wallCLeft = new Collision(0, 0, 5, 768);
+        walls.wallCRight = new Collision(763, 0, 5, 768);
     }
     
     public int getXShip() {
@@ -79,20 +101,15 @@ public class rocketship {
     	this.y = y;
     }
 
-    public void addBullet(bullet block) {
-        bullets.add(block);
-    }
-
-    public void removeBullet(bullet block) {
-        bullets.remove(block);
-    }
     
     // Resets the rocketship to default values
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
+        x = gp.screenWidth/2;
+        y = gp.screenHeight/2;
         speed = 4;
         direction = "up";
+        score = 0;
+        hp = 100;
     }
 
     // Get the image into memory
@@ -144,18 +161,31 @@ public class rocketship {
             direction = "downLeft";
         }
         if (keyH.shotKeyPressed == true) {
-            if (bullets.size() == 0 || bullets.get(bullets.size() - 1).getTime() + 200 < System.currentTimeMillis()) {
-                bullets.add(new bullet(x, y, direction));
+            if (bulletArray.bullets.size() == 0 || bulletArray.bullets.get(bulletArray.bullets.size()-1).getTime() + 200 < System.currentTimeMillis()) {
+            	bulletArray.bullets.add(new bullet(this.x+16, this.y+16, direction));
+            	gp.playSE(4);
             }
         }
+    }
+
+    // score getter
+    public String getScore() {
+        return ""+score;
+    }
+    
+    //hp getter
+    public String getHp() {
+        return ""+hp;
     }
 
     // takes the direction and draws the correct sprite image
     public void draw(Graphics2D g2) {
         // render bullets
-        for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).draw(g2);
-            bullets.get(i).tick();
+        for (int i = 0; i < bulletArray.bullets.size(); i++) {
+        	bulletArray.bullets.get(i).tick(g2);
+        	bulletArray.bullets.get(i).getBulletC().setXCol((int)bulletArray.bullets.get(i).getX());
+        	bulletArray.bullets.get(i).getBulletC().setYCol((int)bulletArray.bullets.get(i).getY());
+        	bulletArray.bullets.get(i).draw(g2);
         }
 
         BufferedImage image = null;
@@ -186,47 +216,88 @@ public class rocketship {
                 image = down2;
                 break;
             } 
-        // vizualize the hit box for the rocketship for collision detection
-//        g2.setColor(Color.red);
-//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
-        // draw the image with using the global x and y coordinates along with scaling from the gamepanel
+        // draw the ship with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
 
         // CROP IMAGE TO MAKE SIZING CORRECT
         
         //moves collision with rocket and displays it
         g2.setColor(Color.gray);
-        shipC.setXCol(x);
-        shipC.setYCol(y);
-        shipC.render(g2);
+        shipC.setXCol(x+5);
+        shipC.setYCol(y+9);
+        //displays the ships collision box
+//        shipC.render(g2);
         
         // renders walls
-        wallCUp.render(g2);
-        wallCDown.render(g2);
-        wallCLeft.render(g2);
-        wallCRight.render(g2);
+//        walls.wallCUp.render(g2);
+//        walls.wallCDown.render(g2);
+//        walls.wallCLeft.render(g2);
+//        walls.wallCRight.render(g2);
         
         
         // teleportation if you touch a wall
-        if(shipC.touchesUp(wallCUp)) {
+        if(shipC.touches(walls.wallCUp)) {
         	y = 762-gp.tileSize;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesDown(wallCDown)) {
-        	y = 12;
+        }else if(shipC.touches(walls.wallCDown)) {
+        	y = 6;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesLeft(wallCLeft)) {
+        } else if(shipC.touches(walls.wallCLeft)) {
         	x = 762-gp.tileSize;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        }else if(shipC.touchesRight(wallCRight)) {
-        	x = 12;
+        }else if(shipC.touches(walls.wallCRight)) {
+        	x = 6;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }
-    }
+        
+        
+        // picking up the collectibles
+        for (int i = 0; i < objRocket.obj.length; i++) {
+        	if(objRocket.obj[i]!= null) {
+        		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX()+8);
+        		objRocket.obj[i].getCObj().setYCol(objRocket.obj[i].getWorldY()+5);
+        		if(shipC.touches(objRocket.obj[i].getCObj())) {
+                	System.out.println("touch obj");
+                	score = objRocket.obj[i].getValue() + score;
+                	hp = objRocket.obj[i].getHP() + hp;
+                	objRocket.obj[i] = null;
+                	System.out.println(score);
+                	if(i == 9) {
+                		gp.playSE(9);
+                	}else {
+                		gp.playSE(8);
+                	}
+                 }
+                	//g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
+            }
+        }
+        
+        // touches asteroids
+       for(int i = 0; i<ast.asts.size(); i++) {
+       	if(ast.asts.get(i)!= null) {
+       		if(shipC.touches(ast.asts.get(i).getCAst()) && hp>25) {
+       			hp -= 25;
+       			ast.astTime.add(System.currentTimeMillis());
+        		ast.asts.remove(i);
+        		gp.playSE(5);
+       		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
+                if (angel) {
+                    hp += 25;
+                    angel = false;
+                } else {
+                    hp = 0;
+                    gp.playSE(5);
+                    gp.playSE(6);
+                    gp.gameState = gp.gameOverState;
+                }
+       		}
+       	}
+       }
+    }  
 }
-
 

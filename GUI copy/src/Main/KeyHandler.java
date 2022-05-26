@@ -7,6 +7,11 @@ public class KeyHandler implements KeyListener {
 
     // boolean for if a key is pressed to render an sprite in the game
     public boolean upPressed, downPressed, leftPressed, rightPressed, shotKeyPressed;
+    GamePanel gp;
+
+    public KeyHandler(GamePanel gp) {
+        this.gp = gp;
+    }
 
     // TBH I don't know what this does
     @Override
@@ -16,9 +21,126 @@ public class KeyHandler implements KeyListener {
     // takes the boolean values from the key pressed and sets them to true
     @Override
     public void keyPressed(KeyEvent e) {
-        //System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
+        // System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
         int code = e.getKeyCode();
+        // System.out.println(code);
 
+        // Title Controls
+        if (gp.gameState == gp.titleState) {
+            if (code == KeyEvent.VK_W) {
+                gp.ui.commandNum = 0;
+            }
+            if (code == KeyEvent.VK_S) {
+                gp.ui.commandNum = 1;
+            }
+            if (code == KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNum == 0) {
+                    gp.gameState = gp.playState;
+                    gp.stopMusic();
+                    gp.playMusic(1);
+                    gp.playSE(2);
+
+                }
+                if (gp.ui.commandNum == 1) {
+                    gp.playSE(3);
+                    System.exit(0);
+                }
+            }
+        }
+
+        // game over controls
+        if (gp.gameState == gp.gameOverState) {
+            if (code == KeyEvent.VK_W) {
+                gp.ui.commandNum = 0;
+            }
+            if (code == KeyEvent.VK_S) {
+                gp.ui.commandNum = 1;
+            }
+            if (code == KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNum == 0) {
+                    gp.gameState = gp.playState;
+                    gp.reset();
+                }
+                if (gp.ui.commandNum == 1) {
+                    gp.gameState = gp.titleState;
+                    gp.reset();
+                }
+            }
+        }
+
+        if (gp.gameState == gp.pauseState) {
+            if (code == KeyEvent.VK_W) {
+                if (gp.ui.commandNum == 0) {
+                    gp.ui.commandNum = 2;
+                } else {
+                    gp.ui.commandNum--;
+                }
+            }
+            if (code == KeyEvent.VK_S) {
+                if (gp.ui.commandNum == 3) {
+                    gp.ui.commandNum = 0;
+                } else {
+                    gp.ui.commandNum++;
+                }
+            }
+            if (code == KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNum == 0) {
+                    gp.gameState = gp.storeState;
+                }
+                if (gp.ui.commandNum == 1) {
+                    gp.gameState = gp.scoreBoardState;
+;
+                }
+                if (gp.ui.commandNum == 2) {
+                    gp.gameState = gp.titleState;
+                    gp.reset();
+                }
+            }
+
+            if (gp.gameState == gp.storeState) {
+                if (code == KeyEvent.VK_W) {
+                    if (gp.ui.commandNum == 0) {
+                        gp.ui.commandNum = 3;
+                    } else {
+                        gp.ui.commandNum--;
+                    }
+                }
+                if (code == KeyEvent.VK_S) {
+                    if (gp.ui.commandNum == 3) {
+                        gp.ui.commandNum = 0;
+                    } else {
+                        gp.ui.commandNum++;
+                    }
+                }
+
+                if (code == KeyEvent.VK_ENTER) {
+                    // buys angel wings
+                    if (gp.ui.commandNum == 0) {
+                        if (gp.ship.score >= 500) {
+                            gp.setAngel(true);
+                            gp.ship.score -= 500;
+                        }
+                    }
+                    // buys speedy shooter
+                    if (gp.ui.commandNum == 1) {
+                        if (gp.ship.score >= 250) {
+                            gp.addBooster();
+                            gp.ship.score -= 250;
+                        }
+                    }
+                    // buys health shot
+                    if (gp.ui.commandNum == 2) {
+                    }
+                    // returns to pause screen
+                    if (gp.ui.commandNum == 3) {
+                        gp.gameState = gp.pauseState;
+                    }
+                }
+    
+            }
+        }
+
+        // Game controls
         if (code == KeyEvent.VK_W) {
             upPressed = true;
         }
@@ -33,6 +155,15 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_SPACE) {
             shotKeyPressed = true;
+        }
+
+        // paused screen
+        if (code == KeyEvent.VK_ESCAPE) {
+            if (gp.gameState == gp.playState) {
+                gp.gameState = gp.pauseState;
+            } else if (gp.gameState == gp.pauseState) {
+                gp.gameState = gp.playState;
+            }
         }
     }
 

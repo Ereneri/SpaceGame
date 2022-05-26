@@ -4,13 +4,12 @@ import javax.swing.JFrame;
 import java.awt.*;
 
 public class Main {
-    
     public static void main(String[] args) {
 
         // Create a new JFrame container
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setTitle("SpaceGame");
 
         // Sets boundarys for frame
@@ -21,9 +20,12 @@ public class Main {
         // Create a new GamePanel
         GamePanel gamePanel = new GamePanel();
         frame.add(gamePanel);
-        
+        	
         // Spawns metals
         gamePanel.spawnMetal();
+        
+        // spawns asteroids
+        gamePanel.spawnAsteroids();
 
         // Start the game thread for timing the frame rate
         gamePanel.startGameThread();

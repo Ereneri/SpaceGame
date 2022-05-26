@@ -1,9 +1,8 @@
 package rocketship;
 
-import Main.GamePanel;
-import object.metal;
+import collision.Collision;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -15,20 +14,28 @@ public class bullet {
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
     // basic bullet vars
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private long lastTime;
     private int speed;
     private String direction;
+    private Collision bulletC;
+    public BufferedImage bulletImage = null;
 
     // constructor
-    public bullet(double x, double y, String direction) {
+    public bullet(int x, int y, String direction) {
         this.x = x;
         this.y = y;
         this.direction = direction;
-        speed = 15;
+        speed = 8;
         this.lastTime = System.currentTimeMillis();
         getBulletImage();
+        bulletC = new Collision(x+16,  y+16, 16, 16);
+    }
+
+    // gets bullets collision box
+    public Collision getBulletC () {
+    	return bulletC;
     }
 
     // loads bullet image into memory
@@ -48,41 +55,41 @@ public class bullet {
     }
 
     // updates the frame depending on direction and speed
-    public void tick() {
+    public void tick(Graphics2D g2) {
         switch(this.direction) {
             case "up":
-                y -= speed;
+                	y -= speed;
                 break;
             case "down":
-                y += speed;
+                	y += speed;
                 break;
             case "left":
-                x -= speed;
+                	x -= speed;
                 break;
             case "right":
-                x += speed;
+                	x += speed;
                 break;
             case "upRight":
-                x += speed;
-                y -= speed;
+                	x += speed;
+                	y -= speed;
                 break;
             case "upLeft":
-                x -= speed;
-                y -= speed;
+                	x -= speed;
+                	y -= speed;
                 break;
             case "downRight":
-                x += speed;
-                y += speed;
+                	x += speed;
+                	y += speed;
                 break;
             case "downLeft":
-                x -= speed;
-                y += speed;
+                    x -= speed;                	
+                	y += speed;                	
                 break;
         }
     }
 
-    public void draw(Graphics g) {
-        BufferedImage bulletImage = null;
+    // draws the bullet
+    public void draw(Graphics2D g) {
         switch(direction) {
             case "up":
                 bulletImage = up1;
@@ -110,7 +117,8 @@ public class bullet {
                 bulletImage = down2;
                 break;
         }
-        g.drawImage(bulletImage, (int) x+16, (int) y+16, 16, 16, null);
+        g.drawImage(bulletImage,  x,  y, 16, 16, null);
+        //bulletC.bulletC.render(g);
         
     }
 
@@ -125,4 +133,5 @@ public class bullet {
     public long getTime() {
         return lastTime;
     }
+
 }
