@@ -18,4 +18,8 @@ public class asteroidSetter {
 			ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()*650+56), (int)(Math.random()*4+1), (int)(Math.random()*4+1), gp));
 		}
 	}
+
+	public void clearAst() {
+		ast.asts.clear();
+	}
 }

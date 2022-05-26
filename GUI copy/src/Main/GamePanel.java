@@ -106,14 +106,12 @@ public class GamePanel extends JPanel implements Runnable {
     	aSetter.setSilver();
     	aSetter.setIron();
     	aSetter.setWrench();
-
     }
     
     
     // adds the asteroids
     public void spawnAsteroids() {
     	asteroidSetter.addAsteroids();
-
     }
 
     // Start Game Thread
@@ -299,13 +297,20 @@ public class GamePanel extends JPanel implements Runnable {
         ship.setDefaultValues();
     }
 
+    public void newGame() {
+        asteroidSetter.clearAst();
+        aSetter.clear();
+        spawnAsteroids();
+        spawnMetal();
+    }
+
     public void setAngel(boolean b) {
         ship.angel = b;
     }
 
     public void addBooster() {
         ship.speedBoost = true;
-        ship.speed = ship.speed+6;
+        ship.speed = ship.speed+2;
     }
 
     public boolean getAngel() {

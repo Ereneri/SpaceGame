@@ -289,6 +289,7 @@ public class rocketship {
                 if (angel) {
                     hp += 25;
                     angel = false;
+                    gp.playSE(9);
                 } else {
                     hp = 0;
                     gp.playSE(5);
