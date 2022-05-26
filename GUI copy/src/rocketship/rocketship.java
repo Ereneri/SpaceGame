@@ -265,6 +265,8 @@ public class rocketship {
                 	System.out.println("touch obj");
                 	score = objRocket.obj[i].getValue() + score;
                 	hp = objRocket.obj[i].getHP() + hp;
+                    gp.boosted = true;
+                    gp.boosttime = System.currentTimeMillis();
                 	objRocket.obj[i] = null;
                 	System.out.println(score);
                 	if(i == 9) {
@@ -273,7 +275,7 @@ public class rocketship {
                 		gp.playSE(8);
                 	}
                  }
-                	//g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
+                //g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
             }
         }
         
@@ -284,6 +286,8 @@ public class rocketship {
        			hp -= 25;
        			ast.astTime.add(System.currentTimeMillis());
         		ast.asts.remove(i);
+                gp.hit = true;
+                gp.hitTime = System.currentTimeMillis();
         		gp.playSE(5);
        		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
                 if (angel) {

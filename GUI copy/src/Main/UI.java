@@ -183,7 +183,7 @@ public class UI {
         g2.drawString(text, x + 25, y+gp.tileSize);
         text = "Buy";
         g2.drawString(text, x + gp.tileSize*9, y+gp.tileSize);
-        if (commandNum == 0) {
+        if (commandNum == 0 || commandNum == -1) {
             if (gp.getScore() < 500 || gp.getAngel()) {
                 g2.drawString("x", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
             } else {
