@@ -28,12 +28,22 @@ public class KeyHandler implements KeyListener {
         // Title Controls
         if (gp.gameState == gp.titleState) {
             if (code == KeyEvent.VK_W) {
-                gp.ui.commandNum = 0;
-                //gp.playSE(11);
+            	if(gp.ui.commandNum == 0) {
+            		gp.ui.commandNum = 1;
+            		//gp.playSE(11);
+            	}else {
+            		gp.ui.commandNum --;
+            		//gp.playSE(11);
+            	}
             }
             if (code == KeyEvent.VK_S) {
-                gp.ui.commandNum = 1;
-                //gp.playSE(11);
+            	if(gp.ui.commandNum == 1) {
+            		gp.ui.commandNum = 0;
+            		//gp.playSE(11);
+            	}else {
+            		gp.ui.commandNum ++;
+            		//gp.playSE(11);
+            	}
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
@@ -53,12 +63,22 @@ public class KeyHandler implements KeyListener {
         // game over controls
         if (gp.gameState == gp.gameOverState) {
             if (code == KeyEvent.VK_W) {
-                gp.ui.commandNum = 0;
-                gp.playSE(11);
+            	if(gp.ui.commandNum == 0) {
+            		gp.ui.commandNum = 1;
+            		gp.playSE(11);
+            	}else {
+            		gp.ui.commandNum --;
+            		gp.playSE(11);
+            	}
             }
             if (code == KeyEvent.VK_S) {
-                gp.ui.commandNum = 1;
-                gp.playSE(11);
+            	if(gp.ui.commandNum == 1) {
+            		gp.ui.commandNum = 0;
+            		gp.playSE(11);
+            	}else {
+            		gp.ui.commandNum ++;
+            		gp.playSE(11);
+            	}
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
@@ -122,6 +142,8 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == -1) {
                     gp.ui.commandNum = 3;
                     gp.playSE(11);
+                }else {
+                	gp.playSE(11);
                 }
             }
             // down
@@ -130,6 +152,8 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 4) {
                     gp.ui.commandNum = 0;
                     gp.playSE(11);
+                }else {
+                	gp.playSE(11);
                 }
             }
 
