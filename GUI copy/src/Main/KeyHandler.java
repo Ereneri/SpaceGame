@@ -95,6 +95,7 @@ public class KeyHandler implements KeyListener {
 ;
                 }
                 if (gp.ui.commandNum == 2) {
+                	gp.playSE(3);
                     gp.gameState = gp.titleState;
                     gp.ui.commandNum = 0;
                     gp.reset();
