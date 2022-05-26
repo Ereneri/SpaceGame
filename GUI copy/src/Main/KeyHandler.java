@@ -124,29 +124,35 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 // buys angel wings
                 if (gp.ui.commandNum == 0) {
-                	gp.playSE(10);
                     if (gp.ship.score >= 500) {
                         gp.setAngel(true);
                         gp.ship.score -= 500;
                         gp.playSE(2);
+                        gp.playSE(10);
+                    }else {
+                    	gp.playSE(3);
                     }
                 }
                 // buys speedy shooter
                 if (gp.ui.commandNum == 1) {
-                	gp.playSE(10);
                     if (gp.ship.score >= 250) {
                         gp.addBooster();
                         gp.ship.score -= 250;
                         gp.playSE(2);
+                        gp.playSE(10);
+                    }else {
+                    	gp.playSE(3);
                     }
                 }
                 // buys health shot
                 if (gp.ui.commandNum == 2) {
-                	gp.playSE(10);
                     if (gp.ship.score >= 100) {
                         gp.ship.hp += 25;
                         gp.ship.score -= 100;
                         gp.playSE(2);
+                        gp.playSE(10);
+                    }else {
+                    	gp.playSE(3);
                     }
                 }
                 // returns to pause screen
