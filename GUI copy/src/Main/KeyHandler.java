@@ -37,7 +37,7 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.playState;
                     gp.stopMusic();
-                    gp.playMusic(1);
+                    //gp.playMusic(1);
                     gp.playSE(2);
 
                 }
@@ -118,6 +118,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 // buys angel wings
                 if (gp.ui.commandNum == 0) {
+                	gp.playSE(10);
                     if (gp.ship.score >= 500) {
                         gp.setAngel(true);
                         gp.ship.score -= 500;
@@ -125,6 +126,7 @@ public class KeyHandler implements KeyListener {
                 }
                 // buys speedy shooter
                 if (gp.ui.commandNum == 1) {
+                	gp.playSE(10);
                     if (gp.ship.score >= 250) {
                         gp.addBooster();
                         gp.ship.score -= 250;
@@ -132,6 +134,7 @@ public class KeyHandler implements KeyListener {
                 }
                 // buys health shot
                 if (gp.ui.commandNum == 2) {
+                	gp.playSE(10);
                     if (gp.ship.score >= 100) {
                         gp.ship.hp += 25;
                         gp.ship.score -= 100;

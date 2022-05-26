@@ -33,6 +33,9 @@ public class Sound {
 		
 		//repairing
 		soundURL[9] = getClass().getResource("/Sounds/repair.wav");
+		
+		// buying
+		soundURL[10] = getClass().getResource("/Sounds/buying.wav");
 
 
 	}
