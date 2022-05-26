@@ -30,26 +30,26 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_W) {
             	if(gp.ui.commandNum == 0) {
             		gp.ui.commandNum = 1;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}else {
             		gp.ui.commandNum --;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}
             }
             if (code == KeyEvent.VK_S) {
             	if(gp.ui.commandNum == 1) {
             		gp.ui.commandNum = 0;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}else {
             		gp.ui.commandNum ++;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.playState;
-                    gp.stopMusic();
-                    // gp.playMusic(1);
+                    //gp.stopMusic();
+                    //gp.playMusic(1);
                     gp.playSE(2);
 
                 }

@@ -187,7 +187,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             for(int i = 0; i<ast.astTime.size(); i++) {
-            	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 3000 < System.currentTimeMillis()) {
+            	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 4000 < System.currentTimeMillis()) {
                 	ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()), (int)(Math.random()*4+1), (int)(Math.random()*4+1), this));
                 	ast.astTime.remove(i);
                 	i--;
