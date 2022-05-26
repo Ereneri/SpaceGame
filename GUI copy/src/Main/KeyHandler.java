@@ -29,11 +29,11 @@ public class KeyHandler implements KeyListener {
         if (gp.gameState == gp.titleState) {
             if (code == KeyEvent.VK_W) {
                 gp.ui.commandNum = 0;
-                gp.playSE(11);
+                //gp.playSE(11);
             }
             if (code == KeyEvent.VK_S) {
                 gp.ui.commandNum = 1;
-                gp.playSE(11);
+                //gp.playSE(11);
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
@@ -87,7 +87,7 @@ public class KeyHandler implements KeyListener {
                 }
             }
             if (code == KeyEvent.VK_S) {
-                if (gp.ui.commandNum == 3) {
+                if (gp.ui.commandNum == 2) {
                     gp.ui.commandNum = 0;
                     gp.playSE(11);
                 } else {
