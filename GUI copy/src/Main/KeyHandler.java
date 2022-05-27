@@ -30,26 +30,26 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_W) {
             	if(gp.ui.commandNum == 0) {
             		gp.ui.commandNum = 1;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}else {
             		gp.ui.commandNum --;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}
             }
             if (code == KeyEvent.VK_S) {
             	if(gp.ui.commandNum == 2) {
             		gp.ui.commandNum = 0;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}else {
             		gp.ui.commandNum ++;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.playState;
-                    gp.stopMusic();
-                    // gp.playMusic(1);
+//                    gp.stopMusic();
+//                    gp.playMusic(1);
                     gp.playSE(2);
 
                 }
@@ -200,7 +200,7 @@ public class KeyHandler implements KeyListener {
             }
 
             // out of store
-            if (code == KeyEvent.VK_ESCAPE) {
+            if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.pauseState;
                 gp.ui.commandNum = 0;
                 gp.playSE(3);
@@ -225,7 +225,7 @@ public class KeyHandler implements KeyListener {
         }
 
         // paused screen
-        if (code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
             if (gp.gameState == gp.playState) {
             	gp.playSE(3);
                 gp.gameState = gp.pauseState;
