@@ -37,7 +37,7 @@ public class KeyHandler implements KeyListener {
             	}
             }
             if (code == KeyEvent.VK_S) {
-            	if(gp.ui.commandNum == 1) {
+            	if(gp.ui.commandNum == 2) {
             		gp.ui.commandNum = 0;
             		//gp.playSE(11);
             	}else {
@@ -53,7 +53,7 @@ public class KeyHandler implements KeyListener {
                     gp.playSE(2);
 
                 }
-                if (gp.ui.commandNum == 1) {
+                if (gp.ui.commandNum == 2) {
                     gp.playSE(3);
                     System.exit(0);
                 }

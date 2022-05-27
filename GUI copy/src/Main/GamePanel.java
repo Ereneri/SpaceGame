@@ -194,11 +194,14 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
+            // shows -25% text for only .5 seconds
             if (hit) {
                 if (System.currentTimeMillis() - hitTime > 500) {
                     hit = false;
                 }
             }
+
+            // shows +25% text for only .5 seconds
             if (boosted) {
                 if (System.currentTimeMillis()-boosttime > 500) {
                     boosted = false;
@@ -220,6 +223,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (ship.angel) g2.drawImage(ui.angel, tileSize/3, tileSize, tileSize, tileSize, null);
         if (ship.speedBoost) g2.drawImage(ui.speed, tileSize/3, tileSize*2, tileSize, tileSize, null);
 
+        // skips title screen if debug is on
         if (DEBUG == true) {
             gameState = playState;
         }
@@ -268,17 +272,17 @@ public class GamePanel extends JPanel implements Runnable {
             //draws the health
             g2.drawString("Health: " + ship.getHp() + "%", tileSize/3*36, tileSize);
 
+            // draws the -25% text
             if (hit) {
                 g2.setColor(Color.red);
                 g2.drawString("-25%", tileSize/3*42, tileSize*2);
             }
 
+            // draws the +25% text
             if (boosted) {
                 g2.setColor(Color.green);
                 g2.drawString("+25%", tileSize/3*42, tileSize*2);
             }
-            
-    
         }
         g2.dispose();
         
