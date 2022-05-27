@@ -90,6 +90,7 @@ public class KeyHandler implements KeyListener {
                 }
                 if (gp.ui.commandNum == 1) {
                     gp.gameState = gp.titleState;
+                    gp.ui.commandNum = 0;
                     gp.reset();
                     gp.playSE(3);
                 }
@@ -227,10 +228,12 @@ public class KeyHandler implements KeyListener {
         // paused screen
         if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
             if (gp.gameState == gp.playState) {
-            	gp.playSE(3);
                 gp.gameState = gp.pauseState;
+                gp.ui.commandNum = 0;
+                gp.playSE(3);
             } else if (gp.gameState == gp.pauseState) {
                 gp.gameState = gp.playState;
+                gp.ui.commandNum = 0;
                 gp.playSE(3);
             }
         }
