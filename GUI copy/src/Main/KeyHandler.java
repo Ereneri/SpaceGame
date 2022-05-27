@@ -29,7 +29,7 @@ public class KeyHandler implements KeyListener {
         if (gp.gameState == gp.titleState) {
             if (code == KeyEvent.VK_W) {
             	if(gp.ui.commandNum == 0) {
-            		gp.ui.commandNum = 1;
+            		gp.ui.commandNum = 2;
             		gp.playSE(11);
             	}else {
             		gp.ui.commandNum --;
