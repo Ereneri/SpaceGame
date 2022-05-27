@@ -250,7 +250,10 @@ public class GamePanel extends JPanel implements Runnable {
             for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
                 for(int i = 0; i<ast.asts.size(); i++) {
                 	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
+                        int x = ast.asts.get(i).getX();
+                        int y = ast.asts.get(i).getY();
                 		bullets.removeBullet(bulletArray.bullets.get(indexbull));
+                        drawExplosion(x, y);
                 		ast.astTime.add(System.currentTimeMillis());
                 		ast.asts.remove(i);
                 		i--;
@@ -308,6 +311,10 @@ public class GamePanel extends JPanel implements Runnable {
     public void flush() {
     	
     	sound.flush();
+    }
+
+    public void drawExplosion(int x, int y) {
+        
     }
     
     //plays individual sounds

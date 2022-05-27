@@ -1,5 +1,6 @@
 package asteroids;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import collision.*;
@@ -34,16 +35,25 @@ public class Asteroid {
 			e.printStackTrace();
 		}
 
-		c=new Collision(x+5,y+5,gp.tileSize-10, gp.tileSize-10);
+		c=new Collision(x+5,y+5,gp.tileSize/2+8, gp.tileSize/2+8);
 	}
 	
 	// draws the asteroids image and collision box
 	public void draw(Graphics2D g, GamePanel gp) {
 		
 		g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
-		//c.render(g);
+		g.setColor(Color.white);
+		g.drawRect(this.x+5, this.y+5, gp.tileSize/2+8, gp.tileSize/2+8);
+		// c.render(g);
 	}
-	
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 	
 	// checks if the asteroid is touching a wall and if so makes it bounce
 	public void astTick() {
