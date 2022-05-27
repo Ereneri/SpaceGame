@@ -200,7 +200,7 @@ public class KeyHandler implements KeyListener {
             }
 
             // out of store
-            if (code == KeyEvent.VK_ESCAPE) {
+            if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.pauseState;
                 gp.ui.commandNum = 0;
                 gp.playSE(3);
@@ -225,7 +225,7 @@ public class KeyHandler implements KeyListener {
         }
 
         // paused screen
-        if (code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
             if (gp.gameState == gp.playState) {
             	gp.playSE(3);
                 gp.gameState = gp.pauseState;
