@@ -160,7 +160,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 // buys angel wings
                 if (gp.ui.commandNum == 0) {
-                    if (gp.ship.score >= 500) {
+                    if (gp.ship.score >= 500 && gp.getAngel() == false) {
                         gp.setAngel(true);
                         gp.ship.score -= 500;
                         gp.playSE(2);
@@ -171,7 +171,7 @@ public class KeyHandler implements KeyListener {
                 }
                 // buys speedy shooter
                 if (gp.ui.commandNum == 1) {
-                    if (gp.ship.score >= 250) {
+                    if (gp.ship.score >= 250 && gp.getSpeedBoost() == false) {
                         gp.addBooster();
                         gp.ship.score -= 250;
                         gp.playSE(2);
