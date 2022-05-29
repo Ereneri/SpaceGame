@@ -250,27 +250,32 @@ public class GamePanel extends JPanel implements Runnable {
             
             // checks if any bullets are touching any asteroids
             for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
-                for(int i = 0; i<ast.asts.size(); i++) {
+                for(int i = 0; i < ast.asts.size(); i++) {
                 	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
                         // bullet removal
                 		bullets.removeBullet(bulletArray.bullets.get(indexbull));
-                        ast.asts.get(i).exploded++;
+                        indexbull--;
+                        // ast.asts.get(i).exploded++;
                         ast.asts.get(i).hideAst();
+                        ast.astTime.add(System.currentTimeMillis());
+                        ast.asts.remove(i);
+                        i--;
 
                 		System.out.println("bullet touch asteroid");
                 		playSE(5);
-                	} else if (ast.asts.get(i).exploded > 0) {
-                        if (ast.asts.get(i).exploded == 14) {
-                            // removal code
-                            ast.astTime.add(System.currentTimeMillis());
-                            ast.asts.remove(i);
-                            i--;
-                        }
-                        // loads image
-                        BufferedImage expImg = drawExplosion(ast.asts.get(i).getX(), ast.asts.get(i).getY(), ast.asts.get(i).exploded);
-                        g2.drawImage(expImg, ast.asts.get(i).getX(), ast.asts.get(i).getY(), tileSize+8, tileSize+8, null);
-                        ast.asts.get(i).exploded++;
-                    }
+                	}
+                    // if (ast.asts.get(i).exploded > 0) {
+                    //     if (ast.asts.get(i).exploded == 14) {
+                    //         // removal code
+                    //         ast.astTime.add(System.currentTimeMillis());
+                    //         ast.asts.remove(i);
+                    //         i--;
+                    //     }
+                    //     // loads image
+                    //     BufferedImage expImg = drawExplosion(ast.asts.get(i).getX(), ast.asts.get(i).getY(), ast.asts.get(i).exploded);
+                    //     g2.drawImage(expImg, ast.asts.get(i).getX(), ast.asts.get(i).getY(), tileSize+8, tileSize+8, null);
+                    //     ast.asts.get(i).exploded++;
+                    // }
                 }
             }
             ship.draw(g2);

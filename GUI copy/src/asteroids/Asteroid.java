@@ -41,6 +41,10 @@ public class Asteroid {
 
 		c=new Collision(x+7,y+7,gp.tileSize-14, gp.tileSize-14);
 	}
+
+	public void hideAst() {
+		this.hide = true;
+	}
 	
 	// draws the asteroids image and collision box
 	public void draw(Graphics2D g, GamePanel gp) {
