@@ -19,7 +19,6 @@ import rocketship.rocketship;
 import rocketship.rocketship.bulletArray;
 import rocketship.rocketship.bullets;
 
-
 public class GamePanel extends JPanel implements Runnable {
     // Basic Screen Vars and scale factor
     final int originalTitleSize = 16; // 16x16
@@ -64,6 +63,10 @@ public class GamePanel extends JPanel implements Runnable {
         public static ArrayList<Long> astTime = new ArrayList<Long>();
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
+
+    public class exps {
+        public static ArrayList<Explosion> expsList = new ArrayList<Explosion>();
+    }
 
     // explosion stuff
     BufferedImage e1, e2, e3, e4, e5, e6, e7;
@@ -255,7 +258,12 @@ public class GamePanel extends JPanel implements Runnable {
                         // bullet removal
                 		bullets.removeBullet(bulletArray.bullets.get(indexbull));
                         indexbull--;
-                        // ast.asts.get(i).exploded++;
+
+                        // creates explosion object and adds to array
+                        Explosion exp = new Explosion(ast.asts.get(i).getX(), ast.asts.get(i).getY());
+                        exps.expsList.add(exp);
+
+                        // hides and removes asteroid
                         ast.asts.get(i).hideAst();
                         ast.astTime.add(System.currentTimeMillis());
                         ast.asts.remove(i);
@@ -264,19 +272,20 @@ public class GamePanel extends JPanel implements Runnable {
                 		System.out.println("bullet touch asteroid");
                 		playSE(5);
                 	}
-                    // if (ast.asts.get(i).exploded > 0) {
-                    //     if (ast.asts.get(i).exploded == 14) {
-                    //         // removal code
-                    //         ast.astTime.add(System.currentTimeMillis());
-                    //         ast.asts.remove(i);
-                    //         i--;
-                    //     }
-                    //     // loads image
-                    //     BufferedImage expImg = drawExplosion(ast.asts.get(i).getX(), ast.asts.get(i).getY(), ast.asts.get(i).exploded);
-                    //     g2.drawImage(expImg, ast.asts.get(i).getX(), ast.asts.get(i).getY(), tileSize+8, tileSize+8, null);
-                    //     ast.asts.get(i).exploded++;
-                    // }
                 }
+            }
+
+            // renders exp animation
+            for (int i = 0; i < exps.expsList.size(); i++) {
+                if (exps.expsList.get(i).exploded == 14) {
+                        // removal code
+                        exps.expsList.remove(i);
+                        i--;
+                }
+                // loads image
+                BufferedImage expImg = drawExplosion(exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), exps.expsList.get(i).exploded);
+                g2.drawImage(expImg, exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), tileSize+8, tileSize+8, null);
+                exps.expsList.get(i).exploded++;
             }
             ship.draw(g2);
             
