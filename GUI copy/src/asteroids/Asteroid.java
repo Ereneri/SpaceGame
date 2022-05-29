@@ -39,7 +39,7 @@ public class Asteroid {
 			e.printStackTrace();
 		}
 
-		c=new Collision(x+5,y+5,gp.tileSize/2+8, gp.tileSize/2+8);
+		c=new Collision(x+7,y+7,gp.tileSize-14, gp.tileSize-14);
 	}
 	
 	// draws the asteroids image and collision box
@@ -52,10 +52,10 @@ public class Asteroid {
 			// c.render(g);
 		}
 		
-	}
-
-	public void hideAst() {
-		this.hide = true;
+		g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
+//		g.setColor(Color.white);
+//		g.drawRect(this.x+7, this.y+7, gp.tileSize-14, gp.tileSize-14);
+		// c.render(g);
 	}
 
 	public int getX() {
