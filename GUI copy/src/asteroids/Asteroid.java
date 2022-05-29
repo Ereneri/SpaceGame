@@ -20,6 +20,8 @@ public class Asteroid {
 	public int yVelAst;
 	private Collision c;
 	public GamePanel gp;
+	public int exploded;
+	public boolean hide;
 
 
 	//creates an asteroid object in a certain position and with certain speeds
@@ -29,6 +31,8 @@ public class Asteroid {
 		this.y=y;
 		this.xVelAst=xVel;
 		this.yVelAst=yVel;
+		this.exploded = 0;
+		this.hide = false;
 		try {
 			asteroid = ImageIO.read(getClass().getResourceAsStream("/asteroids/ast.png"));
 		} catch (IOException e) {
@@ -40,11 +44,18 @@ public class Asteroid {
 	
 	// draws the asteroids image and collision box
 	public void draw(Graphics2D g, GamePanel gp) {
+
+		if (!hide) {
+			g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
+			g.setColor(Color.white);
+			g.drawRect(this.x+5, this.y+5, gp.tileSize/2+8, gp.tileSize/2+8);
+			// c.render(g);
+		}
 		
-		g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
-		g.setColor(Color.white);
-		g.drawRect(this.x+5, this.y+5, gp.tileSize/2+8, gp.tileSize/2+8);
-		// c.render(g);
+	}
+
+	public void hideAst() {
+		this.hide = true;
 	}
 
 	public int getX() {

@@ -5,11 +5,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import asteroids.Asteroid;
@@ -65,6 +65,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
 
+    // explosion stuff
+    BufferedImage e1, e2, e3, e4, e5, e6, e7;
+
     // Default Location
     int playerX = 100;
     int playerY = 100;
@@ -85,7 +88,6 @@ public class GamePanel extends JPanel implements Runnable {
     public long hitTime = 0;
     public boolean boosted = false;
     public long boosttime = 0;
-
 
     // Panel constructor
     public GamePanel() {
@@ -166,8 +168,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == playState) {
             ship.update();
-            
-            
+
             //checks if there are any collectibles left. If all are gone it spawns in more
             int objCount = 0;
             for (int i = 0; i < objRocket.obj.length; i++) {
@@ -186,6 +187,7 @@ public class GamePanel extends JPanel implements Runnable {
                 	astCount ++;
                 }
             }
+
             for(int i = 0; i<ast.astTime.size(); i++) {
             	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 4000 < System.currentTimeMillis()) {
                 	ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()), (int)(Math.random()*4+1), (int)(Math.random()*4+1), this));
@@ -250,16 +252,25 @@ public class GamePanel extends JPanel implements Runnable {
             for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
                 for(int i = 0; i<ast.asts.size(); i++) {
                 	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
-                        int x = ast.asts.get(i).getX();
-                        int y = ast.asts.get(i).getY();
+                        // bullet removal
                 		bullets.removeBullet(bulletArray.bullets.get(indexbull));
-                        drawExplosion(x, y);
-                		ast.astTime.add(System.currentTimeMillis());
-                		ast.asts.remove(i);
-                		i--;
+                        ast.asts.get(i).exploded++;
+                        ast.asts.get(i).hideAst();
+
                 		System.out.println("bullet touch asteroid");
                 		playSE(5);
-                	}
+                	} else if (ast.asts.get(i).exploded > 0) {
+                        if (ast.asts.get(i).exploded == 14) {
+                            // removal code
+                            ast.astTime.add(System.currentTimeMillis());
+                            ast.asts.remove(i);
+                            i--;
+                        }
+                        // loads image
+                        BufferedImage expImg = drawExplosion(ast.asts.get(i).getX(), ast.asts.get(i).getY(), ast.asts.get(i).exploded);
+                        g2.drawImage(expImg, ast.asts.get(i).getX(), ast.asts.get(i).getY(), tileSize+8, tileSize+8, null);
+                        ast.asts.get(i).exploded++;
+                    }
                 }
             }
             ship.draw(g2);
@@ -313,8 +324,35 @@ public class GamePanel extends JPanel implements Runnable {
     	sound.flush();
     }
 
-    public void drawExplosion(int x, int y) {
-        
+    public BufferedImage drawExplosion(int x, int y, int image) {
+        image /= 2;
+        try {
+            e1 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E1.png"));
+            e2 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E2.png"));
+            e3 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E3.png"));
+            e4 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E4.png"));
+            e5 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E5.png"));
+            e6 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E6.png"));
+            e7 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E7.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (image == 1) {
+            return e1;
+        } else if (image == 2) {
+            return e2;
+        } else if (image == 3) {
+            return e3;
+        } else if (image == 4) {
+            return e4;
+        } else if (image == 5) {
+            return e5;
+        } else if (image == 6) {
+            return e6;
+        } else if (image == 7) {
+            return e7;
+        }
+        return null;
     }
     
     //plays individual sounds
