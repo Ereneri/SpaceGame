@@ -5,11 +5,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import asteroids.Asteroid;
@@ -18,7 +18,6 @@ import object.metal;
 import rocketship.rocketship;
 import rocketship.rocketship.bulletArray;
 import rocketship.rocketship.bullets;
-
 
 public class GamePanel extends JPanel implements Runnable {
     // Basic Screen Vars and scale factor
@@ -65,6 +64,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
 
+    public class exps {
+        public static ArrayList<Explosion> expsList = new ArrayList<Explosion>();
+    }
+
+    // explosion stuff
+    BufferedImage e1, e2, e3, e4, e5, e6, e7;
+
     // Default Location
     int playerX = 100;
     int playerY = 100;
@@ -85,7 +91,6 @@ public class GamePanel extends JPanel implements Runnable {
     public long hitTime = 0;
     public boolean boosted = false;
     public long boosttime = 0;
-
 
     // Panel constructor
     public GamePanel() {
@@ -123,7 +128,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
-        this.playMusic(0);
+        this.playMusic(1);
         
     }
 
@@ -166,8 +171,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == playState) {
             ship.update();
-            
-            
+
             //checks if there are any collectibles left. If all are gone it spawns in more
             int objCount = 0;
             for (int i = 0; i < objRocket.obj.length; i++) {
@@ -186,19 +190,23 @@ public class GamePanel extends JPanel implements Runnable {
                 	astCount ++;
                 }
             }
+
             for(int i = 0; i<ast.astTime.size(); i++) {
-            	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 3000 < System.currentTimeMillis()) {
+            	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 4000 < System.currentTimeMillis()) {
                 	ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()), (int)(Math.random()*4+1), (int)(Math.random()*4+1), this));
                 	ast.astTime.remove(i);
                 	i--;
                 }
             }
 
+            // shows -25% text for only .5 seconds
             if (hit) {
                 if (System.currentTimeMillis() - hitTime > 500) {
                     hit = false;
                 }
             }
+
+            // shows +25% text for only .5 seconds
             if (boosted) {
                 if (System.currentTimeMillis()-boosttime > 500) {
                     boosted = false;
@@ -220,6 +228,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (ship.angel) g2.drawImage(ui.angel, tileSize/3, tileSize, tileSize, tileSize, null);
         if (ship.speedBoost) g2.drawImage(ui.speed, tileSize/3, tileSize*2, tileSize, tileSize, null);
 
+        // skips title screen if debug is on
         if (DEBUG == true) {
             gameState = playState;
         }
@@ -244,16 +253,39 @@ public class GamePanel extends JPanel implements Runnable {
             
             // checks if any bullets are touching any asteroids
             for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
-                for(int i = 0; i<ast.asts.size(); i++) {
+                for(int i = 0; i < ast.asts.size(); i++) {
                 	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
+                        // bullet removal
                 		bullets.removeBullet(bulletArray.bullets.get(indexbull));
-                		ast.astTime.add(System.currentTimeMillis());
-                		ast.asts.remove(i);
-                		i--;
+                        indexbull--;
+
+                        // creates explosion object and adds to array
+                        Explosion exp = new Explosion(ast.asts.get(i).getX(), ast.asts.get(i).getY());
+                        exps.expsList.add(exp);
+
+                        // hides and removes asteroid
+                        ast.asts.get(i).hideAst();
+                        ast.astTime.add(System.currentTimeMillis());
+                        ast.asts.remove(i);
+                        i--;
+
                 		System.out.println("bullet touch asteroid");
                 		playSE(5);
                 	}
                 }
+            }
+
+            // renders exp animation
+            for (int i = 0; i < exps.expsList.size(); i++) {
+                if (exps.expsList.get(i).exploded == 14) {
+                        // removal code
+                        exps.expsList.remove(i);
+                        i--;
+                }
+                // loads image
+                BufferedImage expImg = drawExplosion(exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), exps.expsList.get(i).exploded);
+                g2.drawImage(expImg, exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), tileSize+8, tileSize+8, null);
+                exps.expsList.get(i).exploded++;
             }
             ship.draw(g2);
             
@@ -268,17 +300,17 @@ public class GamePanel extends JPanel implements Runnable {
             //draws the health
             g2.drawString("Health: " + ship.getHp() + "%", tileSize/3*36, tileSize);
 
+            // draws the -25% text
             if (hit) {
                 g2.setColor(Color.red);
                 g2.drawString("-25%", tileSize/3*42, tileSize*2);
             }
 
+            // draws the +25% text
             if (boosted) {
                 g2.setColor(Color.green);
                 g2.drawString("+25%", tileSize/3*42, tileSize*2);
             }
-            
-    
         }
         g2.dispose();
         
@@ -304,6 +336,37 @@ public class GamePanel extends JPanel implements Runnable {
     public void flush() {
     	
     	sound.flush();
+    }
+
+    public BufferedImage drawExplosion(int x, int y, int image) {
+        image /= 2;
+        try {
+            e1 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E1.png"));
+            e2 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E2.png"));
+            e3 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E3.png"));
+            e4 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E4.png"));
+            e5 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E5.png"));
+            e6 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E6.png"));
+            e7 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E7.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (image == 1) {
+            return e1;
+        } else if (image == 2) {
+            return e2;
+        } else if (image == 3) {
+            return e3;
+        } else if (image == 4) {
+            return e4;
+        } else if (image == 5) {
+            return e5;
+        } else if (image == 6) {
+            return e6;
+        } else if (image == 7) {
+            return e7;
+        }
+        return null;
     }
     
     //plays individual sounds

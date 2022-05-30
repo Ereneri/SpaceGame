@@ -29,31 +29,31 @@ public class KeyHandler implements KeyListener {
         if (gp.gameState == gp.titleState) {
             if (code == KeyEvent.VK_W) {
             	if(gp.ui.commandNum == 0) {
-            		gp.ui.commandNum = 1;
-            		//gp.playSE(11);
+            		gp.ui.commandNum = 2;
+            		gp.playSE(11);
             	}else {
             		gp.ui.commandNum --;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}
             }
             if (code == KeyEvent.VK_S) {
-            	if(gp.ui.commandNum == 1) {
+            	if(gp.ui.commandNum == 2) {
             		gp.ui.commandNum = 0;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}else {
             		gp.ui.commandNum ++;
-            		//gp.playSE(11);
+            		gp.playSE(11);
             	}
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.playState;
-                    gp.stopMusic();
-                    // gp.playMusic(1);
+//                    gp.stopMusic();
+//                    gp.playMusic(1);
                     gp.playSE(2);
 
                 }
-                if (gp.ui.commandNum == 1) {
+                if (gp.ui.commandNum == 2) {
                     gp.playSE(3);
                     System.exit(0);
                 }
@@ -90,6 +90,7 @@ public class KeyHandler implements KeyListener {
                 }
                 if (gp.ui.commandNum == 1) {
                     gp.gameState = gp.titleState;
+                    gp.ui.commandNum = 0;
                     gp.reset();
                     gp.playSE(3);
                 }
@@ -160,7 +161,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 // buys angel wings
                 if (gp.ui.commandNum == 0) {
-                    if (gp.ship.score >= 500) {
+                    if (gp.ship.score >= 500 && gp.getAngel() == false) {
                         gp.setAngel(true);
                         gp.ship.score -= 500;
                         gp.playSE(2);
@@ -171,7 +172,7 @@ public class KeyHandler implements KeyListener {
                 }
                 // buys speedy shooter
                 if (gp.ui.commandNum == 1) {
-                    if (gp.ship.score >= 250) {
+                    if (gp.ship.score >= 250 && gp.getSpeedBoost() == false) {
                         gp.addBooster();
                         gp.ship.score -= 250;
                         gp.playSE(2);
@@ -200,7 +201,7 @@ public class KeyHandler implements KeyListener {
             }
 
             // out of store
-            if (code == KeyEvent.VK_ESCAPE) {
+            if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.pauseState;
                 gp.ui.commandNum = 0;
                 gp.playSE(3);
@@ -208,16 +209,16 @@ public class KeyHandler implements KeyListener {
         }
 
         // Game controls
-        if (code == KeyEvent.VK_W) {
+        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             upPressed = true;
         }
-        if (code == KeyEvent.VK_A) {
+        if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
             leftPressed = true;
         }
-        if (code == KeyEvent.VK_S) {
+        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
             downPressed = true;
         }
-        if (code == KeyEvent.VK_D) {
+        if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
             rightPressed = true;
         }
         if (code == KeyEvent.VK_SPACE) {
@@ -225,12 +226,14 @@ public class KeyHandler implements KeyListener {
         }
 
         // paused screen
-        if (code == KeyEvent.VK_ESCAPE) {
+        if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
             if (gp.gameState == gp.playState) {
-            	gp.playSE(3);
                 gp.gameState = gp.pauseState;
+                gp.ui.commandNum = 0;
+                gp.playSE(3);
             } else if (gp.gameState == gp.pauseState) {
                 gp.gameState = gp.playState;
+                gp.ui.commandNum = 0;
                 gp.playSE(3);
             }
         }
@@ -243,16 +246,16 @@ public class KeyHandler implements KeyListener {
         
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_W) {
+        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             upPressed = false;
         }
-        if (code == KeyEvent.VK_A) {
+        if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
             leftPressed = false;
         }
-        if (code == KeyEvent.VK_S) {
+        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
             downPressed = false;
         }
-        if (code == KeyEvent.VK_D) {
+        if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
             rightPressed = false;
         }
         if (code == KeyEvent.VK_SPACE) {

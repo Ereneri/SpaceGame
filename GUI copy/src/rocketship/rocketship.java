@@ -286,10 +286,13 @@ public class rocketship {
        	if(ast.asts.get(i)!= null) {
        		if(shipC.touches(ast.asts.get(i).getCAst()) && hp>25) {
        			hp -= 25;
+
+                // if you touch an asteroid shows health change
        			ast.astTime.add(System.currentTimeMillis());
         		ast.asts.remove(i);
                 gp.hit = true;
                 gp.hitTime = System.currentTimeMillis();
+
         		gp.playSE(5);
        		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
                 if (angel) {
