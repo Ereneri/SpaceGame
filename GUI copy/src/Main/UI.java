@@ -326,7 +326,7 @@ public class UI {
             }
     
             // music
-            text = "Music: " + (gp.muiscOption ? "On" : "Off");
+            text = "Music: " + (gp.musicOption ? "On" : "Off");
             x = getXforCenteringText(text);
             y += 55;
             g2.drawString(text, x, y);
