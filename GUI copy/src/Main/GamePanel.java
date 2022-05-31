@@ -91,6 +91,9 @@ public class GamePanel extends JPanel implements Runnable {
     public long hitTime = 0;
     public boolean boosted = false;
     public long boosttime = 0;
+    public boolean soundOption = true;
+    public boolean musicOption = true;
+
 
     // Panel constructor
     public GamePanel() {
@@ -356,13 +359,15 @@ public class GamePanel extends JPanel implements Runnable {
     
     //plays the music
     public void playMusic(int i) {
-    	
-    	//sets the misic to the screne were on
-    	sound.setFile(i);
-    	
-    	//plays and loops the music
-    	sound.play();
-    	sound.loop();
+    	//checks if music is enabled
+    	if(musicOption) {
+        	//sets the misic to the screne were on
+        	sound.setFile(i);
+        	
+        	//plays and loops the music
+        	sound.play();
+        	sound.loop();
+    	}
     }
     
     //stops the music
@@ -378,12 +383,14 @@ public class GamePanel extends JPanel implements Runnable {
     
     //plays individual sounds
     public void playSE(int i ) {
-    	
-    	//sets the misic to the screne were on
-    	sound.setFile(i);
-    	
-    	//plays the sound
-    	sound.play();
+    	//checks if sound is enabled
+    	if(soundOption) {
+    		//sets the misic to the screne were on
+        	sound.setFile(i);
+        	
+        	//plays the sound
+        	sound.play();
+    	}
     }
 
     public int getScore() {
