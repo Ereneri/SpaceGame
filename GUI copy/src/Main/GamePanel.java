@@ -85,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int storeState = 4;
     public final int scoreBoardState = 5;
     public final int optionsState = 6;
+    public final int helpState = 7;
     
     // Misc
     Sound sound = new Sound();

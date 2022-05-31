@@ -254,6 +254,107 @@ public class UI {
 
     }
 
+    public void drawHelp() {
+
+        g2.setFont(bossBattle);
+
+        g2.setColor(new Color(0,0,0,210));
+        g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
+
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(96F));
+
+        // draw store title
+        String text = "Score";
+        int x = getXforCenteringText(text);
+        int y = gp.tileSize*3;
+        g2.drawString(text, x, y);
+
+        // draw score aka money
+        g2.setFont(g2.getFont().deriveFont(30F));
+        text = "Score: $" + gp.ship.getScore();
+        x = getXforCenteringText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+
+        // render divider
+        text = "---";
+        x = getXforCenteringText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+
+        // Wings and Speedy Spooter is one time
+        text = "Limit 1 for Angel's Wings and Speedy Spooter";
+        g2.setFont(g2.getFont().deriveFont(25F));
+        x = getXforCenteringText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+
+        // item 1 
+        x = 60;
+        y += gp.tileSize;
+        g2.drawImage(angel, x, y, gp.tileSize+25, gp.tileSize+25, null);
+        text = "Angel's Wings ($500)";
+        x += gp.tileSize+25;
+        g2.drawString(text, x + 25, y+gp.tileSize);
+        text = "Buy";
+        g2.drawString(text, x + gp.tileSize*9, y+gp.tileSize);
+        if (commandNum == 0 || commandNum == -1) {
+            if (gp.getScore() < 500 || gp.getAngel()) {
+                g2.drawString("x", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
+            } else {
+                g2.drawString(">", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
+            }
+        }
+
+        // item 2
+        x = 60;
+        y += gp.tileSize*2;
+        g2.drawImage(speed, x, y, gp.tileSize+25, gp.tileSize+25, null);
+        text = "Speedy Shooter ($250)";
+        x += gp.tileSize+25;
+        g2.drawString(text, x + 25, y+gp.tileSize);
+        text = "Buy";
+        g2.drawString(text, x + gp.tileSize*9, y+gp.tileSize);
+        if (commandNum == 1) {
+            if (gp.getScore() < 250 || gp.getSpeedBoost()) {
+                g2.drawString("x", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
+            } else {
+                g2.drawString(">", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
+            }
+        }
+
+        // item 3
+        x = 60;
+        y += gp.tileSize*2;
+        g2.drawImage(health, x, y, gp.tileSize+25, gp.tileSize+25, null);
+        y += 5;
+        text = "Mechanics Repair ($200)";
+        x += gp.tileSize+25;
+        g2.drawString(text, x + 25, y+gp.tileSize);
+        text = "Buy";
+        g2.drawString(text, x + gp.tileSize*9, y+gp.tileSize);
+        if (commandNum == 2) {
+            if (gp.getScore() >= 100 && gp.getHealth() < 500) {
+                g2.drawString(">", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
+            } else {
+                g2.drawString("x", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
+            }
+        }
+
+        // return to game
+        g2.setFont(g2.getFont().deriveFont(25F));
+        text = "Return";
+        x = getXforCenteringText(text);
+        y += gp.tileSize*4;
+        g2.drawString(text, x, y);
+        if (commandNum == 3) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+
+
+    }
+
     public void drawTitleScreen() {
 
         g2.setFont(bossBattle);
