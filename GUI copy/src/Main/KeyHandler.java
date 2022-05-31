@@ -27,7 +27,7 @@ public class KeyHandler implements KeyListener {
 
         // Title Controls
         if (gp.gameState == gp.titleState) {
-            if (code == KeyEvent.VK_W) {
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             	if(gp.ui.commandNum == 0) {
             		gp.ui.commandNum = 2;
             		gp.playSE(11);
@@ -36,7 +36,7 @@ public class KeyHandler implements KeyListener {
             		gp.playSE(11);
             	}
             }
-            if (code == KeyEvent.VK_S) {
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
             	if(gp.ui.commandNum == 2) {
             		gp.ui.commandNum = 0;
             		gp.playSE(11);
@@ -62,7 +62,7 @@ public class KeyHandler implements KeyListener {
 
         // game over controls
         if (gp.gameState == gp.gameOverState) {
-            if (code == KeyEvent.VK_W) {
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             	if(gp.ui.commandNum == 0) {
             		gp.ui.commandNum = 1;
             		gp.playSE(11);
@@ -71,7 +71,7 @@ public class KeyHandler implements KeyListener {
             		gp.playSE(11);
             	}
             }
-            if (code == KeyEvent.VK_S) {
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
             	if(gp.ui.commandNum == 1) {
             		gp.ui.commandNum = 0;
             		gp.playSE(11);
@@ -98,7 +98,7 @@ public class KeyHandler implements KeyListener {
         }
 
         if (gp.gameState == gp.pauseState) {
-            if (code == KeyEvent.VK_W) {
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
                 if (gp.ui.commandNum == 0) {
                     gp.ui.commandNum = 2;
                     gp.playSE(11);
@@ -107,7 +107,7 @@ public class KeyHandler implements KeyListener {
                     gp.playSE(11);
                 }
             }
-            if (code == KeyEvent.VK_S) {
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
                 if (gp.ui.commandNum == 2) {
                     gp.ui.commandNum = 0;
                     gp.playSE(11);
@@ -124,7 +124,7 @@ public class KeyHandler implements KeyListener {
                 }
                 if (gp.ui.commandNum == 1) {
                 	gp.playSE(2);
-                    gp.gameState = gp.scoreBoardState;
+//                    gp.gameState = gp.scoreBoardState;
 
                 }
                 if (gp.ui.commandNum == 2) {
@@ -138,7 +138,7 @@ public class KeyHandler implements KeyListener {
 
         if (gp.gameState == gp.storeState) {
             // up
-            if (code == KeyEvent.VK_W) {
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum == -1) {
                     gp.ui.commandNum = 3;
@@ -148,7 +148,7 @@ public class KeyHandler implements KeyListener {
                 }
             }
             // down
-            if (code == KeyEvent.VK_S) {
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
                 if (gp.ui.commandNum == 4) {
                     gp.ui.commandNum = 0;

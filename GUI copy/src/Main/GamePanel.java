@@ -212,6 +212,15 @@ public class GamePanel extends JPanel implements Runnable {
                     boosted = false;
                 }
             }
+            
+            // checks if bullets are out of bounds
+            for(int i = 0; i < bulletArray.bullets.size(); i++) {
+            	if(bulletArray.bullets.get(i).getX() < -5 || bulletArray.bullets.get(i).getX() > 775 || bulletArray.bullets.get(i).getY() < -5 || bulletArray.bullets.get(i).getY() > 775) {
+            		bulletArray.bullets.remove(i);
+            		i--;
+            		System.out.println("delete bullet");
+            	}
+            }
         }
     }
 
