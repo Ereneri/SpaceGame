@@ -50,7 +50,7 @@ public class rocketship {
     KeyHandler keyH;
 
     // Vars for sprite image
-    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, shield;
 
     // Bullet Stuff
     public class bulletArray{
@@ -123,6 +123,7 @@ public class rocketship {
             left2 = ImageIO.read(getClass().getResourceAsStream("/ship/upLeft.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/ship/right.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/ship/downRight.png"));
+            shield = ImageIO.read(getClass().getResourceAsStream("/ship/shield.png"));
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -220,12 +221,10 @@ public class rocketship {
         // draw the ship with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         if(hp > 100) {
-            g2.setColor(Color.blue);
-            g2.drawOval(x-4, y-4, gp.tileSize+8, gp.tileSize+8);
+            g2.drawImage(shield, x-10, y-10, gp.tileSize+20, gp.tileSize+20, null);
         }
 
-        // CROP IMAGE TO MAKE SIZING CORRECT
-        
+ 
         //moves collision with rocket and displays it
         g2.setColor(Color.gray);
         shipC.setXCol(x+5);
