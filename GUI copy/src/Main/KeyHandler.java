@@ -124,7 +124,7 @@ public class KeyHandler implements KeyListener {
                 }
                 if (gp.ui.commandNum == 1) {
                 	gp.playSE(2);
-                    gp.gameState = gp.scoreBoardState;
+//                    gp.gameState = gp.scoreBoardState;
 
                 }
                 if (gp.ui.commandNum == 2) {
