@@ -429,4 +429,8 @@ public class GamePanel extends JPanel implements Runnable {
         return ship.hp;
     }
 
+    public void setSound(boolean sound) {
+        this.soundOption = false;
+    }
+
 }
