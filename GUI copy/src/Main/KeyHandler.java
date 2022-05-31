@@ -51,7 +51,11 @@ public class KeyHandler implements KeyListener {
 //                    gp.stopMusic();
 //                    gp.playMusic(1);
                     gp.playSE(2);
-
+                }
+                if (gp.ui.commandNum == 1) {
+                    gp.gameState = gp.optionsState;
+                    gp.ui.commandNum = -1;
+                    gp.playSE(2);
                 }
                 if (gp.ui.commandNum == 2) {
                     gp.playSE(3);
@@ -108,7 +112,7 @@ public class KeyHandler implements KeyListener {
                 }
             }
             if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-                if (gp.ui.commandNum == 2) {
+                if (gp.ui.commandNum == 3) {
                     gp.ui.commandNum = 0;
                     gp.playSE(11);
                 } else {
@@ -124,10 +128,14 @@ public class KeyHandler implements KeyListener {
                 }
                 if (gp.ui.commandNum == 1) {
                 	gp.playSE(2);
-//                    gp.gameState = gp.scoreBoardState;
-
+//                    gp.gameState = gp.scoreBoardState
                 }
                 if (gp.ui.commandNum == 2) {
+                    gp.gameState = gp.playState;
+                    gp.playSE(2);
+                    gp.ui.commandNum = -1;
+                }
+                if (gp.ui.commandNum == 3) {
                 	gp.playSE(3);
                     gp.gameState = gp.titleState;
                     gp.ui.commandNum = 0;
@@ -195,6 +203,49 @@ public class KeyHandler implements KeyListener {
                 // returns to pause screen
                 if (gp.ui.commandNum == 3) {
                     gp.gameState = gp.pauseState;
+                    gp.ui.commandNum = 0;
+                    gp.playSE(3);
+                }
+            }
+
+            // out of store
+            if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
+                gp.gameState = gp.pauseState;
+                gp.ui.commandNum = 0;
+                gp.playSE(3);
+            }
+        }
+
+        if (gp.gameState == gp.optionsState) {
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+                gp.ui.commandNum--;
+                if (gp.ui.commandNum == -1) {
+                    gp.ui.commandNum = 2;
+                    gp.playSE(11);
+                }else {
+                	gp.playSE(11);
+                }
+            }
+            // down
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+                gp.ui.commandNum++;
+                if (gp.ui.commandNum == 3) {
+                    gp.ui.commandNum = 0;
+                    gp.playSE(11);
+                }else {
+                	gp.playSE(11);
+                }
+            }
+
+            if (code == KeyEvent.VK_ENTER) {
+                // change music
+                if (gp.ui.commandNum == 0) {
+                    boolean tmp = gp.soundOption;
+                    gp.setSound(!tmp);
+                }
+                // returns to menu
+                if (gp.ui.commandNum == 1) {
+                    gp.gameState = gp.titleState;
                     gp.ui.commandNum = 0;
                     gp.playSE(3);
                 }
