@@ -3,6 +3,8 @@ package Main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import rocketship.rocketship.shieldSound;
+
 public class KeyHandler implements KeyListener {
 
     // boolean for if a key is pressed to render an sprite in the game
@@ -196,6 +198,11 @@ public class KeyHandler implements KeyListener {
                         gp.ship.score -= 200;
                         gp.playSE(2);
                         gp.playSE(10);
+                        if(!shieldSound.hasPlayedShieldSound) {
+                        	gp.playSE(12);
+                        	shieldSound.hasPlayedShieldSound = true;
+                        }
+                        
                     }else {
                     	gp.playSE(3);
                     }

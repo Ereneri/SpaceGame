@@ -56,6 +56,14 @@ public class rocketship {
     public class bulletArray{
     	public static ArrayList<bullet> bullets = new ArrayList<bullet>(); // arraylist of bullets
     }
+    
+    //shield sound stuff
+    public class shieldSound{
+        public static boolean hasPlayedShieldSound = false;
+    }
+
+    
+    
     public void tick(Graphics2D g2) {
         for (int i = 0; i < bulletArray.bullets.size(); i++) {
         	bulletArray.bullets.get(i).tick(g2);
@@ -221,7 +229,20 @@ public class rocketship {
         // draw the ship with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         if(hp > 100) {
+        	//changes the opasity to 50%
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.5));
+            
+            //draws the shield
             g2.drawImage(shield, x-10, y-10, gp.tileSize+20, gp.tileSize+20, null);
+            
+            //checks if the shield sound has been palyed
+            if(!shieldSound.hasPlayedShieldSound) {
+            	gp.playSE(12);
+            	shieldSound.hasPlayedShieldSound = true;
+            }
+            
+            //resets the graphics opasity to 1
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 1));
         }
 
  
@@ -288,9 +309,16 @@ public class rocketship {
        for(int i = 0; i<ast.asts.size(); i++) {
        	if(ast.asts.get(i)!= null) {
        		if(shipC.touches(ast.asts.get(i).getCAst()) && hp>25) {
+       			//checks if the hp is 125 and if so plays the shield break sound
+                if(hp == 125) {
+                	gp.playSE(13);
+                	shieldSound.hasPlayedShieldSound = false;
+                }
+                
+                //subtracts 25 because of the hit
        			hp -= 25;
 
-                // if you touch an asteroid shows health change
+                // removes the asteroid and adds it to a respawn array list
        			ast.astTime.add(System.currentTimeMillis());
         		ast.asts.remove(i);
                 gp.hit = true;
