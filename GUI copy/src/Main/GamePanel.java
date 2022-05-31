@@ -281,11 +281,12 @@ public class GamePanel extends JPanel implements Runnable {
                         // removal code
                         exps.expsList.remove(i);
                         i--;
+                } else {
+                    // loads image
+                    BufferedImage expImg = drawExplosion(exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), exps.expsList.get(i).exploded);
+                    g2.drawImage(expImg, exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), tileSize+8, tileSize+8, null);
+                    exps.expsList.get(i).exploded++;
                 }
-                // loads image
-                BufferedImage expImg = drawExplosion(exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), exps.expsList.get(i).exploded);
-                g2.drawImage(expImg, exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), tileSize+8, tileSize+8, null);
-                exps.expsList.get(i).exploded++;
             }
             ship.draw(g2);
             

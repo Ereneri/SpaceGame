@@ -52,7 +52,7 @@ public class Asteroid {
 		if (!hide) {
 			g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
 			g.setColor(Color.white);
-			g.drawRect(this.x+5, this.y+5, gp.tileSize/2+8, gp.tileSize/2+8);
+			// g.drawRect(this.x+5, this.y+5, gp.tileSize/2+8, gp.tileSize/2+8);
 			// c.render(g);
 		}
 		
