@@ -214,7 +214,7 @@ public class UI {
         y += gp.tileSize*2;
         g2.drawImage(health, x, y, gp.tileSize+25, gp.tileSize+25, null);
         y += 5;
-        text = "Mechanics Repair ($100)";
+        text = "Mechanics Repair ($200)";
         x += gp.tileSize+25;
         g2.drawString(text, x + 25, y+gp.tileSize);
         text = "Buy";

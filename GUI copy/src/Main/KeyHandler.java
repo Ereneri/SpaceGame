@@ -183,9 +183,9 @@ public class KeyHandler implements KeyListener {
                 }
                 // buys health shot
                 if (gp.ui.commandNum == 2) {
-                    if (gp.ship.score >= 100 && gp.ship.hp < 500) {
+                    if (gp.ship.score >= 200 && gp.ship.hp < 200) {
                         gp.ship.hp += 25;
-                        gp.ship.score -= 100;
+                        gp.ship.score -= 200;
                         gp.playSE(2);
                         gp.playSE(10);
                     }else {
