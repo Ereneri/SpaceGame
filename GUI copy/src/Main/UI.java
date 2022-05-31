@@ -128,12 +128,22 @@ public class UI {
             g2.drawString("x", x - gp.tileSize, y);
         }
 
+        // return to game
+        text = "Return";
+        x = getXforCenteringText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if (commandNum == 2) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+
+
         // render quit
         text = "Quit";
         x = getXforCenteringText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if (commandNum == 2) {
+        if (commandNum == 3) {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
@@ -291,6 +301,49 @@ public class UI {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
+    }
+
+    public void drawOptions() {
+
+            g2.setFont(bossBattle);
+            
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+    
+            // title
+            String text = "Options";
+            int x = getXforCenteringText(text);
+            int y = gp.tileSize*3;
+            g2.setColor(Color.WHITE);
+            g2.drawString(text, x, y);
+
+            // sound
+            text = "Sound: " + (gp.soundOption ? "On" : "Off");
+            x = getXforCenteringText(text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+            if (commandNum == 0) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+    
+            // music
+            text = "Music: " + (gp.muiscOption ? "On" : "Off");
+            x = getXforCenteringText(text);
+            y += 55;
+            g2.drawString(text, x, y);
+            if (commandNum == 1) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+    
+            // return to game
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+            text = "Return";
+            x = getXforCenteringText(text);
+            y += 55;
+            g2.drawString(text, x, y);
+            if (commandNum == 2) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+    
     }
 
     public int getXforCenteringText(String text) {
