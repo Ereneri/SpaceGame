@@ -108,6 +108,19 @@ public class GamePanel extends JPanel implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // load images into memory
+        try {
+            e1 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E1.png"));
+            e2 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E2.png"));
+            e3 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E3.png"));
+            e4 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E4.png"));
+            e5 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E5.png"));
+            e6 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E6.png"));
+            e7 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E7.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     // spawns metal
@@ -292,7 +305,22 @@ public class GamePanel extends JPanel implements Runnable {
                         i--;
                 } else {
                     // loads image
-                    BufferedImage expImg = drawExplosion(exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), exps.expsList.get(i).exploded);
+                    BufferedImage expImg = null;
+                    if (exps.expsList.get(i).exploded/2 == 1) {
+                        expImg = e1;
+                    } else if (exps.expsList.get(i).exploded/2 == 2) {
+                        expImg = e2;
+                    } else if (exps.expsList.get(i).exploded/2 == 3) {
+                        expImg = e3;
+                    } else if (exps.expsList.get(i).exploded/2 == 4) {
+                        expImg = e4;
+                    } else if (exps.expsList.get(i).exploded/2 == 5) {
+                        expImg = e5;
+                    } else if (exps.expsList.get(i).exploded/2 == 6) {
+                        expImg = e6;
+                    } else if (exps.expsList.get(i).exploded/2 == 7) {
+                        expImg = e7;
+                    } 
                     g2.drawImage(expImg, exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), tileSize+8, tileSize+8, null);
                     exps.expsList.get(i).exploded++;
                 }
@@ -346,37 +374,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void flush() {
     	
     	sound.flush();
-    }
-
-    public BufferedImage drawExplosion(int x, int y, int image) {
-        image /= 2;
-        try {
-            e1 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E1.png"));
-            e2 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E2.png"));
-            e3 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E3.png"));
-            e4 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E4.png"));
-            e5 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E5.png"));
-            e6 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E6.png"));
-            e7 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E7.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (image == 1) {
-            return e1;
-        } else if (image == 2) {
-            return e2;
-        } else if (image == 3) {
-            return e3;
-        } else if (image == 4) {
-            return e4;
-        } else if (image == 5) {
-            return e5;
-        } else if (image == 6) {
-            return e6;
-        } else if (image == 7) {
-            return e7;
-        }
-        return null;
     }
     
     //plays individual sounds
