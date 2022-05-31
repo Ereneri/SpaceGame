@@ -84,6 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gameOverState = 3;
     public final int storeState = 4;
     public final int scoreBoardState = 5;
+    public final int optionsState = 6;
     
     // Misc
     Sound sound = new Sound();
@@ -430,7 +431,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setSound(boolean sound) {
-        this.soundOption = false;
+        this.soundOption = sound;
     }
-
 }
