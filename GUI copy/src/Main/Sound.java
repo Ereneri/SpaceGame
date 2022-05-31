@@ -42,7 +42,7 @@ public class Sound {
 		
 		// shield sounds
 		soundURL[12] = getClass().getResource("/Sounds/shieldUp.wav");
-		soundURL[13] = getClass().getResource("/Sounds/shieldBreak.wav");
+		soundURL[13] = getClass().getResource("/Sounds/shieldBreak2.wav");
 
 
 	}

@@ -198,6 +198,8 @@ public class KeyHandler implements KeyListener {
                         gp.ship.score -= 200;
                         gp.playSE(2);
                         gp.playSE(10);
+                        
+                        //checks if the shieldUp sound has been played and if not plays the sound
                         if(!shieldSound.hasPlayedShieldSound) {
                         	gp.playSE(12);
                         	shieldSound.hasPlayedShieldSound = true;

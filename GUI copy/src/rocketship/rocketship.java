@@ -323,7 +323,8 @@ public class rocketship {
         		ast.asts.remove(i);
                 gp.hit = true;
                 gp.hitTime = System.currentTimeMillis();
-
+                	
+                //plays the explosion sound
         		gp.playSE(5);
        		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
                 if (angel) {
