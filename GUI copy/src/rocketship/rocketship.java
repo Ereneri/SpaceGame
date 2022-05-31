@@ -219,8 +219,10 @@ public class rocketship {
 
         // draw the ship with using the global x and y coordinates along with scaling from the gamepanel
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-        g2.setColor(Color.blue);
-        g2.drawOval(x-4, y-4, gp.tileSize+8, gp.tileSize+8);
+        if(hp > 100) {
+            g2.setColor(Color.blue);
+            g2.drawOval(x-4, y-4, gp.tileSize+8, gp.tileSize+8);
+        }
 
         // CROP IMAGE TO MAKE SIZING CORRECT
         
