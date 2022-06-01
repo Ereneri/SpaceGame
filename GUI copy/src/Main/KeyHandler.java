@@ -129,7 +129,7 @@ public class KeyHandler implements KeyListener {
         	//below is up and down selection movement with scrolling
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
                 if (gp.ui.commandNum == 0) {
-                    gp.ui.commandNum = 2;
+                    gp.ui.commandNum = 3;
                     gp.playSE(11);
                 } else {
                     gp.ui.commandNum--;
