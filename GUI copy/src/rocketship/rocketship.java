@@ -289,9 +289,13 @@ public class rocketship {
                 	System.out.println("touch obj");
                 	score = objRocket.obj[i].getValue() + score;
                     if (objRocket.obj[i] == objRocket.obj[9]) {
-                        hp = objRocket.obj[i].getHP() + hp;
-                        gp.boosted = true;
-                        gp.boosttime = System.currentTimeMillis();
+                    	if(hp == 200) {
+                    		score += 100;
+                    	}else {
+                            hp = objRocket.obj[i].getHP() + hp;
+                            gp.boosted = true;
+                            gp.boosttime = System.currentTimeMillis();
+                    	}
                     }
                 	objRocket.obj[i] = null;
                 	System.out.println(score);
