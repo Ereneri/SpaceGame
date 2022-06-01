@@ -97,6 +97,11 @@ public class GamePanel extends JPanel implements Runnable {
     public long boosttime = 0;
     public boolean soundOption = true;
     public boolean musicOption = true;
+    
+    //buying helth
+    public int hKeyCount = 0;
+    public long buyTime = 0;
+    public boolean buy = false;
 
 
     // Panel constructor
@@ -226,6 +231,13 @@ public class GamePanel extends JPanel implements Runnable {
                     hit = false;
                 }
             }
+            
+         // shows - $200 text for only .5 seconds
+            if(buy) {
+            	if (System.currentTimeMillis() - buyTime > 500) {
+                    buy = false;
+                }
+            }
 
             // shows +25% text for only .5 seconds
             if (boosted) {
@@ -284,28 +296,31 @@ public class GamePanel extends JPanel implements Runnable {
             }
             
             // checks if any bullets are touching any asteroids
-            for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
-                for(int i = 0; i < ast.asts.size(); i++) {
-                	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
-                        // bullet removal
-                		bullets.removeBullet(bulletArray.bullets.get(indexbull));
-                        indexbull--;
+            if(bulletArray.bullets.size() > 0 || bulletArray.bullets == null) {
+            	for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
+                    for(int i = 0; i < ast.asts.size(); i++) {
+                    	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
+                            // bullet removal
+                    		bullets.removeBullet(bulletArray.bullets.get(indexbull));
+                            indexbull = 0;
 
-                        // creates explosion object and adds to array
-                        Explosion exp = new Explosion(ast.asts.get(i).getX(), ast.asts.get(i).getY());
-                        exps.expsList.add(exp);
+                            // creates explosion object and adds to array
+                            Explosion exp = new Explosion(ast.asts.get(i).getX(), ast.asts.get(i).getY());
+                            exps.expsList.add(exp);
 
-                        // hides and removes asteroid
-                        ast.asts.get(i).hideAst();
-                        ast.astTime.add(System.currentTimeMillis());
-                        ast.asts.remove(i);
-                        i--;
+                            // hides and removes asteroid
+                            ast.asts.get(i).hideAst();
+                            ast.astTime.add(System.currentTimeMillis());
+                            ast.asts.remove(i);
+                            i--;
 
-//                		System.out.println("bullet touch asteroid");
-                		playSE(5);
-                	}
+//                    		System.out.println("bullet touch asteroid");
+                    		playSE(5);
+                    	}
+                    }
                 }
             }
+         
 
             // renders exp animation
             for (int i = 0; i < exps.expsList.size(); i++) {
@@ -339,6 +354,28 @@ public class GamePanel extends JPanel implements Runnable {
             //draws the ship
             ship.draw(g2);
             
+            //checks if the key h is being pressed and if so buys a helth shot
+            if(keyH.hKeyPressed == true && ship.score >= 200 && ship.hp < 200) {
+            	
+            	// if 5 frames have passed that the h key is being pressed for
+            	if(hKeyCount == 5) {
+            		
+            		//stuff for displaying text at the top
+                	boosted = true;
+                	boosttime = System.currentTimeMillis();
+                	buy = true;
+                	buyTime = System.currentTimeMillis();
+                	
+                	//changes ships stats
+                	ship.hp += 25;
+                	ship.score -= 200;
+                	hKeyCount = 0;
+                	playSE(9);
+            	}else {
+            		hKeyCount++ ;
+            	}
+            }
+            
             //sets the font a certain way 
             g2.setFont(ui.bossBattle);
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
@@ -360,6 +397,12 @@ public class GamePanel extends JPanel implements Runnable {
             if (boosted) {
                 g2.setColor(Color.green);
                 g2.drawString("+25%", tileSize/3*42, tileSize*2);
+            }
+            
+            // draws the - $200 text
+            if(buy) {
+            	g2.setColor(Color.red);
+            	g2.drawString("- $" + 200, tileSize/3, tileSize * 2 - 5);
             }
         }
         g2.dispose();
