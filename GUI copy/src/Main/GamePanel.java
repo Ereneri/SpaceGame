@@ -294,28 +294,31 @@ public class GamePanel extends JPanel implements Runnable {
             }
             
             // checks if any bullets are touching any asteroids
-            for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
-                for(int i = 0; i < ast.asts.size(); i++) {
-                	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
-                        // bullet removal
-                		bullets.removeBullet(bulletArray.bullets.get(indexbull));
-                        indexbull--;
+            if(bulletArray.bullets.size() > 0) {
+            	for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
+                    for(int i = 0; i < ast.asts.size(); i++) {
+                    	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
+                            // bullet removal
+                    		bullets.removeBullet(bulletArray.bullets.get(indexbull));
+                            indexbull = 0;
 
-                        // creates explosion object and adds to array
-                        Explosion exp = new Explosion(ast.asts.get(i).getX(), ast.asts.get(i).getY());
-                        exps.expsList.add(exp);
+                            // creates explosion object and adds to array
+                            Explosion exp = new Explosion(ast.asts.get(i).getX(), ast.asts.get(i).getY());
+                            exps.expsList.add(exp);
 
-                        // hides and removes asteroid
-                        ast.asts.get(i).hideAst();
-                        ast.astTime.add(System.currentTimeMillis());
-                        ast.asts.remove(i);
-                        i--;
+                            // hides and removes asteroid
+                            ast.asts.get(i).hideAst();
+                            ast.astTime.add(System.currentTimeMillis());
+                            ast.asts.remove(i);
+                            i--;
 
-//                		System.out.println("bullet touch asteroid");
-                		playSE(5);
-                	}
+//                    		System.out.println("bullet touch asteroid");
+                    		playSE(5);
+                    	}
+                    }
                 }
             }
+         
 
             // renders exp animation
             for (int i = 0; i < exps.expsList.size(); i++) {
