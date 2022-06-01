@@ -311,7 +311,7 @@ public class rocketship {
                 	objRocket.obj[i] = null;
                 	
                 	//plays the respected sound
-                	if(i == 9) {
+                	if(i == 9 && hp != 200) {
                 		gp.playSE(9);
                 	}else {
                 		gp.playSE(8);
