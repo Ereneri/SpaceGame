@@ -7,11 +7,11 @@ import java.awt.Graphics2D;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import collision.*;
+// import object.OBJ_Bullet;
 import Main.*;
 import Main.GamePanel.ast;
+import Main.GamePanel.exps;
 import Main.GamePanel.objRocket;
-import Main.KeyHandler;
-// import object.OBJ_Bullet;
 
 public class rocketship {
 
@@ -318,11 +318,17 @@ public class rocketship {
                 //subtracts 25 because of the hit
        			hp -= 25;
 
+                // creates explosion object and adds to array
+                Explosion exp = new Explosion(ast.asts.get(i).getX(), ast.asts.get(i).getY());
+                exps.expsList.add(exp);
+
+                // hides and removes asteroid
+                ast.asts.get(i).hideAst();
+                ast.astTime.add(System.currentTimeMillis());
+                ast.asts.remove(i);
+                i--;
                 // removes the asteroid and adds it to a respawn array list
-       			ast.astTime.add(System.currentTimeMillis());
-        		ast.asts.remove(i);
-                gp.hit = true;
-                gp.hitTime = System.currentTimeMillis();
+
                 	
                 //plays the explosion sound
         		gp.playSE(5);
