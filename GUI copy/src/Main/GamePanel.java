@@ -95,6 +95,9 @@ public class GamePanel extends JPanel implements Runnable {
     public long boosttime = 0;
     public boolean soundOption = true;
     public boolean musicOption = true;
+    
+    //buying helth
+    public int hKeyCount = 0;
 
 
     // Panel constructor
@@ -336,6 +339,20 @@ public class GamePanel extends JPanel implements Runnable {
             
             //draws the ship
             ship.draw(g2);
+            
+            //checks if the key h is being pressed and if so buys a helth shot
+            if(keyH.hKeyPressed == true /*&& score >= 200 && hp < 200*/) {
+            	if(hKeyCount == 5) {
+                	boosted = true;
+                	boosttime = System.currentTimeMillis();
+                	ship.hp += 25;
+                	ship.score -= 200;
+                	hKeyCount = 0;
+                	playSE(9);
+            	}else {
+            		hKeyCount++ ;
+            	}
+            }
             
             //sets the font a certain way 
             g2.setFont(ui.bossBattle);

@@ -3,7 +3,6 @@ package rocketship;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.awt.Graphics2D;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import collision.*;
@@ -25,7 +24,7 @@ public class rocketship {
     // Store stuff
     public boolean angel = false;
     public boolean speedBoost = false;
-
+    
     //bullets
     public class bullets{
     	public bullet bullet;

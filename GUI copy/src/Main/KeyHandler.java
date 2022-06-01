@@ -8,7 +8,7 @@ import rocketship.rocketship.shieldSound;
 public class KeyHandler implements KeyListener {
 
     // boolean for if a key is pressed to render an sprite in the game
-    public boolean upPressed, downPressed, leftPressed, rightPressed, shotKeyPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, shotKeyPressed, hKeyPressed;
     GamePanel gp;
 
     public KeyHandler(GamePanel gp) {
@@ -337,6 +337,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_SPACE) {
             shotKeyPressed = true;
         }
+        if (code == KeyEvent.VK_H) {
+        	hKeyPressed = true;
+        }
 
         // paused screen
         if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
@@ -373,6 +376,10 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_SPACE) {
             shotKeyPressed = false;
+        }
+        if (code == KeyEvent.VK_H) {
+        	hKeyPressed = false;
+        	gp.hKeyCount = 0;
         }
     }
 }
