@@ -21,10 +21,12 @@ public class rocketship {
     public int speed;
     public int score;
     public int hp = 100;
+    
     // Store stuff
     public boolean angel = false;
     public boolean speedBoost = false;
 
+    //bullets
     public class bullets{
     	public bullet bullet;
     	
@@ -36,8 +38,11 @@ public class rocketship {
         	bulletArray.bullets.remove(block);
         }
     }
+    
+    //ships collision
     public Collision shipC;
     
+    //walls
     public class walls{
     	public static Collision wallCUp;
         public static Collision wallCDown;
@@ -63,13 +68,10 @@ public class rocketship {
     }
 
     
-    
+    // updates the bullets position
     public void tick(Graphics2D g2) {
         for (int i = 0; i < bulletArray.bullets.size(); i++) {
         	bulletArray.bullets.get(i).tick(g2);
-            if (bulletArray.bullets.get(i).getX() < 0) {
-            	bulletArray.bullets.remove(i);
-            }
         }
     }
 
@@ -156,7 +158,7 @@ public class rocketship {
             x += speed;
             direction = "right";
         }
-        // Everything below is for 8 direction movement
+        // Everything below is for diagonal movement
         if (keyH.upPressed && keyH.rightPressed) {
             direction = "upRight";
         }
@@ -169,6 +171,7 @@ public class rocketship {
         if (keyH.downPressed && keyH.leftPressed) {
             direction = "downLeft";
         }
+        // creates a new bullet object if the space bar is pressed
         if (keyH.shotKeyPressed == true) {
             if (bulletArray.bullets.size() == 0 || bulletArray.bullets.get(bulletArray.bullets.size()-1).getTime() + 200 < System.currentTimeMillis()) {
             	bulletArray.bullets.add(new bullet(this.x+16, this.y+16, direction));
@@ -189,6 +192,7 @@ public class rocketship {
 
     // takes the direction and draws the correct sprite image
     public void draw(Graphics2D g2) {
+    	
         // render bullets
         for (int i = 0; i < bulletArray.bullets.size(); i++) {
         	bulletArray.bullets.get(i).tick(g2);
@@ -319,7 +323,7 @@ public class rocketship {
                  }
         		
         		//drwas the collectibles collision
-//                g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
+//              g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
             }
         }
         
@@ -345,16 +349,20 @@ public class rocketship {
                 ast.astTime.add(System.currentTimeMillis());
                 ast.asts.remove(i);
                 i--;
-                // removes the asteroid and adds it to a respawn array list
-
                 	
                 //plays the explosion sound
         		gp.playSE(5);
+        		
+        		//if the ship touches an asteroid and its health is at 25
        		}else if(shipC.touches(ast.asts.get(i).getCAst()) && hp==25) {
+       			
+       			//if you have the angle powerup
                 if (angel) {
                     hp += 25;
                     angel = false;
                     gp.playSE(9);
+                    
+                // if you dont have the angle powerup
                 } else {
                     hp = 0;
                     gp.playSE(5);

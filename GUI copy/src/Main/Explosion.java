@@ -13,6 +13,7 @@ public class Explosion {
         this.exploded = 0;
     }
 
+    //adds one to the counter
     public void tick() {
         exploded++;
     }

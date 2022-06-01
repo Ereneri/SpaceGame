@@ -19,6 +19,7 @@ public class asteroidSetter {
 		}
 	}
 
+	//deleats everything from the asteroid array list
 	public void clearAst() {
 		ast.asts.clear();
 	}

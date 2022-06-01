@@ -115,7 +115,7 @@ public class Asteroid {
 		return y;
 	}
 	
-	//returns 
+	//returns the asteroids x and y speed
 	public int getYVelAst() {
 		return yVelAst;
 	}

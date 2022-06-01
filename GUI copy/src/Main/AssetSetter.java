@@ -63,6 +63,7 @@ public class AssetSetter {
 		objRocket.obj[6].objectC = new Collision(objRocket.obj[6].worldX + 8, objRocket.obj[6].worldY + 5, 28, 28);
 	}
 	
+	// adds the wrench to the list of collectibles
 	public void setWrench() {
 		objRocket.obj[9] = (metal) new Wrench();
 		objRocket.obj[9].worldX = (int)(Math.random() * 16) * gp.tileSize;
