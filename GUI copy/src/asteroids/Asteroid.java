@@ -26,19 +26,25 @@ public class Asteroid {
 
 	//creates an asteroid object in a certain position and with certain speeds
 	public Asteroid(int x, int y, int xVel, int yVel, GamePanel gp) {
+		//sets basic variables
 		this.gp = gp;
 		this.x=x;
 		this.y=y;
 		this.xVelAst=xVel;
 		this.yVelAst=yVel;
+		
+		//explosion variables
 		this.exploded = 0;
 		this.hide = false;
+		
+		//sets the asteroid image
 		try {
 			asteroid = ImageIO.read(getClass().getResourceAsStream("/asteroids/ast.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+		//creates a colision box for the asteroid
 		c=new Collision(x+7,y+7,gp.tileSize-14, gp.tileSize-14);
 	}
 
@@ -52,14 +58,14 @@ public class Asteroid {
 		if (!hide) {
 			g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
 			g.setColor(Color.white);
-			// g.drawRect(this.x+5, this.y+5, gp.tileSize/2+8, gp.tileSize/2+8);
-			// c.render(g);
+
+//			c.render(g);
 		}
 		
 		g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
 //		g.setColor(Color.white);
-//		g.drawRect(this.x+7, this.y+7, gp.tileSize-14, gp.tileSize-14);
-		// c.render(g);
+
+//		c.render(g);
 	}
 
 	public int getX() {
@@ -100,12 +106,16 @@ public class Asteroid {
 	public void setYAst(int y) {
 		this.y += y;
 	}
+	
+	//returns the asteroids positions
 	public int getXAst() {
 		return x;
 	}
 	public int getYAst() {
 		return y;
 	}
+	
+	//returns 
 	public int getYVelAst() {
 		return yVelAst;
 	}
