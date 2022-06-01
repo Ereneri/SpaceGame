@@ -350,12 +350,18 @@ public class GamePanel extends JPanel implements Runnable {
             ship.draw(g2);
             
             //checks if the key h is being pressed and if so buys a helth shot
-            if(keyH.hKeyPressed == true /*&& ship.score >= 200 && ship.hp < 200*/) {
+            if(keyH.hKeyPressed == true && ship.score >= 200 && ship.hp < 200) {
+            	
+            	// if 5 frames have passed that the h key is being pressed for
             	if(hKeyCount == 5) {
+            		
+            		//stuff for displaying text at the top
                 	boosted = true;
                 	boosttime = System.currentTimeMillis();
                 	buy = true;
                 	buyTime = System.currentTimeMillis();
+                	
+                	//changes ships stats
                 	ship.hp += 25;
                 	ship.score -= 200;
                 	hKeyCount = 0;
