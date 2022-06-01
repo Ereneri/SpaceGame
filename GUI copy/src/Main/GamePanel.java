@@ -98,6 +98,8 @@ public class GamePanel extends JPanel implements Runnable {
     
     //buying helth
     public int hKeyCount = 0;
+    public long buyTime = 0;
+    public boolean buy = false;
 
 
     // Panel constructor
@@ -227,6 +229,13 @@ public class GamePanel extends JPanel implements Runnable {
                     hit = false;
                 }
             }
+            
+         // shows - $200 text for only .5 seconds
+            if(buy) {
+            	if (System.currentTimeMillis() - buyTime > 500) {
+                    buy = false;
+                }
+            }
 
             // shows +25% text for only .5 seconds
             if (boosted) {
@@ -341,10 +350,12 @@ public class GamePanel extends JPanel implements Runnable {
             ship.draw(g2);
             
             //checks if the key h is being pressed and if so buys a helth shot
-            if(keyH.hKeyPressed == true /*&& score >= 200 && hp < 200*/) {
+            if(keyH.hKeyPressed == true /*&& ship.score >= 200 && ship.hp < 200*/) {
             	if(hKeyCount == 5) {
                 	boosted = true;
                 	boosttime = System.currentTimeMillis();
+                	buy = true;
+                	buyTime = System.currentTimeMillis();
                 	ship.hp += 25;
                 	ship.score -= 200;
                 	hKeyCount = 0;
@@ -375,6 +386,12 @@ public class GamePanel extends JPanel implements Runnable {
             if (boosted) {
                 g2.setColor(Color.green);
                 g2.drawString("+25%", tileSize/3*42, tileSize*2);
+            }
+            
+            // draws the - $200 text
+            if(buy) {
+            	g2.setColor(Color.red);
+            	g2.drawString("- $" + 200, tileSize/3, tileSize * 2 - 5);
             }
         }
         g2.dispose();
