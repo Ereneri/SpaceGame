@@ -246,18 +246,19 @@ public class rocketship {
         }
 
  
-        //moves collision with rocket and displays it
+        //moves collision with ship
         g2.setColor(Color.gray);
         shipC.setXCol(x+5);
         shipC.setYCol(y+9);
-        //displays the ships collision box
-//        shipC.render(g2);
         
-        // renders walls
-//        walls.wallCUp.render(g2);
-//        walls.wallCDown.render(g2);
-//        walls.wallCLeft.render(g2);
-//        walls.wallCRight.render(g2);
+//         displays the ships collision box
+//      shipC.render(g2);
+        
+//         renders walls
+//      walls.wallCUp.render(g2);
+//      walls.wallCDown.render(g2);
+//      walls.wallCLeft.render(g2);
+//      walls.wallCRight.render(g2);
         
         
         // teleportation if you touch a wall
@@ -285,27 +286,40 @@ public class rocketship {
         	if(objRocket.obj[i]!= null) {
         		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX()+8);
         		objRocket.obj[i].getCObj().setYCol(objRocket.obj[i].getWorldY()+5);
+        		
+        		//checks if the ship is touching any of the collectibles
         		if(shipC.touches(objRocket.obj[i].getCObj())) {
-                	System.out.println("touch obj");
-                	score = objRocket.obj[i].getValue() + score;
+        			
+        			//adds to the score the collectibles value
+                	score += objRocket.obj[i].getValue();
+                	
+                	//checks if you are collecting the wrench
                     if (objRocket.obj[i] == objRocket.obj[9]) {
+                    	
+                    	//checks if your at max health
                     	if(hp == 200) {
                     		score += 100;
+                    		
+                    	//if not then add more health
                     	}else {
                             hp = objRocket.obj[i].getHP() + hp;
                             gp.boosted = true;
                             gp.boosttime = System.currentTimeMillis();
                     	}
                     }
+                    // deletes the collectible
                 	objRocket.obj[i] = null;
-                	System.out.println(score);
+                	
+                	//plays the respected sound
                 	if(i == 9) {
                 		gp.playSE(9);
                 	}else {
                 		gp.playSE(8);
                 	}
                  }
-                //g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
+        		
+        		//drwas the collectibles collision
+//                g2.drawRect(objRocket.obj[i].getWorldX()+8, objRocket.obj[i].getWorldY()+5, 28, 28);
             }
         }
         
