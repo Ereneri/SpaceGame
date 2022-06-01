@@ -91,7 +91,7 @@ public class KeyHandler implements KeyListener {
         	//below is up and down selection movement with scrolling
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             	if(gp.ui.commandNum == 0) {
-            		gp.ui.commandNum = 1;
+            		gp.ui.commandNum = 2;
             		gp.playSE(11);
             	}else {
             		gp.ui.commandNum --;
@@ -99,7 +99,7 @@ public class KeyHandler implements KeyListener {
             	}
             }
             if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-            	if(gp.ui.commandNum == 1) {
+            	if(gp.ui.commandNum == 2) {
             		gp.ui.commandNum = 0;
             		gp.playSE(11);
             	}else {
@@ -110,9 +110,16 @@ public class KeyHandler implements KeyListener {
             
             //choosing your selection
             if (code == KeyEvent.VK_ENTER) {
+
+                // save
+                if (gp.ui.commandNum == 0) {
+                    gp.gameState = gp.saveState;
+                    gp.ui.commandNum = 0;
+                    gp.playSE(3);
+                }
             	
             	//retry
-                if (gp.ui.commandNum == 0) {
+                if (gp.ui.commandNum == 1) {
                     gp.gameState = gp.playState;
                     gp.reset();
                     gp.stopMusic();
@@ -121,7 +128,7 @@ public class KeyHandler implements KeyListener {
                 }
                 
                 //quit
-                if (gp.ui.commandNum == 1) {
+                if (gp.ui.commandNum == 2) {
                     gp.gameState = gp.titleState;
                     gp.ui.commandNum = 0;
                     gp.reset();
@@ -313,6 +320,137 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+        if (gp.gameState == gp.saveState) {
+            // get name input 
+            if (gp.nameBuilder == true) {
+                System.out.println(code);
+                if (code == KeyEvent.VK_DELETE || code == KeyEvent.VK_BACK_SPACE) {
+                    gp.ship.removeLetter();
+                }
+                if (code == KeyEvent.VK_ENTER && gp.ship.name.length() == 3) {
+                    gp.nameBuilder = false;
+                }
+                if (gp.ship.name.length() != 3) {
+                    if (code == KeyEvent.VK_A) {
+                        gp.ship.addLetter("A");
+                    }
+                    if (code == KeyEvent.VK_B) {
+                        gp.ship.addLetter("B");
+                    }
+                    if (code == KeyEvent.VK_C) {
+                        gp.ship.addLetter("C");
+                    }
+                    if (code == KeyEvent.VK_D) {
+                        gp.ship.addLetter("D");
+                    }
+                    if (code == KeyEvent.VK_E) {
+                        gp.ship.addLetter("E");
+                    }
+                    if (code == KeyEvent.VK_F) {
+                        gp.ship.addLetter("F");
+                    }
+                    if (code == KeyEvent.VK_G) {
+                        gp.ship.addLetter("G");
+                    }
+                    if (code == KeyEvent.VK_H) {
+                        gp.ship.addLetter("H");
+                    }
+                    if (code == KeyEvent.VK_I) {
+                        gp.ship.addLetter("I");
+                    }
+                    if (code == KeyEvent.VK_J) {
+                        gp.ship.addLetter("J");
+                    }
+                    if (code == KeyEvent.VK_K) {
+                        gp.ship.addLetter("K");
+                    }
+                    if (code == KeyEvent.VK_L) {
+                        gp.ship.addLetter("L");
+                    }
+                    if (code == KeyEvent.VK_M) {
+                        gp.ship.addLetter("M");
+                    }
+                    if (code == KeyEvent.VK_N) {
+                        gp.ship.addLetter("N");
+                    }
+                    if (code == KeyEvent.VK_O) {
+                        gp.ship.addLetter("O");
+                    }
+                    if (code == KeyEvent.VK_P) {
+                        gp.ship.addLetter("P");
+                    }
+                    if (code == KeyEvent.VK_Q) {
+                        gp.ship.addLetter("Q");
+                    }
+                    if (code == KeyEvent.VK_R) {
+                        gp.ship.addLetter("R");
+                    }
+                    if (code == KeyEvent.VK_S) {
+                        gp.ship.addLetter("S");
+                    }
+                    if (code == KeyEvent.VK_T) {
+                        gp.ship.addLetter("T");
+                    }
+                    if (code == KeyEvent.VK_U) {
+                        gp.ship.addLetter("U");
+                    }
+                    if (code == KeyEvent.VK_V) {
+                        gp.ship.addLetter("V");
+                    }
+                    if (code == KeyEvent.VK_W) {
+                        gp.ship.addLetter("W");
+                    }
+                    if (code == KeyEvent.VK_X) {
+                        gp.ship.addLetter("X");
+                    }
+                    if (code == KeyEvent.VK_Y) {
+                        gp.ship.addLetter("Y");
+                    }
+                    if (code == KeyEvent.VK_Z) {
+                        gp.ship.addLetter("Z");
+                    }
+                }
+
+            } else {
+                //up
+                if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+                    gp.ui.commandNum--;
+                    if (gp.ui.commandNum == -1) {
+                        gp.ui.commandNum = 2;
+                        gp.playSE(11);
+                    }else {
+                        gp.playSE(11);
+                    }
+                }
+                // down
+                if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+                    gp.ui.commandNum++;
+                    if (gp.ui.commandNum == 3) {
+                        gp.ui.commandNum = 0;
+                        gp.playSE(11);
+                    }else {
+                        gp.playSE(11);
+                    }
+                }
+    
+                if (code == KeyEvent.VK_ENTER) {
+                    
+                    // toggles sound eddects
+                    if (gp.ui.commandNum == 0) {
+                        boolean tmp = gp.soundOption;
+                        gp.setSound(!tmp);
+                    }
+                    
+                    // returns to menu
+                    if (gp.ui.commandNum == 1) {
+                        gp.gameState = gp.titleState;
+                        gp.ui.commandNum = 0;
+                        gp.playSE(3);
+                    }
+                }
+            }
+        }
+
         if (gp.gameState == gp.helpState) {
             // return
             if (code == KeyEvent.VK_ENTER) {
@@ -323,33 +461,36 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
-        // Game controls
-        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
-            upPressed = true;
-        }
-        if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
-            leftPressed = true;
-        }
-        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-            downPressed = true;
-        }
-        if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
-            rightPressed = true;
-        }
-        if (code == KeyEvent.VK_SPACE) {
-            shotKeyPressed = true;
-        }
 
-        // paused screen
-        if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
-            if (gp.gameState == gp.playState) {
-                gp.gameState = gp.pauseState;
-                gp.ui.commandNum = 0;
-                gp.playSE(3);
-            } else if (gp.gameState == gp.pauseState) {
-                gp.gameState = gp.playState;
-                gp.ui.commandNum = 0;
-                gp.playSE(3);
+        if (gp.gameState == gp.playState) {
+            // Game controls
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+                upPressed = true;
+            }
+            if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
+                leftPressed = true;
+            }
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+                downPressed = true;
+            }
+            if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
+                rightPressed = true;
+            }
+            if (code == KeyEvent.VK_SPACE) {
+                shotKeyPressed = true;
+            }
+    
+            // paused screen
+            if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
+                if (gp.gameState == gp.playState) {
+                    gp.gameState = gp.pauseState;
+                    gp.ui.commandNum = 0;
+                    gp.playSE(3);
+                } else if (gp.gameState == gp.pauseState) {
+                    gp.gameState = gp.playState;
+                    gp.ui.commandNum = 0;
+                    gp.playSE(3);
+                }
             }
         }
     }

@@ -86,6 +86,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int scoreBoardState = 5;
     public final int optionsState = 6;
     public final int helpState = 7;
+    public final int saveState = 8;
+    public boolean nameBuilder = true;
     
     // Misc
     Sound sound = new Sound();
@@ -442,5 +444,9 @@ public class GamePanel extends JPanel implements Runnable {
     //toggles the sound on and off
     public void setSound(boolean sound) {
         this.soundOption = sound;
+    }
+
+    public String getName() {
+        return ship.name;
     }
 }

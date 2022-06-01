@@ -21,6 +21,7 @@ public class rocketship {
     public int speed;
     public int score;
     public int hp = 100;
+    public String name = "";
     
     // Store stuff
     public boolean angel = false;
@@ -67,6 +68,13 @@ public class rocketship {
         public static boolean hasPlayedShieldSound = false;
     }
 
+    public void removeLetter() {
+        name = name.substring(0, name.length() - 1);
+    }
+
+    public void addLetter(String letter) {
+        name += letter;
+    }
     
     // updates the bullets position
     public void tick(Graphics2D g2) {
