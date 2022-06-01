@@ -84,6 +84,7 @@ public class UI {
         }
     }
 
+    //draws the pause screen
     public void drawPauseScreen() {
 
         g2.setFont(bossBattle);
@@ -159,6 +160,7 @@ public class UI {
 
     }
 
+    //draws the store screen
     public void drawStore() {
         g2.setFont(bossBattle);
 
@@ -315,6 +317,7 @@ public class UI {
 
     }
 
+    //draws the title screen
     public void drawTitleScreen() {
 
         g2.setFont(bossBattle);
@@ -377,6 +380,7 @@ public class UI {
 
     }
 
+    //draws the options screen
     public void drawOptions() {
 
             g2.setFont(bossBattle);
@@ -420,6 +424,7 @@ public class UI {
         return x;
     }
 
+    //draws the geme over screen
     public void drawGameOverScreen() {
         // set font
         g2.setFont(bossBattle);

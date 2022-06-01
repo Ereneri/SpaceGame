@@ -39,6 +39,10 @@ public class Sound {
 		
 		// movement with w and s in the different screnes
 		soundURL[11] = getClass().getResource("/Sounds/selectionMovement2.wav");
+		
+		// shield sounds
+		soundURL[12] = getClass().getResource("/Sounds/shieldUp.wav");
+		soundURL[13] = getClass().getResource("/Sounds/shieldBreak2.wav");
 
 
 	}

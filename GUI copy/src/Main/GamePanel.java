@@ -209,6 +209,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
+            // array list that measures the amount of time the asteroid has been gone for
             for(int i = 0; i<ast.astTime.size(); i++) {
             	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 4000 < System.currentTimeMillis()) {
                 	ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()), (int)(Math.random()*4+1), (int)(Math.random()*4+1), this));
@@ -264,6 +265,8 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState != playState) {
             ui.draw(g2);
         } else {
+        	
+        	//draws the collectibles
             for (int i = 0; i < objRocket.obj.length; i++) {
                 if(objRocket.obj[i]!= null) {
                     objRocket.obj[i].draw(g2, this);
@@ -296,7 +299,7 @@ public class GamePanel extends JPanel implements Runnable {
                         ast.asts.remove(i);
                         i--;
 
-                		System.out.println("bullet touch asteroid");
+//                		System.out.println("bullet touch asteroid");
                 		playSE(5);
                 	}
                 }
@@ -330,6 +333,8 @@ public class GamePanel extends JPanel implements Runnable {
                     exps.expsList.get(i).exploded++;
                 }
             }
+            
+            //draws the ship
             ship.draw(g2);
             
             //sets the font a certain way 
@@ -378,11 +383,6 @@ public class GamePanel extends JPanel implements Runnable {
     	sound.stop();
     }
     
-    public void flush() {
-    	
-    	sound.flush();
-    }
-    
     //plays individual sounds
     public void playSE(int i ) {
     	//checks if sound is enabled
@@ -395,14 +395,17 @@ public class GamePanel extends JPanel implements Runnable {
     	}
     }
 
+    //gets the score
     public int getScore() {
         return ship.score;
     }
 
+    //restest all the ships values
     public void reset() {
         ship.setDefaultValues();
     }
 
+    //starts a new game
     public void newGame() {
         asteroidSetter.clearAst();
         aSetter.clear();
@@ -410,27 +413,33 @@ public class GamePanel extends JPanel implements Runnable {
         spawnMetal();
     }
 
+    //sets the angle powerup to true or false
     public void setAngel(boolean b) {
         ship.angel = b;
     }
 
+    //adds the speed boost to the ship
     public void addBooster() {
         ship.speedBoost = true;
         ship.speed = ship.speed+2;
     }
 
+    //gets the angle powerup value
     public boolean getAngel() {
         return ship.angel;
     }
 
+    //gets the speed powerup value
     public boolean getSpeedBoost() {
         return ship.speedBoost;
     }
 
+    //gets the ships health
     public int getHealth() {
         return ship.hp;
     }
 
+    //toggles the sound on and off
     public void setSound(boolean sound) {
         this.soundOption = sound;
     }
