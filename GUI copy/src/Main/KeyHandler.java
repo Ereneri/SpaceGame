@@ -29,7 +29,7 @@ public class KeyHandler implements KeyListener {
         if (gp.gameState == gp.titleState) {
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             	if(gp.ui.commandNum == 0) {
-            		gp.ui.commandNum = 2;
+            		gp.ui.commandNum = 3;
             		gp.playSE(11);
             	}else {
             		gp.ui.commandNum --;
@@ -37,7 +37,7 @@ public class KeyHandler implements KeyListener {
             	}
             }
             if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-            	if(gp.ui.commandNum == 2) {
+            	if(gp.ui.commandNum == 3) {
             		gp.ui.commandNum = 0;
             		gp.playSE(11);
             	}else {
@@ -53,11 +53,16 @@ public class KeyHandler implements KeyListener {
                     gp.playSE(2);
                 }
                 if (gp.ui.commandNum == 1) {
-                    gp.gameState = gp.optionsState;
-                    gp.ui.commandNum = -1;
+                    gp.gameState = gp.helpState;
+                    gp.ui.commandNum = 0;
                     gp.playSE(2);
                 }
                 if (gp.ui.commandNum == 2) {
+                    gp.gameState = gp.optionsState;
+                    gp.ui.commandNum = 0;
+                    gp.playSE(2);
+                }
+                if (gp.ui.commandNum == 3) {
                     gp.playSE(3);
                     System.exit(0);
                 }
@@ -259,6 +264,14 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+        if (gp.gameState == gp.helpState) {
+            // return
+            // if (code == KeyEvent.VK_ENTER) {
+            //     gp.gameState = gp.titleState;
+            //     gp.ui.commandNum = 0;
+            //     gp.playSE(3);
+            // }
+        }
         // Game controls
         if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             upPressed = true;
