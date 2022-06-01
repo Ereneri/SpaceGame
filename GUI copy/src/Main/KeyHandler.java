@@ -35,7 +35,7 @@ public class KeyHandler implements KeyListener {
             	
             	// scrolling look (if your at the top and go up again, now you at the bottom)
             	if(gp.ui.commandNum == 0) {
-            		gp.ui.commandNum = 2;
+            		gp.ui.commandNum = 3;
             		gp.playSE(11);
             	}else {
             		gp.ui.commandNum --;
@@ -45,9 +45,8 @@ public class KeyHandler implements KeyListener {
             
             //going down in selections
             if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-            	
-            	// scrolling look (if your at the bottom and go sown again, now you at the top)
-            	if(gp.ui.commandNum == 2) {
+                // scrolling look (if your at the bottom and go sown again, now you at the top)
+            	if(gp.ui.commandNum == 3) {         	
             		gp.ui.commandNum = 0;
             		gp.playSE(11);
             	}else {
@@ -67,13 +66,18 @@ public class KeyHandler implements KeyListener {
                 
                 //options
                 if (gp.ui.commandNum == 1) {
-                    gp.gameState = gp.optionsState;
-                    gp.ui.commandNum = -1;
+                    gp.gameState = gp.helpState;
+                    gp.ui.commandNum = 0;
                     gp.playSE(2);
                 }
                 
                 //quit
                 if (gp.ui.commandNum == 2) {
+                    gp.gameState = gp.optionsState;
+                    gp.ui.commandNum = 0;
+                    gp.playSE(2);
+                }
+                if (gp.ui.commandNum == 3) {
                     gp.playSE(3);
                     System.exit(0);
                 }
@@ -308,6 +312,14 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+        if (gp.gameState == gp.helpState) {
+            // return
+            // if (code == KeyEvent.VK_ENTER) {
+            //     gp.gameState = gp.titleState;
+            //     gp.ui.commandNum = 0;
+            //     gp.playSE(3);
+            // }
+        }
         // Game controls
         if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             upPressed = true;
