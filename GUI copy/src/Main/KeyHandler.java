@@ -315,11 +315,13 @@ public class KeyHandler implements KeyListener {
 
         if (gp.gameState == gp.helpState) {
             // return
-            // if (code == KeyEvent.VK_ENTER) {
-            //     gp.gameState = gp.titleState;
-            //     gp.ui.commandNum = 0;
-            //     gp.playSE(3);
-            // }
+            if (code == KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNum == 1) {
+                    gp.gameState = gp.titleState;
+                } else {
+                    gp.ui.commandNum++;
+                }
+            }
         }
         // Game controls
         if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
