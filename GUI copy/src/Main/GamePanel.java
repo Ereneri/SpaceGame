@@ -294,7 +294,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
             
             // checks if any bullets are touching any asteroids
-            if(bulletArray.bullets.size() > 0) {
+            if(bulletArray.bullets.size() > 0 || bulletArray.bullets == null) {
             	for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
                     for(int i = 0; i < ast.asts.size(); i++) {
                     	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
