@@ -2,13 +2,13 @@ package Main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
 
-import java.awt.FontFormatException;
+import javax.imageio.ImageIO;
 
 public class UI {
     
@@ -277,42 +277,65 @@ public class UI {
         int y = gp.tileSize*3;
         g2.drawString(text, x, y);
 
-        g2.setFont(g2.getFont().deriveFont(30F));
+        g2.setFont(g2.getFont().deriveFont(20F));
+
+        // Movement 
+        x = 60;
+        y += gp.tileSize;
+        text = "W";
+        g2.drawString(text, x+12, y+gp.tileSize);
+        text = "A S D";
+        g2.drawString(text, x, y+gp.tileSize+20);
+
+        text = "Movement";
+        x += gp.tileSize;
+        g2.drawString(text, x + 30, y+gp.tileSize+10);
+        y += gp.tileSize;
+
+        // Pause
+        x = 60;
+        y += gp.tileSize;
+        text = "ESC";
+        g2.drawString(text, x+3, y+gp.tileSize-20);
+        text = "Shift";
+        g2.drawString(text, x-10, y+gp.tileSize);
+
+        text = "Pause and unpause Game";
+        x += gp.tileSize;
+        g2.drawString(text, x + 30, y+gp.tileSize-10);
+        y += gp.tileSize;
 
         // item 1 
         x = 60;
         y += gp.tileSize;
-        g2.drawImage(angel, x, y, gp.tileSize+25, gp.tileSize+25, null);
-        text = "Angel's Wings: ";
-        x += gp.tileSize+25;
+        g2.drawImage(angel, x, y+25, gp.tileSize, gp.tileSize, null);
+        text = "When bought it sets your health to 25% when you die";
+        x += gp.tileSize;
         g2.drawString(text, x + 25, y+gp.tileSize);
 
         // item 2
         x = 60;
         y += gp.tileSize*2;
-        g2.drawImage(speed, x, y, gp.tileSize+25, gp.tileSize+25, null);
-        text = "Speedy Shooter ($250)";
-        x += gp.tileSize+25;
+        g2.drawImage(speed, x, y+20, gp.tileSize, gp.tileSize, null);
+        text = "When bought it increases Ship Speed by 2 units";
+        x += gp.tileSize;
         g2.drawString(text, x + 25, y+gp.tileSize);
 
         // item 3
         x = 60;
         y += gp.tileSize*2;
-        g2.drawImage(health, x, y, gp.tileSize+25, gp.tileSize+25, null);
-        y += 5;
-        text = "Mechanics Repair ($200)";
-        x += gp.tileSize+25;
+        g2.drawImage(health, x, y+20, gp.tileSize, gp.tileSize, null);
+        text = "When bought it repairs ship's health by 100 units";
+        x += gp.tileSize;
         g2.drawString(text, x + 25, y+gp.tileSize);
 
         // return to game
         g2.setFont(g2.getFont().deriveFont(25F));
         text = "Return";
         x = getXforCenteringText(text);
-        y += gp.tileSize*4;
+        y += gp.tileSize*3;
         g2.drawString(text, x, y);
-        if (commandNum == 0) {
-            g2.drawString(">", x - gp.tileSize, y);
-        }
+        g2.drawString(">", x - gp.tileSize, y);
 
 
     }
