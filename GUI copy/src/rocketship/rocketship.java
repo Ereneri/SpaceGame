@@ -53,6 +53,7 @@ public class rocketship {
     // initlize the game panel and keyhabndler
     GamePanel gp;
     KeyHandler keyH;
+    scoreboard sb;
 
     // Vars for sprite image
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2, shield;
@@ -89,9 +90,10 @@ public class rocketship {
     }
 
     // contructor (DEFAULT)
-    public rocketship(GamePanel gp, KeyHandler keyH) {
+    public rocketship(GamePanel gp, KeyHandler keyH, scoreboard sb) {
         this.gp = gp;
         this.keyH = keyH;
+        this.sb = sb;
         this.score = 0;
         setDefaultValues();
         getRocketImage();

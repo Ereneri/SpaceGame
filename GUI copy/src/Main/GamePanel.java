@@ -42,12 +42,13 @@ public class GamePanel extends JPanel implements Runnable {
     // SYSTEM VARS
     public UI ui = new UI(this);
     KeyHandler keyH = new KeyHandler(this);
+    scoreboard sb = new scoreboard();
     public Thread gameThread;
 
     Boolean DEBUG = false;
     
     // Object and Rocketship Vars
-    rocketship ship = new rocketship(this, keyH);
+    rocketship ship = new rocketship(this, keyH, sb);
     
     // Metal Object
     public class objRocket{
@@ -87,6 +88,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int optionsState = 6;
     public final int helpState = 7;
     public final int saveState = 8;
+    public final int leaderboardState = 9;
     public boolean nameBuilder = true;
     
     // Misc
@@ -154,7 +156,6 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread = new Thread(this);
         gameThread.start();
         this.playMusic(1);
-        
     }
 
     // Game Loop
@@ -487,5 +488,22 @@ public class GamePanel extends JPanel implements Runnable {
 
     public String getName() {
         return ship.name;
+    }
+
+    public void saveScore() {
+        int Sscore = (int)getScore();
+        sb.addScore(getName(), Sscore);
+    }
+
+    public ArrayList<score> getScores() {
+        return sb.getScores();
+    }
+
+    public int getScore(score s) {
+        return sb.getScore(s);
+    }
+
+    public String getName(score s) {
+        return sb.getName(s);
     }
 }

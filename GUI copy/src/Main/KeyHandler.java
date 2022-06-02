@@ -171,7 +171,8 @@ public class KeyHandler implements KeyListener {
                 //leaderboard
                 if (gp.ui.commandNum == 1) {
                 	gp.playSE(2);
-//                    gp.gameState = gp.scoreBoardState
+                   gp.gameState = gp.leaderboardState;
+                   gp.ui.commandNum = 0;
                 }
                 
                 //resume
@@ -320,6 +321,19 @@ public class KeyHandler implements KeyListener {
             }
         }
 
+        if (gp.gameState == gp.leaderboardState) {
+            if (code == KeyEvent.VK_ENTER) {
+                // returns to menu
+                if (gp.ui.commandNum == 1) {
+                    gp.gameState = gp.titleState;
+                    gp.reset();
+                    gp.ui.commandNum = 0;
+                    gp.playSE(3);
+                }
+                gp.ui.commandNum++;
+            }
+        }
+
         if (gp.gameState == gp.saveState) {
             // get name input 
             if (gp.nameBuilder == true) {
@@ -435,10 +449,12 @@ public class KeyHandler implements KeyListener {
     
                 if (code == KeyEvent.VK_ENTER) {
                     
-                    // toggles sound eddects
+                    // saves score and redirects to leaderboard
                     if (gp.ui.commandNum == 0) {
-                        boolean tmp = gp.soundOption;
-                        gp.setSound(!tmp);
+                        gp.saveScore();
+                        gp.gameState = gp.leaderboardState;
+                        gp.ui.commandNum = 0;
+                        gp.playSE(3);
                     }
                     
                     // returns to menu
