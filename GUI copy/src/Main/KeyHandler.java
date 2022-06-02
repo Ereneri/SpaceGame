@@ -460,7 +460,9 @@ public class KeyHandler implements KeyListener {
                     if (gp.ui.commandNum == 1) {
                         gp.saveScore();
                         gp.gameState = gp.leaderboardState;
-                        gp.ui.commandNum = -1;
+                        gp.ui.commandNum = 0;
+                        gp.nameBuilder = true;
+                        gp.ship.name = "";
                         gp.playSE(3);
                     }
                     
@@ -468,7 +470,7 @@ public class KeyHandler implements KeyListener {
                     if (gp.ui.commandNum == 2) {
                         gp.reset();
                         gp.gameState = gp.titleState;
-                        gp.ui.commandNum = -1;
+                        gp.ui.commandNum = 0;
                         gp.playSE(3);
                     }
                 }

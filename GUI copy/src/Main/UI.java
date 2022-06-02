@@ -563,7 +563,8 @@ public class UI {
         //Main
         g2.setColor(Color.WHITE);
         g2.drawString(text, x-4, y-4);
-        x = getXforCenteringText("AAA - 1000");
+        x = getXforCenteringText("AAA - 1000")+130;
+        y += 55;
         
         // // Score
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
@@ -573,8 +574,8 @@ public class UI {
                 lim = 5;
             }
             for (int i = 0; i < lim; i++) {
-                    text = gp.getName(gp.sb.scores.get(i)) + " - " + gp.getScore(gp.sb.scores.get(i));
-                    y += gp.tileSize*2;
+                    text = (i+1) + ". " + gp.getName(gp.sb.scores.get(i)) + " - " + gp.getScore(gp.sb.scores.get(i));
+                    y += 60;
                     g2.drawString(text, x, y);
                 }
         } else {
@@ -590,9 +591,7 @@ public class UI {
             x = getXforCenteringText(text);
             y += 55 + gp.tileSize;
             g2.drawString(text, x, y);
-            if (commandNum == 0 || commandNum == 1) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
+            g2.drawString(">", x - gp.tileSize, y);
         }
         
         

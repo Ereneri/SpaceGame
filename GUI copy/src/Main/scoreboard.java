@@ -13,6 +13,7 @@ public class scoreboard {
     
     public scoreboard() {
         this.scores = getScores();
+        sortScores();
     }
 
     public ArrayList<score> getScores() {
@@ -21,13 +22,15 @@ public class scoreboard {
 		try {
             File myObj = new File(filename);
 			Scanner myReader = new Scanner(myObj);
-			while (myReader.hasNextLine()) {
+            String data = myReader.nextLine();
+			while (data.indexOf(";") != -1) {
                 // get data from txt file
-                String data = myReader.nextLine();
                 // split line data into name and score
                 int index = data.indexOf(":"); // split index
                 String name = data.substring(0, index);
-				int score = Integer.parseInt(data.substring(index + 1));
+				int score = Integer.parseInt(data.substring(index + 1, data.indexOf(";")));
+
+                data = data.substring(data.indexOf(";")+1);
                 // add the data to an arraylist
                 score s = new score(name, score);
                 arr.add(s);
@@ -37,15 +40,15 @@ public class scoreboard {
 			System.out.println("getScores failed");
 			e.printStackTrace();
 		}
-		return arr;
+        return arr;
 	}
 
     // writes new score to scores.txt
     public void addScore(String name, int score) {
         System.out.println("addScore is called"); 
         try {
-            FileWriter myWriter = new FileWriter("GUI copy/src/Main/scores.txt");
-            myWriter.append(name + ":" + score);
+            FileWriter myWriter = new FileWriter("GUI copy/src/Main/scores.txt", true);
+            myWriter.append(name + ":" + score +";");
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
@@ -60,6 +63,19 @@ public class scoreboard {
 
     public String getName(score s) {
         return s.getName();
+    }
+
+    public void sortScores() {
+        // bubble sort
+        for (int i = 0; i < scores.size() - 1; i++) {
+            for (int j = 0; j < scores.size() - 1 - i; j++) {
+                if (scores.get(j).getScore() < scores.get(j + 1).getScore()) {
+                    score temp = scores.get(j);
+                    scores.set(j, scores.get(j + 1));
+                    scores.set(j + 1, temp);
+                }
+            }
+        }
     }
 
 }
