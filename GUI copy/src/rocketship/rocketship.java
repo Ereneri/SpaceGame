@@ -11,6 +11,7 @@ import Main.*;
 import Main.GamePanel.ast;
 import Main.GamePanel.exps;
 import Main.GamePanel.objRocket;
+import Main.scoreboard;
 
 public class rocketship {
 

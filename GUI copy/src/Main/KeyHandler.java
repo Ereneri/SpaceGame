@@ -466,6 +466,7 @@ public class KeyHandler implements KeyListener {
                     
                     // returns to menu
                     if (gp.ui.commandNum == 2) {
+                        gp.reset();
                         gp.gameState = gp.titleState;
                         gp.ui.commandNum = -1;
                         gp.playSE(3);

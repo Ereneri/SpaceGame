@@ -45,7 +45,7 @@ public class scoreboard {
         System.out.println("addScore is called"); 
         try {
             FileWriter myWriter = new FileWriter("GUI copy/src/Main/scores.txt");
-            myWriter.write(name + ":" + score);
+            myWriter.append(name + ":" + score);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
