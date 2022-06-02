@@ -518,7 +518,6 @@ public class KeyHandler implements KeyListener {
             shotKeyPressed = false;
         }
         if (code == KeyEvent.VK_H) {
-        	hKeyPressed = false;
         	gp.hKeyCount = 1;
         }
     }
