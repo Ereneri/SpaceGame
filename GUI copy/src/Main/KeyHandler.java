@@ -26,6 +26,7 @@ public class KeyHandler implements KeyListener {
         // System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
         int code = e.getKeyCode();
         // System.out.println(code);
+        // System.out.println(gp.gameState);
 
         // Title Controls
         if (gp.gameState == gp.titleState) {
@@ -163,13 +164,6 @@ public class KeyHandler implements KeyListener {
                     gp.playSE(11);
                 }
             }
-
-            if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
-                gp.gameState = gp.playState;
-                gp.playSE(2);
-                gp.ui.commandNum = 0;
-
-            }
             
             //choosing your selection
             if (code == KeyEvent.VK_ENTER) {
@@ -184,14 +178,14 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 1) {
                     gp.playSE(2);
                     gp.gameState = gp.leaderboardState;
-                    gp.ui.commandNum = 0;
+                    gp.ui.commandNum = -1;
                 }
                 
                 //resume
                 if (gp.ui.commandNum == 2) {
                     gp.gameState = gp.playState;
                     gp.playSE(2);
-                    gp.ui.commandNum = 0;
+                    gp.ui.commandNum = -1;
                 }
                 
                 //quit
@@ -202,6 +196,11 @@ public class KeyHandler implements KeyListener {
                     gp.paused = false;
                     gp.reset();
                 }
+            }
+            if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
+                gp.gameState = gp.playState;
+                gp.ui.commandNum = 0;
+                gp.playSE(3);
             }
         }
 
@@ -350,6 +349,18 @@ public class KeyHandler implements KeyListener {
                 }
                 gp.ui.commandNum++;
             }
+            if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
+                // returns to menu
+                if (gp.paused) {
+                    gp.gameState = gp.pauseState;
+                    gp.paused = false;
+                } else {
+                    gp.gameState = gp.titleState;
+                    gp.reset();
+                }
+                gp.ui.commandNum = 0;
+                gp.playSE(3);
+            }
         }
 
         if (gp.gameState == gp.saveState) {
@@ -477,10 +488,12 @@ public class KeyHandler implements KeyListener {
                         gp.nameBuilder = true;
                         gp.ship.name = "";
                         gp.playSE(3);
+                        gp.paused = false;
                     }
                     
                     // returns to menu
                     if (gp.ui.commandNum == 2) {
+                        gp.paused = false;
                         gp.reset();
                         gp.gameState = gp.titleState;
                         gp.ui.commandNum = 0;
