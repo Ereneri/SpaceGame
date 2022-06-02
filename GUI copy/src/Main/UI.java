@@ -283,25 +283,37 @@ public class UI {
         x = 60;
         y += gp.tileSize;
         text = "W";
+        g2.setColor(Color.cyan);
         g2.drawString(text, x+12, y+gp.tileSize);
         text = "A S D";
         g2.drawString(text, x, y+gp.tileSize+20);
 
         text = "Movement";
         x += gp.tileSize;
+        g2.setColor(Color.white);
         g2.drawString(text, x + 30, y+gp.tileSize+10);
         y += gp.tileSize;
+        
+        //gun 
+        text = "Space";
+        g2.setColor(Color.cyan);
+        g2.drawString(text, x*3, y+11);
+        text = "Gun";
+        g2.setColor(Color.white);
+        g2.drawString(text, x*4-15, y+11);
 
         // Pause
         x = 60;
         y += gp.tileSize;
         text = "ESC";
+        g2.setColor(Color.cyan);
         g2.drawString(text, x+3, y+gp.tileSize-20);
         text = "Shift";
         g2.drawString(text, x-10, y+gp.tileSize);
 
         text = "Pause and unpause Game";
         x += gp.tileSize;
+        g2.setColor(Color.white);
         g2.drawString(text, x + 30, y+gp.tileSize-10);
         y += gp.tileSize;
 
@@ -325,7 +337,7 @@ public class UI {
         x = 60;
         y += gp.tileSize*2;
         g2.drawImage(health, x, y+20, gp.tileSize, gp.tileSize, null);
-        text = "When bought it repairs ship's health by 100 units";
+        text = "When bought it repairs ship's health by 25%";
         x += gp.tileSize;
         g2.drawString(text, x + 25, y+gp.tileSize);
 
