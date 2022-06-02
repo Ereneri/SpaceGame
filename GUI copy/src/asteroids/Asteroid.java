@@ -1,5 +1,6 @@
 package asteroids;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import collision.*;
@@ -19,31 +20,61 @@ public class Asteroid {
 	public int yVelAst;
 	private Collision c;
 	public GamePanel gp;
+	public int exploded;
+	public boolean hide;
 
 
 	//creates an asteroid object in a certain position and with certain speeds
 	public Asteroid(int x, int y, int xVel, int yVel, GamePanel gp) {
+		//sets basic variables
 		this.gp = gp;
 		this.x=x;
 		this.y=y;
 		this.xVelAst=xVel;
 		this.yVelAst=yVel;
+		
+		//explosion variables
+		this.exploded = 0;
+		this.hide = false;
+		
+		//sets the asteroid image
 		try {
 			asteroid = ImageIO.read(getClass().getResourceAsStream("/asteroids/ast.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		c=new Collision(x+5,y+5,gp.tileSize-10, gp.tileSize-10);
+		//creates a colision box for the asteroid
+		c=new Collision(x+7,y+7,gp.tileSize-14, gp.tileSize-14);
+	}
+
+	public void hideAst() {
+		this.hide = true;
 	}
 	
 	// draws the asteroids image and collision box
 	public void draw(Graphics2D g, GamePanel gp) {
+
+		if (!hide) {
+			g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
+			g.setColor(Color.white);
+
+//			c.render(g);
+		}
 		
 		g.drawImage(this.getImageAst(), this.x, this.y, gp.tileSize, gp.tileSize, null);
-		//c.render(g);
+//		g.setColor(Color.white);
+
+//		c.render(g);
 	}
-	
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 	
 	// checks if the asteroid is touching a wall and if so makes it bounce
 	public void astTick() {
@@ -75,12 +106,16 @@ public class Asteroid {
 	public void setYAst(int y) {
 		this.y += y;
 	}
+	
+	//returns the asteroids positions
 	public int getXAst() {
 		return x;
 	}
 	public int getYAst() {
 		return y;
 	}
+	
+	//returns the asteroids x and y speed
 	public int getYVelAst() {
 		return yVelAst;
 	}

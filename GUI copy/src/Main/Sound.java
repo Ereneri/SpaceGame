@@ -33,6 +33,19 @@ public class Sound {
 		
 		//repairing
 		soundURL[9] = getClass().getResource("/Sounds/repair.wav");
+		
+		// buying
+		soundURL[10] = getClass().getResource("/Sounds/buying.wav");
+		
+		// movement with w and s in the different screnes
+		soundURL[11] = getClass().getResource("/Sounds/selectionMovement2.wav");
+		
+		// shield sounds
+		soundURL[12] = getClass().getResource("/Sounds/shieldUp.wav");
+		soundURL[13] = getClass().getResource("/Sounds/shieldBreak2.wav");
+		
+		// teleport sound
+		soundURL[14] = getClass().getResource("/Sounds/teleport3.wav");
 
 
 	}

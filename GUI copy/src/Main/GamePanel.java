@@ -5,11 +5,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import asteroids.Asteroid;
@@ -18,7 +18,6 @@ import object.metal;
 import rocketship.rocketship;
 import rocketship.rocketship.bulletArray;
 import rocketship.rocketship.bullets;
-
 
 public class GamePanel extends JPanel implements Runnable {
     // Basic Screen Vars and scale factor
@@ -43,12 +42,13 @@ public class GamePanel extends JPanel implements Runnable {
     // SYSTEM VARS
     public UI ui = new UI(this);
     KeyHandler keyH = new KeyHandler(this);
+    scoreboard sb = new scoreboard();
     public Thread gameThread;
 
     Boolean DEBUG = false;
     
     // Object and Rocketship Vars
-    rocketship ship = new rocketship(this, keyH);
+    rocketship ship = new rocketship(this, keyH, sb);
     
     // Metal Object
     public class objRocket{
@@ -65,6 +65,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
 
+    public class exps {
+        public static ArrayList<Explosion> expsList = new ArrayList<Explosion>();
+    }
+
+    // explosion stuff
+    BufferedImage e1, e2, e3, e4, e5, e6, e7;
+
     // Default Location
     int playerX = 100;
     int playerY = 100;
@@ -78,9 +85,27 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gameOverState = 3;
     public final int storeState = 4;
     public final int scoreBoardState = 5;
+    public final int optionsState = 6;
+    public final int helpState = 7;
+    public final int saveState = 8;
+    public final int leaderboardState = 9;
+    public boolean nameBuilder = true;
     
     // Misc
     Sound sound = new Sound();
+    public boolean hit = false;
+    public long hitTime = 0;
+    public boolean boosted = false;
+    public long boosttime = 0;
+    public boolean soundOption = true;
+    public boolean musicOption = true;
+    public boolean paused = false;
+    
+    //buying helth
+    public int hKeyCount = 0;
+    public long buyTime = 0;
+    public boolean buy = false;
+
 
     // Panel constructor
     public GamePanel() {
@@ -98,6 +123,19 @@ public class GamePanel extends JPanel implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // load images into memory
+        try {
+            e1 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E1.png"));
+            e2 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E2.png"));
+            e3 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E3.png"));
+            e4 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E4.png"));
+            e5 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E5.png"));
+            e6 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E6.png"));
+            e7 = ImageIO.read(getClass().getResourceAsStream("/Explosion/E7.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     // spawns metal
@@ -106,22 +144,19 @@ public class GamePanel extends JPanel implements Runnable {
     	aSetter.setSilver();
     	aSetter.setIron();
     	aSetter.setWrench();
-
     }
     
     
     // adds the asteroids
     public void spawnAsteroids() {
     	asteroidSetter.addAsteroids();
-
     }
 
     // Start Game Thread
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
-        this.playMusic(0);
-        
+        this.playMusic(1);
     }
 
     // Game Loop
@@ -163,8 +198,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         if (gameState == playState) {
             ship.update();
-            
-            
+
             //checks if there are any collectibles left. If all are gone it spawns in more
             int objCount = 0;
             for (int i = 0; i < objRocket.obj.length; i++) {
@@ -183,12 +217,44 @@ public class GamePanel extends JPanel implements Runnable {
                 	astCount ++;
                 }
             }
+
+            // array list that measures the amount of time the asteroid has been gone for
             for(int i = 0; i<ast.astTime.size(); i++) {
-            	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 3000 < System.currentTimeMillis()) {
+            	if(astCount < ast.numAsteroids && ast.astTime.get(i) + 4000 < System.currentTimeMillis()) {
                 	ast.asts.add(new Asteroid((int)(Math.random()*650+56), (int)(Math.random()), (int)(Math.random()*4+1), (int)(Math.random()*4+1), this));
                 	ast.astTime.remove(i);
                 	i--;
                 }
+            }
+
+            // shows -25% text for only .5 seconds
+            if (hit) {
+                if (System.currentTimeMillis() - hitTime > 500) {
+                    hit = false;
+                }
+            }
+            
+         // shows - $200 text for only .5 seconds
+            if(buy) {
+            	if (System.currentTimeMillis() - buyTime > 500) {
+                    buy = false;
+                }
+            }
+
+            // shows +25% text for only .5 seconds
+            if (boosted) {
+                if (System.currentTimeMillis()-boosttime > 500) {
+                    boosted = false;
+                }
+            }
+            
+            // checks if bullets are out of bounds
+            for(int i = 0; i < bulletArray.bullets.size(); i++) {
+            	if(bulletArray.bullets.get(i).getX() < -5 || bulletArray.bullets.get(i).getX() > 775 || bulletArray.bullets.get(i).getY() < -5 || bulletArray.bullets.get(i).getY() > 775) {
+            		bulletArray.bullets.remove(i);
+            		i--;
+//            		System.out.println("delete bullet");
+            	}
             }
         }
     }
@@ -206,6 +272,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (ship.angel) g2.drawImage(ui.angel, tileSize/3, tileSize, tileSize, tileSize, null);
         if (ship.speedBoost) g2.drawImage(ui.speed, tileSize/3, tileSize*2, tileSize, tileSize, null);
 
+        // skips title screen if debug is on
         if (DEBUG == true) {
             gameState = playState;
         }
@@ -214,6 +281,8 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState != playState) {
             ui.draw(g2);
         } else {
+        	
+        	//draws the collectibles
             for (int i = 0; i < objRocket.obj.length; i++) {
                 if(objRocket.obj[i]!= null) {
                     objRocket.obj[i].draw(g2, this);
@@ -229,19 +298,81 @@ public class GamePanel extends JPanel implements Runnable {
             }
             
             // checks if any bullets are touching any asteroids
-            for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
-                for(int i = 0; i<ast.asts.size(); i++) {
-                	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
-                		bullets.removeBullet(bulletArray.bullets.get(indexbull));
-                		ast.astTime.add(System.currentTimeMillis());
-                		ast.asts.remove(i);
-                		i--;
-                		System.out.println("bullet touch asteroid");
-                		playSE(5);
-                	}
+            if(bulletArray.bullets.size() > 0 || bulletArray.bullets == null) {
+            	for (int indexbull = 0; indexbull < bulletArray.bullets.size(); indexbull++) {
+                    for(int i = 0; i < ast.asts.size(); i++) {
+                    	if(ast.asts.get(i).getCAst().touches(bulletArray.bullets.get(indexbull).getBulletC())) {
+                            // bullet removal
+                    		bullets.removeBullet(bulletArray.bullets.get(indexbull));
+                            indexbull = 0;
+
+                            // creates explosion object and adds to array
+                            Explosion exp = new Explosion(ast.asts.get(i).getX(), ast.asts.get(i).getY());
+                            exps.expsList.add(exp);
+
+                            // hides and removes asteroid
+                            ast.asts.get(i).hideAst();
+                            ast.astTime.add(System.currentTimeMillis());
+                            ast.asts.remove(i);
+                            i--;
+
+//                    		System.out.println("bullet touch asteroid");
+                    		playSE(5);
+                    	}
+                    }
                 }
             }
+         
+
+            // renders exp animation
+            for (int i = 0; i < exps.expsList.size(); i++) {
+                if (exps.expsList.get(i).exploded == 14) {
+                        // removal code
+                        exps.expsList.remove(i);
+                        i--;
+                } else {
+                    // loads image
+                    BufferedImage expImg = null;
+                    if (exps.expsList.get(i).exploded/2 == 1) {
+                        expImg = e1;
+                    } else if (exps.expsList.get(i).exploded/2 == 2) {
+                        expImg = e2;
+                    } else if (exps.expsList.get(i).exploded/2 == 3) {
+                        expImg = e3;
+                    } else if (exps.expsList.get(i).exploded/2 == 4) {
+                        expImg = e4;
+                    } else if (exps.expsList.get(i).exploded/2 == 5) {
+                        expImg = e5;
+                    } else if (exps.expsList.get(i).exploded/2 == 6) {
+                        expImg = e6;
+                    } else if (exps.expsList.get(i).exploded/2 == 7) {
+                        expImg = e7;
+                    } 
+                    g2.drawImage(expImg, exps.expsList.get(i).getX(), exps.expsList.get(i).getY(), tileSize+8, tileSize+8, null);
+                    exps.expsList.get(i).exploded++;
+                }
+            }
+            
+            //draws the ship
             ship.draw(g2);
+            
+            //checks if the key h is being pressed and if so buys a helth shot
+            if(hKeyCount == 1 && ship.score >= 200 && ship.hp < 200) {
+            		
+            		//stuff for displaying text at the top
+                	boosted = true;
+                	boosttime = System.currentTimeMillis();
+                	buy = true;
+                	buyTime = System.currentTimeMillis();
+                	
+                	//changes ships stats
+                	ship.hp += 25;
+                	ship.score -= 200;
+                	hKeyCount = 0;
+                	playSE(9);
+            }else {
+            	hKeyCount = 0;
+            }
             
             //sets the font a certain way 
             g2.setFont(ui.bossBattle);
@@ -253,7 +384,24 @@ public class GamePanel extends JPanel implements Runnable {
             
             //draws the health
             g2.drawString("Health: " + ship.getHp() + "%", tileSize/3*36, tileSize);
-    
+
+            // draws the -25% text
+            if (hit) {
+                g2.setColor(Color.red);
+                g2.drawString("-25%", tileSize/3*42, tileSize*2);
+            }
+
+            // draws the +25% text
+            if (boosted) {
+                g2.setColor(Color.green);
+                g2.drawString("+25%", tileSize/3*42, tileSize*2);
+            }
+            
+            // draws the - $200 text
+            if(buy) {
+            	g2.setColor(Color.red);
+            	g2.drawString("- $" + 200, tileSize/3, tileSize * 2 - 5);
+            }
         }
         g2.dispose();
         
@@ -261,13 +409,15 @@ public class GamePanel extends JPanel implements Runnable {
     
     //plays the music
     public void playMusic(int i) {
-    	
-    	//sets the misic to the screne were on
-    	sound.setFile(i);
-    	
-    	//plays and loops the music
-    	sound.play();
-    	sound.loop();
+    	//checks if music is enabled
+    	if(musicOption) {
+        	//sets the misic to the screne were on
+        	sound.setFile(i);
+        	
+        	//plays and loops the music
+        	sound.play();
+        	sound.loop();
+    	}
     }
     
     //stops the music
@@ -276,44 +426,90 @@ public class GamePanel extends JPanel implements Runnable {
     	sound.stop();
     }
     
-    public void flush() {
-    	
-    	sound.flush();
-    }
-    
     //plays individual sounds
     public void playSE(int i ) {
-    	
-    	//sets the misic to the screne were on
-    	sound.setFile(i);
-    	
-    	//plays the sound
-    	sound.play();
+    	//checks if sound is enabled
+    	if(soundOption) {
+    		//sets the misic to the screne were on
+        	sound.setFile(i);
+        	
+        	//plays the sound
+        	sound.play();
+    	}
     }
 
+    //gets the score
     public int getScore() {
         return ship.score;
     }
 
+    //restest all the ships values
     public void reset() {
         ship.setDefaultValues();
     }
 
+    //starts a new game
+    public void newGame() {
+        asteroidSetter.clearAst();
+        aSetter.clear();
+        spawnAsteroids();
+        spawnMetal();
+    }
+
+    //sets the angle powerup to true or false
     public void setAngel(boolean b) {
         ship.angel = b;
     }
 
+    //adds the speed boost to the ship
     public void addBooster() {
         ship.speedBoost = true;
-        ship.speed = ship.speed+6;
+        ship.speed = ship.speed+2;
     }
 
+    //gets the angle powerup value
     public boolean getAngel() {
         return ship.angel;
     }
 
+    //gets the speed powerup value
     public boolean getSpeedBoost() {
         return ship.speedBoost;
     }
 
+    //gets the ships health
+    public int getHealth() {
+        return ship.hp;
+    }
+
+    //toggles the sound on and off
+    public void setSound(boolean sound) {
+        this.soundOption = sound;
+    }
+
+    public String getName() {
+        return ship.name;
+    }
+
+    public void saveScore() {
+        System.out.println("addScore is called"); 
+        int Sscore = (int)getScore();
+        sb.addScore(getName(), Sscore);
+    }
+
+    public ArrayList<score> getScores() {
+        return sb.getScores();
+    }
+
+    public int getScore(score s) {
+        return sb.getScore(s);
+    }
+
+    public String getName(score s) {
+        return sb.getName(s);
+    }
+
+    public void updateScores() {
+        sb.updateScores();
+    }
 }
