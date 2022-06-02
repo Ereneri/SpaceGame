@@ -35,7 +35,7 @@ public class KeyHandler implements KeyListener {
             	
             	// scrolling look (if your at the top and go up again, now you at the bottom)
             	if(gp.ui.commandNum == -1) {
-            		gp.ui.commandNum = 3;
+            		gp.ui.commandNum = 4;
             		gp.playSE(11);
             	}else {
             		gp.ui.commandNum --;
@@ -46,7 +46,7 @@ public class KeyHandler implements KeyListener {
             //going down in selections
             if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
                 // scrolling look (if your at the bottom and go sown again, now you at the top)
-            	if(gp.ui.commandNum == 3) {         	
+            	if(gp.ui.commandNum == 4) {         	
             		gp.ui.commandNum = 0;
             		gp.playSE(11);
             	}else {
@@ -64,21 +64,28 @@ public class KeyHandler implements KeyListener {
                     gp.newGame();
                     gp.playSE(2);
                 }
-                
-                //options
+
+                // leaderboard
                 if (gp.ui.commandNum == 1) {
+                    gp.gameState = gp.leaderboardState;
+                    gp.ui.commandNum = 0;
+                    gp.playSE(2);
+                }
+                
+                //help
+                if (gp.ui.commandNum == 2) {
                     gp.gameState = gp.helpState;
                     gp.ui.commandNum = 0;
                     gp.playSE(2);
                 }
-                
-                //quit
-                if (gp.ui.commandNum == 2) {
+                // options
+                if (gp.ui.commandNum == 3) {
                     gp.gameState = gp.optionsState;
                     gp.ui.commandNum = 0;
                     gp.playSE(2);
                 }
-                if (gp.ui.commandNum == 3) {
+                //quit
+                if (gp.ui.commandNum == 4) {
                     gp.playSE(3);
                     System.exit(0);
                 }
@@ -157,16 +164,15 @@ public class KeyHandler implements KeyListener {
                 }
             }
 
-            if (code == KeyEvent.VK_ESCAPE || code == KeyEvent.VK_SHIFT) {
+            if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.playState;
                 gp.playSE(2);
-                gp.ui.commandNum = -1;
+                gp.ui.commandNum = 0;
 
             }
             
             //choosing your selection
             if (code == KeyEvent.VK_ENTER) {
-            	
             	//store
                 if (gp.ui.commandNum == 0) {
                     gp.gameState = gp.storeState;
@@ -176,16 +182,16 @@ public class KeyHandler implements KeyListener {
                 
                 //leaderboard
                 if (gp.ui.commandNum == 1) {
-                	gp.playSE(2);
-                   gp.gameState = gp.leaderboardState;
-                   gp.ui.commandNum = 0;
+                    gp.playSE(2);
+                    gp.gameState = gp.leaderboardState;
+                    gp.ui.commandNum = 0;
                 }
                 
                 //resume
                 if (gp.ui.commandNum == 2) {
                     gp.gameState = gp.playState;
                     gp.playSE(2);
-                    gp.ui.commandNum = -1;
+                    gp.ui.commandNum = 0;
                 }
                 
                 //quit
@@ -193,6 +199,7 @@ public class KeyHandler implements KeyListener {
                 	gp.playSE(3);
                     gp.gameState = gp.titleState;
                     gp.ui.commandNum = 0;
+                    gp.paused = false;
                     gp.reset();
                 }
             }
@@ -331,8 +338,13 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 // returns to menu
                 if (gp.ui.commandNum == 1) {
-                    gp.gameState = gp.titleState;
-                    gp.reset();
+                    if (gp.paused) {
+                        gp.gameState = gp.pauseState;
+                        gp.paused = false;
+                    } else {
+                        gp.gameState = gp.titleState;
+                        gp.reset();
+                    }
                     gp.ui.commandNum = 0;
                     gp.playSE(3);
                 }
@@ -509,15 +521,10 @@ public class KeyHandler implements KeyListener {
     
             // paused screen
             if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
-                if (gp.gameState == gp.playState) {
-                    gp.gameState = gp.pauseState;
-                    gp.ui.commandNum = 0;
-                    gp.playSE(3);
-                } else if (gp.gameState == gp.pauseState) {
-                    gp.gameState = gp.playState;
-                    gp.ui.commandNum = 0;
-                    gp.playSE(3);
-                }
+                gp.gameState = gp.pauseState;
+                gp.paused = true;
+                gp.ui.commandNum = 0;
+                gp.playSE(3);
             }
         }
     }

@@ -99,6 +99,7 @@ public class GamePanel extends JPanel implements Runnable {
     public long boosttime = 0;
     public boolean soundOption = true;
     public boolean musicOption = true;
+    public boolean paused = false;
     
     //buying helth
     public int hKeyCount = 0;

@@ -405,11 +405,20 @@ public class UI {
         }
 
         // help screen
-        text = "Help";
+        text = "LeaderBoard";
         x = getXforCenteringText(text);
         y += 55;
         g2.drawString(text, x, y);
         if (commandNum == 1) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+        
+        // help screen
+        text = "Help";
+        x = getXforCenteringText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 2) {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
@@ -418,16 +427,16 @@ public class UI {
         x = getXforCenteringText(text);
         y += 55;
         g2.drawString(text, x, y);
-        if (commandNum == 2) {
+        if (commandNum == 3) {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
         // Quit 
         text = "Quit";
         x = getXforCenteringText(text);
-        y += 55;
+        y += 55 + gp.tileSize;
         g2.drawString(text, x, y);
-        if (commandNum == 3) {
+        if (commandNum == 4) {
             g2.drawString(">", x - gp.tileSize, y);
         }
 
@@ -596,99 +605,98 @@ public class UI {
             g2.drawString(">", x - gp.tileSize, y);
         }
         
+    public void drawSave() {
+        // set font
+        g2.setFont(bossBattle);
         
-        public void drawSave() {
-            // set font
-            g2.setFont(bossBattle);
-            
-            // set darken background
-            g2.setColor(new Color(0,0,0,150));
-            g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
-            
-            // setup vars
-            int x;
-            int y;
-            String text;
-            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
-            
-            // text
-            text = "Save";
-            
-            // shadow
-            g2.setColor(Color.black);
-            x = getXforCenteringText(text);
-            y = gp.tileSize*4;
-            g2.drawString(text, x, y);
-            
-            //Main
-            g2.setColor(Color.WHITE);
-            g2.drawString(text, x-4, y-4);
-            
-            // Score
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
-            text = "Score: " + gp.getScore();
-            x = getXforCenteringText(text);
-            y += gp.tileSize*2;
-            g2.drawString(text, x, y);
-            
-            // draw Name
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
-            text = "Name: ";
-            x = getXforCenteringText("Name: ___");
-            y += gp.tileSize*3;
-            g2.drawString(text, x, y);
-            
-            // renders x or >
-            if (commandNum == 0) {
-                if (gp.getName().length() == 3 && gp.nameBuilder) {
-                    g2.drawString(">", x - gp.tileSize, y);
-                } else {
-                    g2.drawString("X", x - gp.tileSize, y);
-                    
-                }
-            }
-            
-            // draws the name
-            text = "___";
-            x += 150;
-            if (gp.getName().length() == 3) {
-                text = gp.getName();
-            } else if (gp.getName().length() == 2) {
-                text =  gp.getName() + "_";
-            } else if (gp.getName().length() == 1) {
-                text = gp.getName() + "__";
-            }
-            g2.drawString(text, x, y);
-            
-            // draw name input
-            g2.drawString(text, x, y);
-            g2.drawString(text, x, y);
-            
-            // Save
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
-            text = "Save";
-            x = getXforCenteringText(text);
-            y += gp.tileSize*3;
-            g2.drawString(text, x, y);
-            if (commandNum == 1) {
+        // set darken background
+        g2.setColor(new Color(0,0,0,150));
+        g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
+        
+        // setup vars
+        int x;
+        int y;
+        String text;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
+        
+        // text
+        text = "Save";
+        
+        // shadow
+        g2.setColor(Color.black);
+        x = getXforCenteringText(text);
+        y = gp.tileSize*4;
+        g2.drawString(text, x, y);
+        
+        //Main
+        g2.setColor(Color.WHITE);
+        g2.drawString(text, x-4, y-4);
+        
+        // Score
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+        text = "Score: " + gp.getScore();
+        x = getXforCenteringText(text);
+        y += gp.tileSize*2;
+        g2.drawString(text, x, y);
+        
+        // draw Name
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+        text = "Name: ";
+        x = getXforCenteringText("Name: ___");
+        y += gp.tileSize*3;
+        g2.drawString(text, x, y);
+        
+        // renders x or >
+        if (commandNum == 0) {
+            if (gp.getName().length() == 3 && gp.nameBuilder) {
                 g2.drawString(">", x - gp.tileSize, y);
-            }
-            
-            //Retry
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
-            text = "Retry";
-            x = getXforCenteringText(text);
-            y += 55;
-            g2.drawString(text, x, y);
-            if (commandNum == 2) {
-                g2.drawString(">", x - gp.tileSize, y);
+            } else {
+                g2.drawString("X", x - gp.tileSize, y);
+                
             }
         }
         
-        public int getXforCenteringText(String text) {
-            int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-            int x = gp.screenWidth/2 - length/2;
-            return x;
+        // draws the name
+        text = "___";
+        x += 150;
+        if (gp.getName().length() == 3) {
+            text = gp.getName();
+        } else if (gp.getName().length() == 2) {
+            text =  gp.getName() + "_";
+        } else if (gp.getName().length() == 1) {
+            text = gp.getName() + "__";
         }
+        g2.drawString(text, x, y);
+        
+        // draw name input
+        g2.drawString(text, x, y);
+        g2.drawString(text, x, y);
+        
+        // Save
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+        text = "Save";
+        x = getXforCenteringText(text);
+        y += gp.tileSize*3;
+        g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+        
+        //Retry
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+        text = "Retry";
+        x = getXforCenteringText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 2) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+    }
+    
+    public int getXforCenteringText(String text) {
+        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = gp.screenWidth/2 - length/2;
+        return x;
+    }
         
     }
