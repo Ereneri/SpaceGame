@@ -43,6 +43,9 @@ public class Sound {
 		// shield sounds
 		soundURL[12] = getClass().getResource("/Sounds/shieldUp.wav");
 		soundURL[13] = getClass().getResource("/Sounds/shieldBreak2.wav");
+		
+		// teleport sound
+		soundURL[14] = getClass().getResource("/Sounds/teleport3.wav");
 
 
 	}

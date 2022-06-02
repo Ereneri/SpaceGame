@@ -519,7 +519,7 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_H) {
         	hKeyPressed = false;
-        	gp.hKeyCount = 0;
+        	gp.hKeyCount = 1;
         }
     }
 }

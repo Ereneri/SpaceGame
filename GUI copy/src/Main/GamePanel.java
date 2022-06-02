@@ -355,10 +355,7 @@ public class GamePanel extends JPanel implements Runnable {
             ship.draw(g2);
             
             //checks if the key h is being pressed and if so buys a helth shot
-            if(keyH.hKeyPressed == true && ship.score >= 200 && ship.hp < 200) {
-            	
-            	// if 5 frames have passed that the h key is being pressed for
-            	if(hKeyCount == 5) {
+            if(hKeyCount == 1 && ship.score >= 200 && ship.hp < 200) {
             		
             		//stuff for displaying text at the top
                 	boosted = true;
@@ -371,9 +368,8 @@ public class GamePanel extends JPanel implements Runnable {
                 	ship.score -= 200;
                 	hKeyCount = 0;
                 	playSE(9);
-            	}else {
-            		hKeyCount++ ;
-            	}
+            }else {
+            	hKeyCount = 0;
             }
             
             //sets the font a certain way 
