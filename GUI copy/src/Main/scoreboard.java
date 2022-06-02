@@ -78,4 +78,9 @@ public class scoreboard {
         }
     }
 
+    public void updateScores() {
+        this.scores = getScores();
+        sortScores();
+    }
+
 }

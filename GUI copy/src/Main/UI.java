@@ -538,6 +538,8 @@ public class UI {
     
     // draw leaderboard
     public void drawLeaderboard() {
+
+        gp.getScore();
         // set font
         g2.setFont(bossBattle);
         

@@ -104,6 +104,10 @@ public class rocketship {
         walls.wallCLeft = new Collision(0, 0, 5, 768);
         walls.wallCRight = new Collision(763, 0, 5, 768);
     }
+
+    public void updateScores() {
+        sb.updateScores();
+    }
     
     public int getXShip() {
     	return x;

@@ -34,7 +34,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             	
             	// scrolling look (if your at the top and go up again, now you at the bottom)
-            	if(gp.ui.commandNum == 0) {
+            	if(gp.ui.commandNum == -1) {
             		gp.ui.commandNum = 3;
             		gp.playSE(11);
             	}else {
@@ -459,6 +459,7 @@ public class KeyHandler implements KeyListener {
                     // saves score and redirects to leaderboard
                     if (gp.ui.commandNum == 1) {
                         gp.saveScore();
+                        gp.updateScores();
                         gp.gameState = gp.leaderboardState;
                         gp.ui.commandNum = 0;
                         gp.nameBuilder = true;

@@ -507,4 +507,8 @@ public class GamePanel extends JPanel implements Runnable {
     public String getName(score s) {
         return sb.getName(s);
     }
+
+    public void updateScores() {
+        sb.updateScores();
+    }
 }
