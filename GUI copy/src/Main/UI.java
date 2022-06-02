@@ -307,10 +307,18 @@ public class UI {
         //gun 
         text = "Space";
         g2.setColor(Color.cyan);
-        g2.drawString(text, x*3, y+11);
+        g2.drawString(text, x*3-10, y+11);
         text = "Gun";
         g2.setColor(Color.white);
-        g2.drawString(text, x*4-15, y+11);
+        g2.drawString(text, x*4-25, y+11);
+        
+        // H button
+        text = "H";
+        g2.setColor(Color.cyan);
+        g2.drawString(text, x*5-30, y+11);
+        text = "Buys Helth";
+        g2.setColor(Color.white);
+        g2.drawString(text, x*5, y+11);
 
         // Pause
         x = 60;
