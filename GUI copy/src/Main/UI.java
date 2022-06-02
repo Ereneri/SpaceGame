@@ -462,7 +462,6 @@ public class UI {
             }
     
     }
-
     
     //draws the geme over screen
     public void drawGameOverScreen() {
@@ -559,18 +558,29 @@ public class UI {
         x = getXforCenteringText("AAA - 1000");
         
         // // Score
-        // for (int i = 0; i < 5; i++) {
-            //     g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
-            //     text = gp.getName(gp.sb.scores.get(i)) + " - " + gp.getScore(gp.sb.scores.get(i));
-            //     y += gp.tileSize*2;
-            //     g2.drawString(text, x, y);
-            // }
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+        if (gp.sb.scores.size() > 0) {
+            int lim = gp.sb.scores.size();
+            if (lim > 5) {
+                lim = 5;
+            }
+            for (int i = 0; i < lim; i++) {
+                    text = gp.getName(gp.sb.scores.get(i)) + " - " + gp.getScore(gp.sb.scores.get(i));
+                    y += gp.tileSize*2;
+                    g2.drawString(text, x, y);
+                }
+        } else {
+            text = "No scores yet";
+            x = getXforCenteringText(text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+        }
             
             //Retry
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
             text = "Return";
             x = getXforCenteringText(text);
-            y += 55;
+            y += 55 + gp.tileSize;
             g2.drawString(text, x, y);
             if (commandNum == 0 || commandNum == 1) {
                 g2.drawString(">", x - gp.tileSize, y);

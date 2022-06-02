@@ -85,7 +85,6 @@ public class KeyHandler implements KeyListener {
             }
         }
 
-        // game over controls
         if (gp.gameState == gp.gameOverState) {
         	
         	//below is up and down selection movement with scrolling
@@ -156,6 +155,13 @@ public class KeyHandler implements KeyListener {
                     gp.ui.commandNum++;
                     gp.playSE(11);
                 }
+            }
+
+            if (code == KeyEvent.VK_ESCAPE || code == KeyEvent.VK_SHIFT) {
+                gp.gameState = gp.playState;
+                gp.playSE(2);
+                gp.ui.commandNum = -1;
+
             }
             
             //choosing your selection
@@ -446,21 +452,22 @@ public class KeyHandler implements KeyListener {
                         gp.playSE(11);
                     }
                 }
-    
+
+                // enter to save or return to menu
                 if (code == KeyEvent.VK_ENTER) {
                     
                     // saves score and redirects to leaderboard
-                    if (gp.ui.commandNum == 0) {
+                    if (gp.ui.commandNum == 1) {
                         gp.saveScore();
                         gp.gameState = gp.leaderboardState;
-                        gp.ui.commandNum = 0;
+                        gp.ui.commandNum = -1;
                         gp.playSE(3);
                     }
                     
                     // returns to menu
-                    if (gp.ui.commandNum == 1) {
+                    if (gp.ui.commandNum == 2) {
                         gp.gameState = gp.titleState;
-                        gp.ui.commandNum = 0;
+                        gp.ui.commandNum = -1;
                         gp.playSE(3);
                     }
                 }

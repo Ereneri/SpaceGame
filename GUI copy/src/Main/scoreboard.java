@@ -16,7 +16,7 @@ public class scoreboard {
     }
 
     public ArrayList<score> getScores() {
-        String filename = "scoreboard.txt";
+        String filename = "GUI copy/src/Main/scores.txt";
         ArrayList<score> arr = new ArrayList<score>();
 		try {
             File myObj = new File(filename);
@@ -34,7 +34,7 @@ public class scoreboard {
 			}
 			myReader.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("An error occurred.");
+			System.out.println("getScores failed");
 			e.printStackTrace();
 		}
 		return arr;
@@ -42,13 +42,14 @@ public class scoreboard {
 
     // writes new score to scores.txt
     public void addScore(String name, int score) {
+        System.out.println("addScore is called"); 
         try {
-            FileWriter myWriter = new FileWriter("scores.txt");
+            FileWriter myWriter = new FileWriter("GUI copy/src/Main/scores.txt");
             myWriter.write(name + ":" + score);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("AddScore failed");
             e.printStackTrace();
         }
     }

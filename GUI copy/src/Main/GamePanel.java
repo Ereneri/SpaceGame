@@ -491,6 +491,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void saveScore() {
+        System.out.println("addScore is called"); 
         int Sscore = (int)getScore();
         sb.addScore(getName(), Sscore);
     }
