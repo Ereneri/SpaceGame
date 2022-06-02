@@ -339,9 +339,6 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_SPACE) {
             shotKeyPressed = true;
         }
-        if (code == KeyEvent.VK_H) {
-        	hKeyPressed = true;
-        }
 
         // paused screen
         if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
@@ -381,7 +378,7 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_H) {
         	hKeyPressed = false;
-        	gp.hKeyCount = 0;
+        	gp.hKeyCount = 1;
         }
     }
 }
