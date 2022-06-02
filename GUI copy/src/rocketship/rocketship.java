@@ -269,18 +269,22 @@ public class rocketship {
         	y = 762-gp.tileSize;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        	gp.playSE(14);
         }else if(shipC.touches(walls.wallCDown)) {
         	y = 6;
         	shipC.setYCol(y);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        	gp.playSE(14);
         } else if(shipC.touches(walls.wallCLeft)) {
         	x = 762-gp.tileSize;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        	gp.playSE(14);
         }else if(shipC.touches(walls.wallCRight)) {
         	x = 6;
         	shipC.setXCol(x);
         	g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        	gp.playSE(14);
         }
         
         
