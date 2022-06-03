@@ -396,7 +396,7 @@ public class GamePanel extends JPanel implements Runnable {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.65));
             
             //draws the frame of the normal ship helth
-            g2.setColor(new Color(35, 35, 35));
+            g2.setColor(Color.white);
             g2.fillRect(tileSize/3*37-1, tileSize/2-1, tileSize*3+7, tileSize/2+2-5);
             
             //if the ship also has a shield
@@ -421,11 +421,11 @@ public class GamePanel extends JPanel implements Runnable {
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.65));
             	
             	//draws the frame of the shield helth
-                g2.setColor(new Color(35, 35, 35));
+                g2.setColor(Color.white);
                 g2.fillRect(tileSize/3*37-1, tileSize/2-1+25, tileSize*3+7, tileSize/2+2-5);
                 
                 //draws the blue shield bar
-                g2.setColor(Color.cyan);
+                g2.setColor(new Color(0, 215, 215));
                 g2.fillRect(tileSize/3*37, tileSize/2+25, (int)shieldBarVal+6, tileSize/2-5);
                 
             }else {
