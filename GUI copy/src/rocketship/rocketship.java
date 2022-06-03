@@ -134,6 +134,10 @@ public class rocketship {
         direction = "up";
         score = 0;
         hp = 100;
+        name = "";
+        gp.ui.commandNum = 0;
+        speedBoost = false;
+        angel = false;
     }
 
     // Get the image into memory
