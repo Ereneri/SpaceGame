@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class scoreboard {
     ArrayList<score> scores;
+    String in = "GUI copy/src/Main/scores.txt";
+    // String in = "src/Main/scores.txt"
+
     
     public scoreboard() {
         this.scores = getScores();
@@ -17,7 +19,7 @@ public class scoreboard {
     }
 
     public ArrayList<score> getScores() {
-        String filename = "GUI copy/src/Main/scores.txt";
+        String filename = in;
         ArrayList<score> arr = new ArrayList<score>();
 		try {
             File myObj = new File(filename);
@@ -47,7 +49,7 @@ public class scoreboard {
     public void addScore(String name, int score) {
         System.out.println("addScore is called"); 
         try {
-            FileWriter myWriter = new FileWriter("GUI copy/src/Main/scores.txt", true);
+            FileWriter myWriter = new FileWriter(in, true);
             myWriter.append(name + ":" + score +";");
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -82,5 +84,4 @@ public class scoreboard {
         this.scores = getScores();
         sortScores();
     }
-
 }
