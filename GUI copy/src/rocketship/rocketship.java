@@ -387,6 +387,7 @@ public class rocketship {
                 // if you dont have the angle powerup
                 } else {
                     hp = 0;
+                    gp.ui.commandNum = 0;
                     gp.playSE(5);
                     gp.playSE(6);
                     gp.gameState = gp.gameOverState;
