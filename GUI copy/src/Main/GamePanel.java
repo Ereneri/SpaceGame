@@ -1,5 +1,6 @@
 package Main;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -105,6 +106,11 @@ public class GamePanel extends JPanel implements Runnable {
     public int hKeyCount = 0;
     public long buyTime = 0;
     public boolean buy = false;
+    
+    //displaying helth stuff
+    double oneScale = ((double)23 / 4);
+    double hpBarVal;
+    double shieldBarVal;
 
 
     // Panel constructor
@@ -377,24 +383,69 @@ public class GamePanel extends JPanel implements Runnable {
             //sets the font a certain way 
             g2.setFont(ui.bossBattle);
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
-            g2.setColor(Color.white);
+            g2.setColor(Color.yellow);
             
             //draws the score
             g2.drawString("$" + ship.getScore(), tileSize/3, tileSize);
             
             //draws the health
-            g2.drawString("Health: " + ship.getHp() + "%", tileSize/3*36, tileSize);
+            
+            hpBarVal = oneScale * (ship.hp/4);
+            
+            //sets the opasity of the bars to %65
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.65));
+            
+            //draws the frame of the normal ship helth
+            g2.setColor(new Color(35, 35, 35));
+            g2.fillRect(tileSize/3*37-1, tileSize/2-1, tileSize*3+7, tileSize/2+2-5);
+            
+            //if the ship also has a shield
+            if(ship.hp > 100) {
+            	
+            	//draws the red hp bar
+                g2.setColor(Color.red);
+                g2.fillRect(tileSize/3*37, tileSize/2, tileSize*3+5, tileSize/2-5);
+                
+                //sets the shield HP bar value
+            	shieldBarVal = oneScale * ((ship.hp-100)/4);
+            	
+            	//draws the frame of the shield helth
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(tileSize/3*37-1, tileSize/2-1+25, tileSize*3+7, tileSize/2+2-5);
+                
+                //draws the blue shield bar
+                g2.setColor(Color.cyan);
+                g2.fillRect(tileSize/3*37, tileSize/2+25, (int)shieldBarVal+6, tileSize/2-5);
+                
+            }else {
+            	//draws the red hp bar without the shield bar
+                g2.setColor(Color.red);
+                g2.fillRect(tileSize/3*37, tileSize/2, (int)hpBarVal+6, tileSize/2-5);
+            
+            }
+            //resets the opasity of the text
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 1));
 
             // draws the -25% text
             if (hit) {
-                g2.setColor(Color.red);
-                g2.drawString("-25%", tileSize/3*42, tileSize*2);
+            	if(ship.hp > 100) {
+                    g2.setColor(Color.red);
+                    g2.drawString("-25%", tileSize/3*42, tileSize*2+20-5);
+            	}else {
+                    g2.setColor(Color.red);
+                    g2.drawString("-25%", tileSize/3*42, tileSize*2-5);
+            	}
             }
 
             // draws the +25% text
             if (boosted) {
-                g2.setColor(Color.green);
-                g2.drawString("+25%", tileSize/3*42, tileSize*2);
+            	if(ship.hp > 100) {
+                    g2.setColor(Color.green);
+                    g2.drawString("+25%", tileSize/3*42, tileSize*2+20-5);
+            	}else {
+                    g2.setColor(Color.green);
+                    g2.drawString("+25%", tileSize/3*42, tileSize*2-5);
+            	}
             }
             
             // draws the - $200 text
