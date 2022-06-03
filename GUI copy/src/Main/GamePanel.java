@@ -401,6 +401,11 @@ public class GamePanel extends JPanel implements Runnable {
             
             //if the ship also has a shield
             if(ship.hp > 100) {
+            	//writes the hp value
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 1));
+                g2.setColor(Color.white);
+                g2.drawString("100%", tileSize/3*32, tileSize-5);
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.65));
             	
             	//draws the red hp bar
                 g2.setColor(Color.red);
@@ -408,6 +413,12 @@ public class GamePanel extends JPanel implements Runnable {
                 
                 //sets the shield HP bar value
             	shieldBarVal = oneScale * ((ship.hp-100)/4);
+            	
+            	//writes the shield value
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 1));
+                g2.setColor(Color.white);
+                g2.drawString((ship.hp - 100) + "%", tileSize/3*32, tileSize+25-5);
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.65));
             	
             	//draws the frame of the shield helth
                 g2.setColor(new Color(35, 35, 35));
@@ -418,6 +429,19 @@ public class GamePanel extends JPanel implements Runnable {
                 g2.fillRect(tileSize/3*37, tileSize/2+25, (int)shieldBarVal+6, tileSize/2-5);
                 
             }else {
+            	//writes the hp value
+            	if(ship.hp == 100) {
+                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 1));
+                    g2.setColor(Color.white);
+                    g2.drawString(ship.hp + "%", tileSize/3*32, tileSize-5);
+                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.65));
+            	}else {
+                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 1));
+                    g2.setColor(Color.white);
+                    g2.drawString(ship.hp + "%", tileSize/3*33, tileSize-5);
+                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.65));
+            	}
+                
             	//draws the red hp bar without the shield bar
                 g2.setColor(Color.red);
                 g2.fillRect(tileSize/3*37, tileSize/2, (int)hpBarVal+6, tileSize/2-5);
