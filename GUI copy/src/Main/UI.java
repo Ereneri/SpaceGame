@@ -251,7 +251,7 @@ public class UI {
         text = "Buy";
         g2.drawString(text, x + gp.tileSize*9, y+gp.tileSize);
         if (commandNum == 2) {
-            if (gp.getScore() >= 100 && gp.getHealth() < 500) {
+            if (gp.getScore() >= 200 && gp.getHealth() < 500) {
                 g2.drawString(">", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
             } else {
                 g2.drawString("x", x + gp.tileSize*9 - gp.tileSize, y+gp.tileSize);
