@@ -51,7 +51,6 @@ public class Sound {
 	}
 	
 	public void setFile(int i) {
-		
 		try {
 			
 			AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);

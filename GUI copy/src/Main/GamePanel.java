@@ -161,6 +161,13 @@ public class GamePanel extends JPanel implements Runnable {
     // Start Game Thread
     public void startGameThread() {
         gameThread = new Thread(this);
+        try{
+			//waits for this current thread to die before beginning execution
+			gameThread.join();
+		//most exceptions are contained in java.lang
+		}catch(InterruptedException e){
+			e.printStackTrace();
+		}
         gameThread.start();
         this.playMusic(1);
     }
