@@ -6,9 +6,9 @@ Its a space shooter what did you think?
 
 ## Controls 
 
-WASD and/or Arrow Keys to move/n
-Space Bar to shoot/n
-Esc to pause game/n
+WASD and/or Arrow Keys to move\
+Space Bar to shoot\
+Esc to pause game\
 "H" is a shortcut for mechanics repair
 
 ## How to Play
