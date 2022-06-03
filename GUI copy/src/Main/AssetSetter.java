@@ -68,7 +68,7 @@ public class AssetSetter {
 		objRocket.obj[9] = (metal) new Wrench();
 		objRocket.obj[9].worldX = (int)(Math.random() * 16) * gp.tileSize;
 		objRocket.obj[9].worldY = (int)(Math.random() * 16) * gp.tileSize;
-		objRocket.obj[9].objectC = new Collision(objRocket.obj[3].worldX + 8, objRocket.obj[3].worldY + 5, 28, 28);
+		objRocket.obj[9].objectC = new Collision(objRocket.obj[9].worldX + 12, objRocket.obj[9].worldY + 15, 22, 22);
 	}
 
 	public void clear() {

@@ -310,9 +310,6 @@ public class rocketship {
         // picking up the collectibles and adding health
         for (int i = 0; i < objRocket.obj.length; i++) {
         	if(objRocket.obj[i]!= null) {
-        		objRocket.obj[i].getCObj().setXCol(objRocket.obj[i].getWorldX()+8);
-        		objRocket.obj[i].getCObj().setYCol(objRocket.obj[i].getWorldY()+5);
-        		
         		//checks if the ship is touching any of the collectibles
         		if(shipC.touches(objRocket.obj[i].getCObj())) {
         			
