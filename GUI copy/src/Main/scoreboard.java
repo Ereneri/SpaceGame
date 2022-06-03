@@ -9,15 +9,12 @@ import java.util.Scanner;
 
 public class scoreboard {
     ArrayList<score> scores;
-   String in = "GUI copy/src/Main/scores.txt";
+    String in = "GUI copy/src/Main/scores.txt";
     //  String in = "src/Main/scores.txt";
-
-    
     public scoreboard() {
         this.scores = getScores();
         sortScores();
     }
-
     public ArrayList<score> getScores() {
         String filename = in;
         ArrayList<score> arr = new ArrayList<score>();
@@ -44,7 +41,6 @@ public class scoreboard {
 		}
         return arr;
 	}
-
     // writes new score to scores.txt
     public void addScore(String name, int score) {
         System.out.println("addScore is called"); 
@@ -58,15 +54,12 @@ public class scoreboard {
             e.printStackTrace();
         }
     }
-
     public int getScore(score s) {
         return s.getScore();
     }
-
     public String getName(score s) {
         return s.getName();
     }
-
     public void sortScores() {
         // bubble sort
         for (int i = 0; i < scores.size() - 1; i++) {
@@ -79,7 +72,6 @@ public class scoreboard {
             }
         }
     }
-
     public void updateScores() {
         this.scores = getScores();
         sortScores();
