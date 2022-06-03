@@ -17,7 +17,7 @@ public class scoreboard {
     }
 
     public ArrayList<score> getScores() {
-        String filename = "src/Main/scores.txt";
+        String filename = "GUI copy/src/Main/scores.txt";
         ArrayList<score> arr = new ArrayList<score>();
 		try {
             File myObj = new File(filename);
@@ -47,7 +47,7 @@ public class scoreboard {
     public void addScore(String name, int score) {
         System.out.println("addScore is called"); 
         try {
-            FileWriter myWriter = new FileWriter("src/Main/scores.txt", true);
+            FileWriter myWriter = new FileWriter("GUI copy/src/Main/scores.txt", true);
             myWriter.append(name + ":" + score +";");
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
