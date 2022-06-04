@@ -484,7 +484,7 @@ public class GamePanel extends JPanel implements Runnable {
             // draws the - $200 text
             if(buy) {
             	g2.setColor(Color.red);
-            	g2.drawString("- $" + 200, tileSize/3, tileSize * 2 - 5);
+            	g2.drawString("- $" + 200, tileSize*2+15, tileSize);
             }
         }
         g2.dispose();
