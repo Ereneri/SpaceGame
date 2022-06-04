@@ -339,7 +339,6 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 1) {
                     if (gp.paused) {
                         gp.gameState = gp.pauseState;
-                        gp.paused = false;
                     } else {
                         gp.gameState = gp.titleState;
                         gp.reset();
@@ -353,7 +352,6 @@ public class KeyHandler implements KeyListener {
                 // returns to menu
                 if (gp.paused) {
                     gp.gameState = gp.pauseState;
-                    gp.paused = false;
                 } else {
                     gp.gameState = gp.titleState;
                     gp.reset();
