@@ -472,7 +472,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             // draws the +25% text
             if (boosted) {
-            	if(ship.hp > 100) {
+            	if(ship.hp > 100 && ship.hp < 200) {
                     g2.setColor(Color.green);
                     g2.drawString("+25%", tileSize/3*42, tileSize*2+20-5);
             	}else {
