@@ -92,14 +92,18 @@ public class GamePanel extends JPanel implements Runnable {
     public final int leaderboardState = 9;
     public boolean nameBuilder = true;
     
-    // Misc
+    // Music
+    Music music = new Music();
     Sound sound = new Sound();
+    public boolean soundOption = true;
+    public boolean musicOption = true;
+    public ArrayList<Long> soundTime = new ArrayList<Long>();
+    
+    //Misc
     public boolean hit = false;
     public long hitTime = 0;
     public boolean boosted = false;
     public long boosttime = 0;
-    public boolean soundOption = true;
-    public boolean musicOption = true;
     public boolean paused = false;
     
     //buying helth
@@ -169,7 +173,7 @@ public class GamePanel extends JPanel implements Runnable {
 			e.printStackTrace();
 		}
         gameThread.start();
-        this.playMusic(1);
+        this.playMusic(0);
     }
 
     // Game Loop
@@ -238,6 +242,16 @@ public class GamePanel extends JPanel implements Runnable {
                 	ast.astTime.remove(i);
                 	i--;
                 }
+            }
+            
+            // array list that measures the amount of time a sound has been present for
+            for(int i = 0; i < soundTime.size(); i++) {
+            	if(soundTime.get(i) + 3000 < System.currentTimeMillis()) {
+            		soundTime.remove(i);
+            		sound.clips.get(i).close();
+            		sound.clips.remove(i);
+            		i--;
+            	}
             }
 
             // shows -25% text for only .5 seconds
@@ -496,16 +510,22 @@ public class GamePanel extends JPanel implements Runnable {
     	//checks if music is enabled
     	if(musicOption) {
         	//sets the misic to the screne were on
-        	sound.setFile(i);
+        	music.setFile(i);
         	
         	//plays and loops the music
-        	sound.play();
-        	sound.loop();
+        	music.play();
+        	music.loop();
     	}
     }
     
     //stops the music
     public void stopMusic() {
+    	
+    	music.stop();
+    }
+    
+    //stops the music
+    public void stopSE() {
     	
     	sound.stop();
     }
@@ -519,6 +539,8 @@ public class GamePanel extends JPanel implements Runnable {
         	
         	//plays the sound
         	sound.play();
+        	soundTime.add(System.currentTimeMillis());
+        	
     	}
     }
 

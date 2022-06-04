@@ -388,6 +388,8 @@ public class rocketship {
                     gp.playSE(5);
                     gp.playSE(6);
                     gp.gameState = gp.gameOverState;
+                    gp.stopMusic();
+                    gp.playMusic(0);
                 }
        		}
        	}

@@ -64,6 +64,8 @@ public class KeyHandler implements KeyListener {
                     gp.gameState = gp.playState;
                     gp.newGame();
                     gp.playSE(2);
+                    gp.stopMusic();
+                    gp.playMusic(1);
                 }
 
                 // leaderboard
@@ -129,9 +131,10 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.commandNum == 1) {
                     gp.gameState = gp.playState;
                     gp.reset();
-                    gp.stopMusic();
                     gp.newGame();
                     gp.playSE(2);
+                    gp.stopMusic();
+                    gp.playMusic(1);
                 }
                 
                 //quit
@@ -186,6 +189,8 @@ public class KeyHandler implements KeyListener {
                     gp.gameState = gp.playState;
                     gp.playSE(2);
                     gp.ui.commandNum = -1;
+                    gp.stopMusic();
+                    gp.playMusic(1);
                 }
                 
                 //quit
@@ -536,6 +541,8 @@ public class KeyHandler implements KeyListener {
                 gp.paused = true;
                 gp.ui.commandNum = 0;
                 gp.playSE(3);
+                gp.stopMusic();
+                gp.playMusic(0);
             }
         }
     }

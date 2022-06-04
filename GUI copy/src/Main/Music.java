@@ -4,13 +4,12 @@ import java.net.*;
 import java.util.*;
 import javax.sound.sampled.*;
 
-public class Sound {
+public class Music {
 	
-	public ArrayList<Clip> clips = new ArrayList<Clip>();
 	Clip clip;
 	URL soundURL[] = new URL[30];
 	
-	public Sound() {
+	public Music() {
 		
 		//main music
 		soundURL[0] = getClass().getResource("/Sounds/menue.wav");
@@ -65,7 +64,6 @@ public class Sound {
 	public void play() {
 		
 		clip.start();
-		clips.add(clip);
 	}
 	
 	public void loop() {
