@@ -464,11 +464,6 @@ public class UI {
             text = "Sound: " + (gp.soundOption ? "On" : "Off");
             x = getXforCenteringText(text);
             y += gp.tileSize*2;
-            if(gp.soundOption) {
-            	g2.setColor(Color.green);
-            }else {
-            	g2.setColor(Color.red);
-            }
             g2.drawString(text, x, y);
             if (commandNum == 0) {
                 g2.drawString(">", x - gp.tileSize, y);
@@ -479,11 +474,6 @@ public class UI {
             text = "Music: " + (gp.musicOption ? "On" : "Off");
             x = getXforCenteringText(text);
             y += gp.tileSize;
-            if(gp.musicOption) {
-            	g2.setColor(Color.green);
-            }else {
-            	g2.setColor(Color.red);
-            }
             g2.drawString(text, x, y+10);
             if (commandNum == 1) {
                 g2.drawString(">", x - gp.tileSize, y+10);
