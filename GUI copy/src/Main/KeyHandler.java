@@ -354,7 +354,7 @@ public class KeyHandler implements KeyListener {
 
             // pause key
             if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
-                gp.gameState = gp.pauseState;
+                gp.gameState = gp.titleState;
                 gp.ui.commandNum = 0;
                 gp.playSE(3);
             }
