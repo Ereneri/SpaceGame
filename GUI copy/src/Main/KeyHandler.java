@@ -322,8 +322,19 @@ public class KeyHandler implements KeyListener {
                     gp.setSound(!tmp);
                 }
                 
-                // returns to menu
+             // toggles music eddects
                 if (gp.ui.commandNum == 1) {
+                    boolean tmp = gp.musicOption;
+                    gp.setMusic(!tmp);
+                    if(!tmp == false) {
+                    	gp.stopMusic();
+                    }else {
+                    	gp.playMusic(0);
+                    }
+                }
+                
+                // returns to menu
+                if (gp.ui.commandNum == 2) {
                     gp.gameState = gp.titleState;
                     gp.ui.commandNum = 0;
                     gp.playSE(3);

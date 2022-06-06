@@ -468,13 +468,23 @@ public class UI {
             if (commandNum == 0) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
+            
+            // music
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+            text = "Music: " + (gp.musicOption ? "On" : "Off");
+            x = getXforCenteringText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y+10);
+            if (commandNum == 1) {
+                g2.drawString(">", x - gp.tileSize, y+10);
+            }
 
             // return to game
             text = "Return";
             x = getXforCenteringText(text);
             y += 55+ gp.tileSize;
             g2.drawString(text, x, y);
-            if (commandNum == 1) {
+            if (commandNum == 2) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
     

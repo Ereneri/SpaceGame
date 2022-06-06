@@ -592,6 +592,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void setSound(boolean sound) {
         this.soundOption = sound;
     }
+    
+  //toggles the sound on and off
+    public void setMusic(boolean music) {
+        this.musicOption = music;
+    }
 
     public String getName() {
         return ship.name;
