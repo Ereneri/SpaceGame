@@ -464,6 +464,11 @@ public class UI {
             text = "Sound: " + (gp.soundOption ? "On" : "Off");
             x = getXforCenteringText(text);
             y += gp.tileSize*2;
+            if(gp.soundOption) {
+            	g2.setColor(Color.green);
+            }else {
+            	g2.setColor(Color.red);
+            }
             g2.drawString(text, x, y);
             if (commandNum == 0) {
                 g2.drawString(">", x - gp.tileSize, y);
@@ -474,6 +479,11 @@ public class UI {
             text = "Music: " + (gp.musicOption ? "On" : "Off");
             x = getXforCenteringText(text);
             y += gp.tileSize;
+            if(gp.musicOption) {
+            	g2.setColor(Color.green);
+            }else {
+            	g2.setColor(Color.red);
+            }
             g2.drawString(text, x, y+10);
             if (commandNum == 1) {
                 g2.drawString(">", x - gp.tileSize, y+10);
@@ -485,24 +495,28 @@ public class UI {
             String option;
             int diff;
             if(gp.difficultyOption == 0) {
+            	g2.setColor(Color.blue);
             	option = "easy";
             }else if(gp.difficultyOption == 1) {
+            	g2.setColor(Color.yellow);
             	option = "medium";
             }else {
+            	g2.setColor(Color.red);
             	option = "hard";
             }
             text += option;
             x = getXforCenteringText(text);
-            y += gp.tileSize;
-            g2.drawString(text, x, y+30);
+            y += gp.tileSize + 40;
+            g2.drawString(text, x, y);
             if (commandNum == 2) {
-                g2.drawString(">", x - gp.tileSize, y+30);
+                g2.drawString(">", x - gp.tileSize, y);
             }
 
             // return to game
+            g2.setColor(Color.white);
             text = "Return";
             x = getXforCenteringText(text);
-            y += 70+ gp.tileSize;
+            y += 80+ gp.tileSize;
             g2.drawString(text, x, y);
             if (commandNum == 3) {
                 g2.drawString(">", x - gp.tileSize, y);
