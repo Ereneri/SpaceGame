@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class scoreboard {
     ArrayList<score> scores;
+    // stop reading its jank af
 //    String in = "GUI copy/src/Main/scores.txt";
       String in = "src/Main/scores.txt";
     public scoreboard() {
