@@ -297,7 +297,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum == -1) {
-                    gp.ui.commandNum = 2;
+                    gp.ui.commandNum = 3;
                     gp.playSE(11);
                 }else {
                 	gp.playSE(11);
@@ -306,7 +306,7 @@ public class KeyHandler implements KeyListener {
             // down
             if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
                 gp.ui.commandNum++;
-                if (gp.ui.commandNum == 3) {
+                if (gp.ui.commandNum == 4) {
                     gp.ui.commandNum = 0;
                     gp.playSE(11);
                 }else {
@@ -333,8 +333,19 @@ public class KeyHandler implements KeyListener {
                     }
                 }
                 
-                // returns to menu
+                // changes difficulty
                 if (gp.ui.commandNum == 2) {
+                    if(gp.difficultyOption == 0) {
+                    	gp.setDiff(1);
+                    }else if(gp.difficultyOption == 1) {
+                    	gp.setDiff(2);
+                    }else if(gp.difficultyOption == 2) {
+                    	gp.setDiff(0);
+                    }
+                }
+                
+                // returns to menu
+                if (gp.ui.commandNum == 3) {
                     gp.gameState = gp.titleState;
                     gp.ui.commandNum = 0;
                     gp.playSE(3);

@@ -60,11 +60,12 @@ public class GamePanel extends JPanel implements Runnable {
     
     // asteroid stuff
     public class ast{
-    	public static int numAsteroids = 10;
+    	public static int numAsteroids = 12;
         public static ArrayList<Asteroid> asts = new ArrayList<Asteroid>();
         public static ArrayList<Long> astTime = new ArrayList<Long>();
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
+    int difficultyOption = 1;
 
     public class exps {
         public static ArrayList<Explosion> expsList = new ArrayList<Explosion>();
@@ -596,6 +597,18 @@ public class GamePanel extends JPanel implements Runnable {
   //toggles the sound on and off
     public void setMusic(boolean music) {
         this.musicOption = music;
+    }
+    
+    //sets the difficulty
+    public void setDiff(int diff) {
+        this.difficultyOption = diff;
+        if(this.difficultyOption == 0) {
+        	ast.numAsteroids = 10;
+        }else if(this.difficultyOption == 1) {
+        	ast.numAsteroids = 12;
+        }else {
+        	ast.numAsteroids = 14;
+        }
     }
 
     public String getName() {

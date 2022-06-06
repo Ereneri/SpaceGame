@@ -478,13 +478,33 @@ public class UI {
             if (commandNum == 1) {
                 g2.drawString(">", x - gp.tileSize, y+10);
             }
+            
+            //difficulty
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
+            text = "Difficulty: ";
+            String option;
+            int diff;
+            if(gp.difficultyOption == 0) {
+            	option = "easy";
+            }else if(gp.difficultyOption == 1) {
+            	option = "medium";
+            }else {
+            	option = "hard";
+            }
+            text += option;
+            x = getXforCenteringText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y+30);
+            if (commandNum == 2) {
+                g2.drawString(">", x - gp.tileSize, y+30);
+            }
 
             // return to game
             text = "Return";
             x = getXforCenteringText(text);
-            y += 55+ gp.tileSize;
+            y += 70+ gp.tileSize;
             g2.drawString(text, x, y);
-            if (commandNum == 2) {
+            if (commandNum == 3) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
     
