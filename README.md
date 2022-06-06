@@ -1,6 +1,6 @@
 # SpaceGame
 
-## Release 2.0.0
+## Release 2.1.1
 
 Its a space shooter what did you think?
 
@@ -14,7 +14,3 @@ Esc to pause game\
 ## How to Play
 
 The goal is to collect the small metals around the map to increase your score. The score can be used to buy upgrades or more health in the shop, which can be acessed from the pause menu. Once you hit game over you can save your score with a 3 letter name. You can acess the top 5 scores in the leaderboard screen, either from the title screen or the pause menu.
-
-## PRO TIP
-
-if you are experiencing issues with the game, try to turn off the sound in the options menu.
