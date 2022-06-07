@@ -19,22 +19,22 @@ The goal is to collect the small metals around the map to increase your score. T
 
 ### Two ways to get files:
 
-#### Fork
+#### 1. Fork
 
 1. Fork the Repo using either github desktop or use "git clone" in the terminal to copy files\
 
-#### Download ZIP file
+#### 1. Download ZIP file
 
 1. Click on "code" and download the code as a zip\
 2. Once downloaded, unzip the file in a easy to find directory
 
-#### Open Game
+#### 2. Open Game
 
 1. Using your IDE of choice, open the "SpaceGame-master" folder inside of your IDE\
 2. Once opened, go to "GUI copy" -> "src" -> "Main" -> "Main.java" (the java project may take a second to build)\
 3. Lasty, run the "Main.java"
 
-#### FAQ
+### FAQ
 
 1. "The Leaderboard isn't loading?"
 > Depending on your IDE the code struggles to find the "scores.txt" file, in this case navigate to the "scoreboard.java" file and switch the "String in" with the other "String in". You can do this by commenting out the other and uncommenting the correct one.\
