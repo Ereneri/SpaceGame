@@ -60,12 +60,12 @@ public class GamePanel extends JPanel implements Runnable {
     
     // asteroid stuff
     public class ast{
-    	public static int numAsteroids = 12;
+    	public static int numAsteroids = 10;
         public static ArrayList<Asteroid> asts = new ArrayList<Asteroid>();
         public static ArrayList<Long> astTime = new ArrayList<Long>();
     }
     public asteroidSetter asteroidSetter = new asteroidSetter(this);
-    int difficultyOption = 1;
+    int difficultyOption = 0;
 
     public class exps {
         public static ArrayList<Explosion> expsList = new ArrayList<Explosion>();
