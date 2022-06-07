@@ -61,6 +61,7 @@ public class KeyHandler implements KeyListener {
             	
             	// new game
                 if (gp.ui.commandNum == 0) {
+                	gp.gameChange = true;
                     gp.gameState = gp.playState;
                     gp.newGame();
                     gp.playSE(2);
@@ -139,6 +140,7 @@ public class KeyHandler implements KeyListener {
                 
                 //quit
                 if (gp.ui.commandNum == 2) {
+                    gp.gameChange = true;
                     gp.gameState = gp.titleState;
                     gp.ui.commandNum = 0;
                     gp.reset();
@@ -179,6 +181,7 @@ public class KeyHandler implements KeyListener {
                 
                 //leaderboard
                 if (gp.ui.commandNum == 1) {
+                	gp.gameChange = true;
                     gp.playSE(2);
                     gp.gameState = gp.leaderboardState;
                     gp.ui.commandNum = -1;
@@ -195,6 +198,7 @@ public class KeyHandler implements KeyListener {
                 
                 //quit
                 if (gp.ui.commandNum == 3) {
+                    gp.gameChange = true;
                 	gp.playSE(3);
                     gp.gameState = gp.titleState;
                     gp.ui.commandNum = 0;
@@ -365,8 +369,10 @@ public class KeyHandler implements KeyListener {
                 // returns to menu
                 if (gp.ui.commandNum == 1) {
                     if (gp.paused) {
+                    	gp.gameChange = true;
                         gp.gameState = gp.pauseState;
                     } else {
+                        gp.gameChange = true;
                         gp.gameState = gp.titleState;
                         gp.reset();
                     }
@@ -378,8 +384,10 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_SHIFT || code == KeyEvent.VK_ESCAPE) {
                 // returns to menu
                 if (gp.paused) {
+                	gp.gameChange = true;
                     gp.gameState = gp.pauseState;
                 } else {
+                    gp.gameChange = true;
                     gp.gameState = gp.titleState;
                     gp.reset();
                 }
@@ -506,6 +514,7 @@ public class KeyHandler implements KeyListener {
                     
                     // saves score and redirects to leaderboard
                     if (gp.ui.commandNum == 1) {
+                    	gp.gameChange = true;
                         gp.saveScore();
                         gp.updateScores();
                         gp.gameState = gp.leaderboardState;

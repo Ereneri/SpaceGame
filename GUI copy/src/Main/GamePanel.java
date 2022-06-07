@@ -92,6 +92,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int saveState = 8;
     public final int leaderboardState = 9;
     public boolean nameBuilder = true;
+    public boolean gameChange = false;
     
     // Music
     Music music = new Music();
@@ -130,8 +131,8 @@ public class GamePanel extends JPanel implements Runnable {
         
         //sets the backgound image to something...
         try {
-            background = ImageIO.read(getClass().getResource("/Main/bg.png"));
-//            background = ImageIO.read(getClass().getResource("/Main/back1.png"));
+//            background = ImageIO.read(getClass().getResource("/Main/bg.png"));
+            background = ImageIO.read(getClass().getResource("/Main/back1.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -216,6 +217,17 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
 
         if (gameState == playState) {
+        	
+        	//changes background to the normal one during playing
+        	if(gameChange == true) {
+                try {
+    				background = ImageIO.read(getClass().getResource("/Main/bg.png"));
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			}
+                gameChange = false;
+        	}
+            
             ship.update();
 
             //checks if there are any collectibles left. If all are gone it spawns in more
@@ -285,6 +297,29 @@ public class GamePanel extends JPanel implements Runnable {
 //            		System.out.println("delete bullet");
             	}
             }
+        }
+        
+        //checks if we are on the title screen and if so changes the background once
+        if(gameState == titleState) {
+        	if(gameChange == true) {
+        		try {
+    				background = ImageIO.read(getClass().getResource("/Main/back1.png"));
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			}
+                gameChange = false;
+        	}
+        }
+      //checks if we are on the leaderboard screen and if so changes the background once
+        if(gameState == leaderboardState) {
+        	if(gameChange == true) {
+        		try {
+    				background = ImageIO.read(getClass().getResource("/Main/back1.png"));
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			}
+                gameChange = false;
+        	}
         }
     }
 
