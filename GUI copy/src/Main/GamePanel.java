@@ -131,6 +131,7 @@ public class GamePanel extends JPanel implements Runnable {
         //sets the backgound image to something...
         try {
             background = ImageIO.read(getClass().getResource("/Main/bg.png"));
+//            background = ImageIO.read(getClass().getResource("/Main/back1.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
