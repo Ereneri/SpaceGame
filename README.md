@@ -36,8 +36,8 @@ The goal is to collect the small metals around the map to increase your score. T
 
 #### FAQ
 
-1. "The Leaderboard isn't loading?"\ 
-Depending on your IDE the code struggles to find the "scores.txt" file, in this case navigate to the "scoreboard.java" file and switch the "String in" with the other "String in". You can do this by commenting out the other and uncommenting the correct one.\
+1. "The Leaderboard isn't loading?"\
+> Depending on your IDE the code struggles to find the "scores.txt" file, in this case navigate to the "scoreboard.java" file and switch the "String in" with the other "String in". You can do this by commenting out the other and uncommenting the correct one.\
 
-2. "My score isn't saving?"
-Depending on your IDE the code struggles to find the "scores.txt" file, in this case navigate to the "scoreboard.java" file and switch the "String in" with the other "String in". You can do this by commenting out the other and uncommenting the correct one.\
+2. "My score isn't saving?"\
+> Depending on your IDE the code struggles to find the "scores.txt" file, in this case navigate to the "scoreboard.java" file and switch the "String in" with the other "String in". You can do this by commenting out the other and uncommenting the correct one.\
