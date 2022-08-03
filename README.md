@@ -1,6 +1,6 @@
 # SpaceGame
 
-## Release 2.1.1
+## Release 2.1.2
 
 Its a space shooter what did you think?
 
@@ -29,6 +29,12 @@ The goal is to collect the small metals around the map to increase your score. T
 2. Once downloaded, unzip the file in a easy to find directory
 
 #### 2. Open Game
+
+##### jar emthod
+
+1. Click on jar and enjoy!
+
+##### IDE method:
 
 1. Using your IDE of choice, open the "SpaceGame-master" folder inside of your IDE\
 2. Once opened, go to "GUI copy" -> "src" -> "Main" -> "Main.java" (the java project may take a second to build)\
