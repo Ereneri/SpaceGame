@@ -1,7 +1,5 @@
 package Main;
 
-import java.util.ArrayList;
-
 public class Explosion {
     public int x;
     public int y;

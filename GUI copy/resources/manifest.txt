@@ -1,0 +1,3 @@
+Manifest-Verison: 1.0
+Class-Path: .
+Main-Class: Main.Main

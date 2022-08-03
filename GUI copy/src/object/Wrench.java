@@ -13,7 +13,7 @@ public class Wrench extends metal{
 			
 		//Places an image on object
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/object/Wrench.png"));
+			image = ImageIO.read(getClass().getResourceAsStream("/object/wrench.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

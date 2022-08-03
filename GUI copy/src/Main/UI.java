@@ -483,13 +483,12 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48F));
             text = "Difficulty: ";
             String option;
-            int diff;
             if(gp.difficultyOption == 0) {
-            	g2.setColor(Color.blue);
-            	option = "easy";
+                g2.setColor(Color.blue);
+                option = "easy";
             }else if(gp.difficultyOption == 1) {
-            	g2.setColor(Color.yellow);
-            	option = "medium";
+                g2.setColor(Color.yellow);
+                option = "medium";
             }else {
             	g2.setColor(Color.red);
             	option = "hard";

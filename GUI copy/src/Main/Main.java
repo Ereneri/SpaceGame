@@ -20,7 +20,7 @@ public class Main {
         // Create a new GamePanel
         GamePanel gamePanel = new GamePanel();
         frame.add(gamePanel);
-        	
+        
         // Spawns metals
         gamePanel.spawnMetal();
         

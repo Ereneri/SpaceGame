@@ -10,8 +10,8 @@ import java.util.Scanner;
 public class scoreboard {
     ArrayList<score> scores;
     // stop reading its jank af
-//    String in = "GUI copy/src/Main/scores.txt";
-      String in = "src/Main/scores.txt";
+    // String in = "GUI copy/src/Main/scores.txt";
+    String in = "src/Main/scores.txt";
     public scoreboard() {
         this.scores = getScores();
         sortScores();
@@ -44,12 +44,12 @@ public class scoreboard {
 	}
     // writes new score to scores.txt
     public void addScore(String name, int score) {
-        System.out.println("addScore is called"); 
+        // System.out.println("addScore is called"); 
         try {
             FileWriter myWriter = new FileWriter(in, true);
             myWriter.append(name + ":" + score +";");
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            // System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("AddScore failed");
             e.printStackTrace();

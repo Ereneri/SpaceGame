@@ -2,8 +2,6 @@ package collision;
 
 import java.awt.*;
 
-import Main.GamePanel.objRocket;
-
 public class Collision{
 private int x;
 private int y;
